@@ -27,6 +27,8 @@ public class Users {
 
     private String mobile;
 
+    private boolean isDriver;
+
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 

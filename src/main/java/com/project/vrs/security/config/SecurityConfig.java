@@ -19,8 +19,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/", "/ws/messages", "auth/**").permitAll();
-                    auth.requestMatchers("api" + "/**").authenticated();
+                    auth.requestMatchers("/", "/ws/messages", "api/**").permitAll();
+                    auth.requestMatchers("auth" + "/**").authenticated();
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
