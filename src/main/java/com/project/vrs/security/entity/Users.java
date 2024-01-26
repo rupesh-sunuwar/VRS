@@ -1,5 +1,6 @@
 package com.project.vrs.security.entity;
 
+import com.project.vrs.enums.Role;
 import com.project.vrs.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,7 +33,7 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
-    private String role;
+    private Role role;
 
     private LocalDateTime createdAt;
 }

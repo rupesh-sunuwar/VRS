@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
 
     if (this.loginService.isLoggedIn()) {
-      this.router.navigate(['/cms/dashboard']);
+      this.router.navigate(['/signup']);
     }
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
@@ -59,22 +59,10 @@ export class LoginComponent implements OnInit {
       const credentials: any = {
         email: this.loginForm.value.username,
         password: this.loginForm.value.password,
-        browser_name: this.browserName,
-        login_OTP: ""
       };
 
       this.loginService.generateToken(credentials).pipe(
         tap(response => {
-
-          if (response.data.security_option === 'TWO_FA') {
-            localStorage.removeItem('ngStorage-profile');
-            localStorage.removeItem('token');
-            localStorage.removeItem('booleanValue');
-
-            localStorage.setItem("temp-username", this.loginForm.value.username);
-            localStorage.setItem("temp-user-auth", response.data.security_option);
-            this.router.navigate(['/two-factor-auth']);
-          } else {
             if (response.data.token !== null) {
               localStorage.setItem("token", response.data.token);
               const tokenPayload = this.jwtService.decodedToken();
@@ -84,7 +72,6 @@ export class LoginComponent implements OnInit {
               this.jwtService.setUserStatusForUser(tokenPayload.token.user_status);
 
               localStorage.setItem("ngStorage-profile", JSON.stringify(tokenPayload.token));
-              localStorage.setItem("show-cms-tutorial", response.data.view_cms_tutorial);
 
               this.messageService.showSuccess('Success', 'Logged in Successfully');
               this.router.navigateByUrl('signup');
@@ -92,7 +79,6 @@ export class LoginComponent implements OnInit {
               this.loginService.setLoginForm(this.loginForm);
               this.router.navigate(['/signup']);
             }
-          }
         }),
         catchError(error => {
           const errorMessage = error?.error?.message || 'Service not available';

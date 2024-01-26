@@ -2,6 +2,7 @@ package com.project.vrs.security.controller;
 
 import com.project.vrs.exception.UserException;
 import com.project.vrs.resources.request.LoginRequest;
+import com.project.vrs.resources.request.UserDto;
 import com.project.vrs.resources.response.AuthResponse;
 import com.project.vrs.security.config.JwtProvider;
 import com.project.vrs.security.entity.Users;
@@ -32,7 +33,7 @@ public class AuthController {
     private final CustomUserServiceImpl customUserService;
 
     @PostMapping("/sign_up")
-    public ResponseEntity<AuthResponse> createUserHandler(@RequestBody Users user) throws UserException {
+    public ResponseEntity<AuthResponse> createUserHandler(@RequestBody UserDto user) throws UserException {
 
         String email = user.getEmail();
         String password = user.getPassword();
@@ -49,6 +50,7 @@ public class AuthController {
         createdUser.setPassword(passwordEncoder.encode(password));
         createdUser.setFirstName(firstName);
         createdUser.setLastName(lastName);
+        createdUser.setRole(user.getRole());
 
         Users savedUser = userRepository.save(createdUser);
 
@@ -88,7 +90,6 @@ public class AuthController {
         if(!passwordEncoder.matches(password, userDetails.getPassword())){
             throw new BadCredentialsException("Invalid password...");
         }
-
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }

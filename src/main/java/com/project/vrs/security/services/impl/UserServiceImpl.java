@@ -14,7 +14,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class UserServiceImpl implements UserService {
+public class  UserServiceImpl implements UserService {
 
     private final JwtProvider jwtProvider;
     private final UserRepository userRepository;
