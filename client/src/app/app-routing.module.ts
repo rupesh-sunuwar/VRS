@@ -7,15 +7,14 @@ import {authGuard} from "./auth/auth.guard";
 import {DriverDasboardComponent} from "./driver/driver-dasboard/driver-dasboard.component";
 import {HomeComponent} from "./home/home.component";
 
-const routes: Routes = [{
-  path: '', component: LoginComponent,
-},
+const routes: Routes = [
   {
-    path:'home',component:HomeComponent
+    path: 'home', component: HomeComponent
   },
   {
     path: 'signup', component: SignupComponent
   },
+  {path: 'login', component: LoginComponent},
   {
     path: 'customer', component: CustomerDashboardComponent,
     children: [
@@ -36,7 +35,9 @@ const routes: Routes = [{
         canActivate: [authGuard],
       }
     ]
-  }];
+  },
+  {path: '', redirectTo: '/login', pathMatch: 'full'}, // Default route
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 
-import {catchError, tap} from "rxjs";
-import * as Bowser from "bowser";
-import { debounce } from 'lodash';
+import {catchError, tap, throwError} from "rxjs";
+import {debounce} from 'lodash';
 import {JwtService} from "../auth/jwt.service";
 import {LoginService} from "../auth/login.service";
 import {CustomMessageService} from "../service/message-service/custom-message.service";
@@ -17,7 +16,7 @@ import {CustomMessageService} from "../service/message-service/custom-message.se
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-  browserName!: string;
+  debouncedOnSubmit!: Function;
 
   constructor(
     private fb: FormBuilder,
@@ -29,69 +28,79 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if ((navigator as any).brave) {
-      this.browserName = "Brave";
-    } else {
-      this.browserName = Bowser.getParser(window.navigator.userAgent).getBrowserName();
-    }
 
     if (this.loginService.isLoggedIn()) {
-      this.router.navigate(['/signup']);
+      this.router.navigate(['/home']);
     }
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.debouncedOnSubmit = debounce(this.onSubmit.bind(this), 1000);
   }
 
-  get username() {
-    return this.loginForm.get('username');
+  get email() {
+    return this.loginForm.get('email');
   }
 
   get password() {
     return this.loginForm.get('password');
   }
 
-  debouncedOnSubmit = debounce(this.onSubmit, 1000);
-
   async onSubmit() {
+    console.log(this.loginForm);
     if (this.loginForm.valid) {
       const credentials: any = {
-        email: this.loginForm.value.username,
+        email: this.loginForm.value.email,
         password: this.loginForm.value.password,
       };
 
       this.loginService.generateToken(credentials).pipe(
         tap(response => {
-            if (response.data.token !== null) {
-              localStorage.setItem("token", response.data.token);
-              const tokenPayload = this.jwtService.decodedToken();
-              this.jwtService.setUserNameForUser(tokenPayload.token.full_name);
-              this.jwtService.setRoleForUser(tokenPayload.token.role);
-              this.jwtService.setPermissionForUser(tokenPayload.token.permissions);
-              this.jwtService.setUserStatusForUser(tokenPayload.token.user_status);
-
-              localStorage.setItem("ngStorage-profile", JSON.stringify(tokenPayload.token));
-
-              this.messageService.showSuccess('Success', 'Logged in Successfully');
-              this.router.navigateByUrl('signup');
-            } else {
-              this.loginService.setLoginForm(this.loginForm);
-              this.router.navigate(['/signup']);
-            }
+          if (this.isValidResponse(response)) {
+            this.handleSuccessfulResponse(response);
+          } else {
+            this.handleInvalidResponse();
+          }
         }),
         catchError(error => {
-          const errorMessage = error?.error?.message || 'Service not available';
-          const colonIndex = errorMessage.indexOf(':');
-
-          if (colonIndex !== -1) {
-            const extractedString = errorMessage.substring(colonIndex + 1).trim();
-            this.router.navigate(['/reset-password'], {queryParams: {token: extractedString}});
-          }
-          this.messageService.showError('Access Denied', errorMessage);
-          return [];
+          this.handleError(error);
+          return throwError(error);
         })
       ).subscribe();
     }
+  }
+
+  private isValidResponse(response: any): boolean {
+    return response && response.token;
+  }
+
+  private handleSuccessfulResponse(response: any): void {
+    console.log(response.token);
+    localStorage.setItem("token", response.token);
+    const tokenPayload = this.jwtService.decodedToken();
+    console.log("TokenPayload", tokenPayload);
+    this.jwtService.setUserNameForUser(tokenPayload.fullName);
+    this.jwtService.setRoleForUser(tokenPayload.role);
+    this.jwtService.setUserStatusForUser(tokenPayload.status);
+    localStorage.setItem("ngStorage-profile", JSON.stringify(tokenPayload.token));
+    this.messageService.showSuccess('Success', 'Logged in Successfully');
+    this.router.navigateByUrl('home');
+  }
+
+  private handleInvalidResponse(): void {
+    this.loginService.setLoginForm(this.loginForm);
+    this.router.navigate(['/signup']);
+  }
+
+  private handleError(error: any): void {
+    const errorMessage = error?.error?.message || 'Service not available';
+    const colonIndex = errorMessage.indexOf(':');
+
+    if (colonIndex !== -1) {
+      const extractedString = errorMessage.substring(colonIndex + 1).trim();
+      this.router.navigate(['/reset-password'], {queryParams: {token: extractedString}});
+    }
+    this.messageService.showError('Access Denied', errorMessage);
   }
 }

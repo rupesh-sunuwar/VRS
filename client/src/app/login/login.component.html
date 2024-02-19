@@ -1,21 +1,18 @@
 <p-toast></p-toast>
-
 <div class="login-container">
   <div class="card">
     <a class="layout-topbar-logo">
-      <img [src]="'assets/layout/images/eSewa-logo.png'" alt="logo">
+      <img [src]="'assets/ferrari.png'" alt="logo">
     </a>
-
     <form [formGroup]="loginForm" (ngSubmit)="debouncedOnSubmit()">
       <div class="p-field">
-        <label for="username"><i class="pi pi-user"></i> Username</label>
-        <input id="username" type="text" pInputText formControlName="username">
-        <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="p-error">
+        <label for="email"><i class="pi pi-user"></i> Username</label>
+        <input id="email" type="text" pInputText formControlName="email">
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="p-error">
           <i class="pi pi-exclamation-circle"></i> Username is required.
         </div>
       </div>
       <br>
-
       <div class="p-field">
         <label for="password"><i class="pi pi-key"></i> Password</label>
         <input id="password" type="password" pInputText formControlName="password">
@@ -23,9 +20,9 @@
           <i class="pi pi-exclamation-circle"></i> Password is required.
         </div>
       </div>
-
       <div class="button-container">
         <p-button [disabled]="loginForm.invalid" type="submit" label="Login" styleClass="p-button-success"></p-button>
+        <a routerLink="/signup" class="p-button p-button-primary">Register</a>
         <a href="/identify" class="forgot-password-link">Forgot password?</a>
       </div>
     </form>

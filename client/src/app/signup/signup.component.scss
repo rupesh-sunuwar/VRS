@@ -1,0 +1,101 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+  height: 100vh;
+
+  .card {
+    width: 450px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #333;
+
+      .pi {
+        margin-right: 0.5rem;
+      }
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #777;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      .pi {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .p-error {
+      color: #f44336;
+      margin-top: 0.2rem;
+      font-size: 0.9rem;
+
+      .pi {
+        margin-right: 0.2rem;
+      }
+    }
+
+    .button-container {
+      margin-top: 1rem;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .forgot-password-link {
+      text-align: right;
+    }
+
+  }
+}
+
+input#email {
+  width: 22rem;
+}
+
+input#firstName {
+  width: 22rem;
+}
+
+input#lastName {
+  width: 22rem;
+}
+
+input#password {
+  width: 22rem;
+}
+
+.layout-topbar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--surface-900);
+  font-size: 1.5rem;
+  font-weight: 500;
+  width: 300px;
+  border-radius: 12px;
+
+  img {
+    height: 5rem;
+  }
+}
+

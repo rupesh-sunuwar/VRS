@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
+
 import {BehaviorSubject, Observable} from "rxjs";
 import {FormGroup} from "@angular/forms";
 import {environment, route} from "../env/environment";
@@ -10,7 +11,9 @@ import {environment, route} from "../env/environment";
 })
 export class LoginService {
 
-  private url: string = environment.localhost + route.vrs + "sign_in";
+  private auth_url: string = environment.localhost + route.vrs_auth;
+  private url: string = environment.localhost + route.vrs;
+  private logoutUrl: string = environment.localhost + route.vrs_auth + "logout";
   private verifyUrl: string = environment.localhost + route.vrs_auth + "verify_login_otp"
 
   constructor(
@@ -18,7 +21,7 @@ export class LoginService {
   }
 
   generateToken(credentials: any): Observable<any> {
-    const apiUrl = `${this.url}`;
+    const apiUrl = this.url + "sign_in";
     return this.httpClient.post<any>(apiUrl, credentials);
   }
 
@@ -84,5 +87,16 @@ export class LoginService {
 
   getLoginForm(): FormGroup | null {
     return this.loginForm;
+  }
+
+  logout(userId: string) {
+    const apiUrl = `${this.logoutUrl}/${userId}`;
+    console.log(apiUrl);
+    return this.httpClient.post<any>(apiUrl, {});
+  }
+
+  findUserById(userId: string): Observable<any> {
+    const url = `${this.auth_url}/user/${userId}`; // Corrected URL construction
+    return this.httpClient.get<any>(url);
   }
 }

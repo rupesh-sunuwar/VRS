@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {MenuComponent} from "./menu/menu.component";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
@@ -10,11 +10,11 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {RouterLink, RouterOutlet} from "@angular/router";
-
+import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
-  declarations: [MenuComponent,HeaderComponent],
+  declarations: [MenuComponent, HeaderComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -26,6 +26,7 @@ import {RouterLink, RouterOutlet} from "@angular/router";
     MatToolbarModule,
     RouterOutlet,
     RouterLink,
+    ButtonModule
 
   ],
   exports: [
@@ -33,7 +34,6 @@ import {RouterLink, RouterOutlet} from "@angular/router";
   ]
 })
 export class AppLayoutModule {
-
 
 
 }

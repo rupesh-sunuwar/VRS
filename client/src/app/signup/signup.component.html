@@ -1,1 +1,52 @@
-<p>signup works!</p>
+<p-toast></p-toast>
+<div class="signup-container">
+  <div class="card">
+    <a class="layout-topbar-logo">
+      <img [src]="'assets/ferrari.png'" alt="logo">
+    </a>
+
+    <form [formGroup]="signupForm" (ngSubmit)="debouncedOnSubmit()">
+
+      <div class="p-field">
+        <label for="firstName"><i class="pi pi-user"></i> FirstName</label>
+        <input id="firstName" type="text" pInputText formControlName="firstName">
+        <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="p-error">
+          <i class="pi pi-exclamation-circle"></i> FirstName is required.
+        </div>
+      </div>
+      <br>
+
+      <div class="p-field">
+        <label for="lastName"><i class="pi pi-user"></i> LastName</label>
+        <input id="lastName" type="text" pInputText formControlName="lastName">
+        <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="p-error">
+          <i class="pi pi-exclamation-circle"></i> LastName is required.
+        </div>
+      </div>
+      <br>
+
+      <div class="p-field">
+        <label for="email"><i class="pi pi-user"></i> Username</label>
+        <input id="email" type="text" pInputText formControlName="email">
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="p-error">
+          <i class="pi pi-exclamation-circle"></i> Username is required.
+        </div>
+      </div>
+      <br>
+
+      <div class="p-field">
+        <label for="password"><i class="pi pi-key"></i> Password</label>
+        <input id="password" type="password" pInputText formControlName="password">
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="p-error">
+          <i class="pi pi-exclamation-circle"></i> Password is required.
+        </div>
+      </div>
+
+      <div class="button-container">
+        <p-button [disabled]="signupForm.invalid" type="submit" label="Login" styleClass="p-button-success"></p-button>
+        <a routerLink="/login" class="p-button p-button-primary">Login</a>
+      </div>
+    </form>
+  </div>
+</div>
+
