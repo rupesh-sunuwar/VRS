@@ -100,7 +100,7 @@ export class LoginService {
     const headers=new HttpHeaders()
       .set('Authorization',`Bearer ${this.getToken()}`)
     console.log(apiUrl);
-    return this.httpClient.post<any>(apiUrl, {}, { headers, responseType: 'text' as 'json'});
+    return this.httpClient.post<any>(apiUrl, {}, { headers});
   }
 
   findUserById(userId: string): Observable<any> {

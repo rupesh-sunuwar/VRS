@@ -66,10 +66,9 @@ public class AuthController {
         createdUser.setUserStatus(UserStatus.ACTIVE);
         createdUser.setFirstName(firstName);
         createdUser.setLastName(lastName);
-        if(user.isDriver()){
+        if (user.isDriver()) {
             createdUser.setRole(Role.DRIVER);
-        }
-        else{
+        } else {
             createdUser.setRole(Role.CUSTOMER);
         }
 
@@ -87,14 +86,16 @@ public class AuthController {
     }
 
     @PostMapping("auth/logout/{email}")
-    public ResponseEntity<String> logoutUserHandler(@PathVariable String email) {
+    public ResponseEntity<AuthResponse> logoutUserHandler(@PathVariable String email) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication != null && authentication.getName().equals(email)) {
             SecurityContextHolder.clearContext();
-            return ResponseEntity.ok().body("Logged out successfully for user ID: " + email);
+            AuthResponse authResponse = new AuthResponse(null, "Logged out successfully for user ID:" + email);
+            return new ResponseEntity<>(authResponse, HttpStatus.OK);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No session found for user ID: " + email);
+            AuthResponse authResponse = new AuthResponse(null, "Not User Found With email" + email);
+            return new ResponseEntity<>(authResponse, HttpStatus.OK);
         }
     }
 

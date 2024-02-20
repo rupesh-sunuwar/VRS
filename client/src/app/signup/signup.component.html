@@ -1,5 +1,9 @@
+<p-toast></p-toast>
 <div class="signup-container">
   <form (ngSubmit)="onSubmit()" #signupForm="ngForm" class="signup-form">
+    <a class="layout-topbar-logo">
+      <img [src]="'assets/ferrari.png'" alt="logo">
+    </a>
     <h2>Signup</h2>
     <div class="form-group">
       <label>First Name<span>*</span></label>
@@ -25,7 +29,8 @@
       <label>Is Driver (optional)</label>
       <input type="checkbox" name="isDriver" [(ngModel)]="userData.isDriver">
     </div>
-    <a routerLink="/login">Login</a>
     <button type="submit" [disabled]="signupForm.invalid">Submit</button>
+    <a routerLink="/login">Login</a>
   </form>
 </div>
+

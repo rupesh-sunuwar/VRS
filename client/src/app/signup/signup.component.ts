@@ -2,8 +2,7 @@ import {Component} from '@angular/core';
 import {LoginService} from "../auth/login.service";
 import {CustomMessageService} from "../service/message-service/custom-message.service";
 import {Router} from "@angular/router";
-// @ts-ignore
-import _ = require("lodash");
+import {catchError, tap, throwError} from "rxjs";
 
 @Component({
   selector: 'app-signup',
@@ -27,36 +26,38 @@ export class SignupComponent {
   };
 
   onSubmit() {
+    this.loginService.registerUser(this.userData).pipe(
+      tap(response => {
+        // Handle successful registration
+        this.messageService.showSuccess('Success', JSON.stringify(response));
+        this.router.navigate(['/login']).then(() => {
+          console.log("Route success");
+        });
+        this.resetForm();
+      }),
+      catchError(error => {
+        // Handle registration error
+        this.handleError(error);
+        return throwError(error);
+      })
+    ).subscribe();
+  }
 
-    this.loginService.registerUser(this.userData).subscribe({
-      next: (data: any) => {
+  resetForm() {
+    // Reset the form using the reset() method of NgForm
+    // Clear the userData object
+    this.userData = {
+      first_name: '',
+      last_name: '',
+      email: '',
+      password: '',
+      mobile: '',
+      isDriver: false
+    };
+  }
 
-        this.messageService.showSuccess('Success', JSON.stringify(data.data));
-        const debouncedFunction = _.debounce(() => {
-          this.router.navigate(['cms/users']).then(() => {
-            console.log("Route success");
-          });
-        }, 500);
-        debouncedFunction();
-      },
-      error: (error: any) => {
-        let errorMessage = "Something went wrong!";
-
-        if (error.error) {
-          if (typeof error.error === 'object') {
-            if ('code' in error.error && 'message' in error.error) {
-              errorMessage = error.error.message;
-            } else {
-              const values = Object.values(error.error);
-              errorMessage = values.map(value => JSON.stringify(value)).join('\n');
-            }
-          } else {
-            errorMessage = error.error;
-          }
-        }
-
-        this.messageService.showError('Error', errorMessage);
-      }
-    });
+  private handleError(error: any): void {
+    const errorMessage = error?.error?.message || 'Service not available';
+    this.messageService.showError('Access Denied', errorMessage);
   }
 }

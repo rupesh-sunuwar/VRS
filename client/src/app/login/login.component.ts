@@ -92,13 +92,8 @@ export class LoginComponent implements OnInit {
   }
 
   private handleError(error: any): void {
+    console.log(error)
     const errorMessage = error?.error?.message || 'Service not available';
-    const colonIndex = errorMessage.indexOf(':');
-
-    if (colonIndex !== -1) {
-      const extractedString = errorMessage.substring(colonIndex + 1).trim();
-      this.router.navigate(['/reset-password'], {queryParams: {token: extractedString}});
-    }
     this.messageService.showError('Access Denied', errorMessage);
   }
 }
