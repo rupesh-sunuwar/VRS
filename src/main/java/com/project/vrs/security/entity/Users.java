@@ -36,4 +36,8 @@ public class Users {
     private Role role;
 
     private LocalDateTime createdAt;
+
+    public String fullName(){
+        return this.firstName + " " + this.lastName;
+    }
 }

@@ -76,14 +76,12 @@ export class LoginComponent implements OnInit {
   }
 
   private handleSuccessfulResponse(response: any): void {
-    console.log(response.token);
     localStorage.setItem("token", response.token);
     const tokenPayload = this.jwtService.decodedToken();
-    console.log("TokenPayload", tokenPayload);
     this.jwtService.setUserNameForUser(tokenPayload.fullName);
     this.jwtService.setRoleForUser(tokenPayload.role);
     this.jwtService.setUserStatusForUser(tokenPayload.status);
-    localStorage.setItem("ngStorage-profile", JSON.stringify(tokenPayload.token));
+    localStorage.setItem("ngStorage-profile", JSON.stringify(tokenPayload));
     this.messageService.showSuccess('Success', 'Logged in Successfully');
     this.router.navigateByUrl('home');
   }

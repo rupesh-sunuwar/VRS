@@ -1,7 +1,6 @@
 package com.project.vrs.resources.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.project.vrs.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +18,9 @@ public class UserDto implements Serializable {
     @JsonProperty("last_name")
     private String lastName;
 
+    @JsonProperty("full_name")
+    private String fullName;
+
     private String password;
 
     private String email;
@@ -28,5 +30,7 @@ public class UserDto implements Serializable {
     @JsonProperty("is_driver")
     private boolean isDriver;
 
-    private Role role;
+    private String role;
+
+    private String status;
 }

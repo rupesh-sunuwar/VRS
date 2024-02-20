@@ -7,7 +7,7 @@ import {LoginComponent} from './login/login.component';
 import {LoginService} from "./auth/login.service";
 import {JwtService} from "./auth/jwt.service";
 import {PasswordService} from "./auth/password.service";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {ButtonModule} from "primeng/button";
 import {MessageService} from "primeng/api";
@@ -30,7 +30,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     ReactiveFormsModule,
     ToastModule,
-    ButtonModule, HttpClientModule, ChipsModule, BrowserAnimationsModule, AppLayoutModule
+    ButtonModule, HttpClientModule, ChipsModule, BrowserAnimationsModule, AppLayoutModule, FormsModule
   ],
   providers: [LoginService, JwtService, PasswordService, MessageService],
   bootstrap: [AppComponent]

@@ -42,4 +42,9 @@ public class  UserServiceImpl implements UserService {
 
         return user;
     }
+
+    @Override
+    public Users findByEmail(String userId) throws UserException {
+        return userRepository.findByEmail(userId);
+    }
 }

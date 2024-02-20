@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 
 import {BehaviorSubject, Observable} from "rxjs";
@@ -14,10 +14,16 @@ export class LoginService {
   private auth_url: string = environment.localhost + route.vrs_auth;
   private url: string = environment.localhost + route.vrs;
   private logoutUrl: string = environment.localhost + route.vrs_auth + "logout";
+  private registerUrl: string = this.url + "register";
   private verifyUrl: string = environment.localhost + route.vrs_auth + "verify_login_otp"
 
   constructor(
     private httpClient: HttpClient) {
+  }
+
+  registerUser(registerUser: any) {
+    const apiUrl = `${this.registerUrl}`;
+    return this.httpClient.post<any>(apiUrl, registerUser);
   }
 
   generateToken(credentials: any): Observable<any> {
@@ -53,7 +59,7 @@ export class LoginService {
   getSessionUserId() {
     const userDetailString = localStorage.getItem("ngStorage-profile");
     const userDetail = JSON.parse(userDetailString!);
-    return userDetail.user_id;
+    return userDetail.email;
   }
 
   getSessionRole() {
@@ -89,14 +95,21 @@ export class LoginService {
     return this.loginForm;
   }
 
-  logout(userId: string) {
+  logout(userId: string):Observable<string> {
     const apiUrl = `${this.logoutUrl}/${userId}`;
+    const headers=new HttpHeaders()
+      .set('Authorization',`Bearer ${this.getToken()}`)
     console.log(apiUrl);
-    return this.httpClient.post<any>(apiUrl, {});
+    return this.httpClient.post<any>(apiUrl, {}, { headers, responseType: 'text' as 'json'});
   }
 
   findUserById(userId: string): Observable<any> {
     const url = `${this.auth_url}/user/${userId}`; // Corrected URL construction
     return this.httpClient.get<any>(url);
+  }
+
+  clearLocalStorage(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('ngStorage-profile');
   }
 }
