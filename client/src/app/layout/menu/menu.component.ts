@@ -29,7 +29,8 @@ export class MenuComponent {
     this.loginService.logout(userId).pipe(
       tap(response => {
         this.loginService.clearLocalStorage();
-        this.messageService.showSuccess("Success", "Logged out Successfully")
+        this.messageService.showSuccess("Success", "Logged out Successfully");
+        this.router.navigateByUrl('login');
       }),
       catchError(error => {
         this.handleError(error);

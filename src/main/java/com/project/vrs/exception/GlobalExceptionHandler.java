@@ -24,6 +24,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(message, HttpStatus.NOT_ACCEPTABLE);
     }
 
+    @ExceptionHandler(PaymentException.class)
+    public ResponseEntity<ErrorMessage>
+    paymentException(PaymentException ex) {
+        ErrorMessage message = new ErrorMessage(
+                0,
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorMessage>
     handleSecurityException(Exception ex) {

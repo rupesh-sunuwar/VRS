@@ -4,5 +4,5 @@ export const environment = {
 
 export const route = {
   vrs: 'api/',
-  vrs_auth: 'auth/',
+  vrs_auth: 'auth/api/',
 }

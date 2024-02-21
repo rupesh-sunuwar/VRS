@@ -1,5 +1,6 @@
 package com.project.vrs.security.controller;
 
+import com.project.vrs.constant.Routes;
 import com.project.vrs.enums.Role;
 import com.project.vrs.enums.UserStatus;
 import com.project.vrs.exception.UserException;
@@ -32,7 +33,7 @@ public class AuthController {
     private final CustomUserServiceImpl customUserService;
     private final UserServiceImpl userService;
 
-    @PostMapping("api/sign_in")
+    @PostMapping(Routes.LOGIN)
     public ResponseEntity<AuthResponse> loginUserHandler(@RequestBody LoginRequest loginRequest) {
 
         String username = loginRequest.getEmail();
@@ -47,7 +48,7 @@ public class AuthController {
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
     }
 
-    @PostMapping("api/register")
+    @PostMapping(Routes.REGISTER)
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody UserDto user) throws UserException {
 
         String email = user.getEmail();
@@ -85,7 +86,7 @@ public class AuthController {
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
     }
 
-    @PostMapping("auth/logout/{email}")
+    @PostMapping(Routes.LOGOUT)
     public ResponseEntity<AuthResponse> logoutUserHandler(@PathVariable String email) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

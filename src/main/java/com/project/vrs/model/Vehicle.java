@@ -1,8 +1,11 @@
 package com.project.vrs.model;
 
 
+import com.project.vrs.enums.VehicleType;
 import com.project.vrs.shared.domain.AbstractEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,5 +22,8 @@ public class Vehicle  extends AbstractEntity {
 
     private String manufacturedYear;
 
-    private String isAvailable;
+    @Enumerated(EnumType.STRING)
+    private VehicleType vehicleType;
+
+    private boolean isAvailable;
 }
