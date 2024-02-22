@@ -56,4 +56,8 @@ export class VehiclesListComponent {
       // Handle any actions after the dialog is closed, if needed
     });
   }
+
+  checkStatus(vehicle: Vehicle) {
+    
+  }
 }

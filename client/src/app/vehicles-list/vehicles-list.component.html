@@ -10,10 +10,10 @@
       <p>Manufactured Year: {{ vehicle.manufacturedYear }}</p>
       <p>Vehicle Type: {{ vehicle.vehicleType }}</p>
       <p>{{ vehicle.isAvailable ? 'Available' : 'Not Available' }}</p>
-      <button mat-raised-button color="primary" (click)="reserveVehicle(vehicle)">Reserve</button>
+      <div class="button-container">
+        <button mat-raised-button color="primary" [disabled]="!vehicle.isAvailable" (click)="reserveVehicle(vehicle)">Reserve</button>
+        <button mat-raised-button color="accent" (click)="checkStatus(vehicle)">Check Status</button>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
-
-
-

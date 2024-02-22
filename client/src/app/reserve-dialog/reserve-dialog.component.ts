@@ -12,7 +12,7 @@ import {CustomMessageService} from "../service/message-service/custom-message.se
 })
 export class ReserveDialogComponent {
 
-  reserveRequest: ReserveRequest = new ReserveRequest(1, 1, '', '', 0, 1); // Initialize with default values
+  reserveRequest: ReserveRequest = new ReserveRequest(1, 1, '', '', 0, '',0); // Initialize with default values
 
   constructor(
     public dialogRef: MatDialogRef<ReserveDialogComponent>,

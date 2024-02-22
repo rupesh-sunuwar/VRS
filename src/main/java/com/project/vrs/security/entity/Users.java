@@ -5,6 +5,7 @@ import com.project.vrs.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode()
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

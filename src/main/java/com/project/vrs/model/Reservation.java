@@ -4,6 +4,7 @@ package com.project.vrs.model;
 import com.project.vrs.security.entity.Users;
 import com.project.vrs.shared.domain.AbstractEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +16,8 @@ public class Reservation extends AbstractEntity {
 
     private String customer;
 
-    private Long vehicleId;
+    @OneToOne
+    private Vehicle vehicle;
 
     private String destination;
 
@@ -23,7 +25,7 @@ public class Reservation extends AbstractEntity {
 
     private int noOfPassengers;
 
-    @OneToOne
+    @ManyToOne
     private Users user;
 
     @OneToOne

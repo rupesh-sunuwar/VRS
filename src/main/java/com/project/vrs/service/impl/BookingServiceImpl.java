@@ -13,13 +13,14 @@ import com.project.vrs.resources.response.ReservationResponse;
 import com.project.vrs.security.entity.Users;
 import com.project.vrs.security.repository.UserRepository;
 import com.project.vrs.service.BookingService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BookingServiceImpl implements BookingService {
 
     private final VehicleRepo vehicleRepo;
@@ -28,13 +29,11 @@ public class BookingServiceImpl implements BookingService {
     private final PaymentRepo paymentRepo;
 
     @Override
+    @Transactional
     public ReservationResponse reserveVehicles(ReserveRequest request) {
-
+        log.info("Reserving Request with user id {}", request.getUserId());
 
         Reservation reservation = new Reservation();
-
-        reservation.setVehicleId(request.getVehicleId());
-
         Users user = userRepository.findById(request.getUserId()).orElseThrow(
                 () -> new UserException("User with ID " + request.getUserId() + " not found")
         );
@@ -44,7 +43,10 @@ public class BookingServiceImpl implements BookingService {
 
         Vehicle vehicle = vehicleRepo.findById(request.getVehicleId()).orElseThrow(() ->
                 new PaymentException("Vehicle with ID " + request.getPaymentId() + " not found"));
-        reservation.setVehicleId(vehicle.getId());
+        vehicle.setIsAvailable(false);
+        vehicleRepo.save(vehicle);
+
+        reservation.setVehicle(vehicle);
         reservation.setPayment(payment);
         reservation.setNoOfPassengers(request.getNoOfPassengers());
         reservation.setFromLocation(request.getFromLocation());
@@ -60,22 +62,10 @@ public class BookingServiceImpl implements BookingService {
         ReservationResponse reservationResponse = new ReservationResponse();
         reservationResponse.setPaymentId(reservation.getPayment().getId());
         reservationResponse.setDestination(reservation.getDestination());
-        reservationResponse.setVehicleId(reservation.getVehicleId());
+        reservationResponse.setVehicleId(reservation.getVehicle().getId());
         reservationResponse.setNoOfPassengers(reservation.getNoOfPassengers());
         reservationResponse.setFrom(reservation.getFromLocation());
+        reservationResponse.setInitiatedBy(reservation.getUser().fullName());
         return reservationResponse;
-    }
-
-
-    @Override
-    public List<Vehicle> getAvailableVehicles() {
-
-        return vehicleRepo.findAllByIsAvailable(true);
-    }
-
-    @Override
-    public void addVehicles(Vehicle vehicle) {
-
-        vehicleRepo.save(vehicle);
     }
 }
