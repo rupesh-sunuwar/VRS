@@ -1,0 +1,19 @@
+<p-toast></p-toast>
+<div class="vehicle-list">
+  <mat-card *ngFor="let vehicle of vehicles" class="vehicle-card">
+    <mat-card-header>
+      <mat-card-title>{{ vehicle.model }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Manufactured By: {{ vehicle.manufacturedBy }}</p>
+      <p>Vehicle No: {{ vehicle.vehicleNo }}</p>
+      <p>Manufactured Year: {{ vehicle.manufacturedYear }}</p>
+      <p>Vehicle Type: {{ vehicle.vehicleType }}</p>
+      <p>{{ vehicle.isAvailable ? 'Available' : 'Not Available' }}</p>
+      <button mat-raised-button color="primary" (click)="reserveVehicle(vehicle)">Reserve</button>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+

@@ -25,5 +25,5 @@ public class Vehicle  extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
 
-    private boolean isAvailable;
+    private Boolean isAvailable;
 }

@@ -1,15 +1,31 @@
-<!-- customer-dashboard.component.html -->
-
-<div class="customer-dashboard-container">
-  <nav class="customer-dashboard-nav">
-    <ul>
-      <li><a routerLink="/customer-dashboard/home">Home</a></li>
-      <li><a routerLink="/customer-dashboard/reserve">Reserve</a></li>
-      <li><a routerLink="/customer-dashboard/about">About</a></li>
-      <li><a routerLink="/customer-dashboard/contact">Contact</a></li>
-    </ul>
-  </nav>
-  <div class="customer-dashboard-body">
-    <router-outlet></router-outlet>
+<div>
+  <div>
+    <mat-toolbar color="primary" class="mat-elevation-z8">
+      <button (click)="drawer.toggle()" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>VRS System</span>
+      <span class="example-spacer"></span>
+      <button routerLink="/home" mat-button>Home</button>
+      <button routerLink="/vehicles" mat-button>Vehicles</button>
+      <button routerLink="/login" mat-button>Input</button>
+      <button (click)="logout()" mat-button>Logout</button>
+      <a href="https://www.youtube.com/channel/UCsbmVmB_or8sVLLEq4XhE_A/join" mat-raised-button color="accent">Join
+        Us</a>
+      <button (click)="badgevisibility()" mat-icon-button>
+        <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible" matBadgeSize="small">
+          notifications
+        </mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-drawer-container autosize>
+      <mat-drawer #drawer opened="true" mode="side" position="start">
+      </mat-drawer>
+      <mat-drawer-content>
+        <div style="text-align: center;min-height: 600px;">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
   </div>
 </div>

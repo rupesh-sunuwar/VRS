@@ -69,11 +69,13 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<Vehicle> getAvailableVehicles() {
+
         return vehicleRepo.findAllByIsAvailable(true);
     }
 
     @Override
     public void addVehicles(Vehicle vehicle) {
+
         vehicleRepo.save(vehicle);
     }
 }

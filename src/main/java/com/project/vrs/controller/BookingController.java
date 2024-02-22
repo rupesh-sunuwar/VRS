@@ -5,6 +5,7 @@ import com.project.vrs.model.Vehicle;
 import com.project.vrs.resources.request.ReserveRequest;
 import com.project.vrs.resources.response.ReservationResponse;
 import com.project.vrs.service.BookingService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class BookingController {
     }
 
     @PostMapping(Routes.RESERVE)
-    public ReservationResponse reserveVehicle(@RequestBody ReserveRequest request) {
+    public ReservationResponse reserveVehicle(@Valid @RequestBody ReserveRequest request) {
         return bookingService.reserveVehicles(request);
     }
 

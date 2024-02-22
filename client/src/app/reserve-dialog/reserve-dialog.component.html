@@ -1,0 +1,28 @@
+<p-toast></p-toast>
+<div>
+  <h2 mat-dialog-title>Reserve Vehicle</h2>
+  <form #reserveForm="ngForm">
+    <mat-form-field>
+      <mat-label>
+        Destination <span class="required">*</span>
+      </mat-label>
+      <input matInput placeholder="Destination" [(ngModel)]="reserveRequest.destination" name="destination">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        From Location <span class="required">*</span>
+      </mat-label>
+      <input matInput placeholder="From Location" [(ngModel)]="reserveRequest.from_location" name="fromLocation">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        No. of Passengers <span class="required">*</span>
+      </mat-label>
+      <input matInput type="number" placeholder="noOfPassengers" [(ngModel)]="reserveRequest.no_of_passengers" name="noOfPassengers">
+    </mat-form-field>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="reserveVehicle()" cdkFocusInitial>Reserve</button>
+  </div>
+</div>

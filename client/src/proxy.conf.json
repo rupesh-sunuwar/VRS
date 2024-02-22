@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+    "target": "http://rc-epay.esewa.com.np",
+    "changeOrigin": true,
+    "secure": false
+  }
+}

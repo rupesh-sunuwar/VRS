@@ -10,9 +10,12 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true
         format_sql: true
     show-sql: true
+
+    mvc:
+      validation: true

@@ -50,4 +50,8 @@ export class MenuComponent {
     const errorMessage = error?.error?.message || 'Service not available';
     this.messageService.showError('Access Denied', errorMessage);
   }
+
+  isDriver() {
+    return this.loginService.getSessionRole() == "DRIVER";
+  }
 }

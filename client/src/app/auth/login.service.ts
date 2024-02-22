@@ -99,7 +99,6 @@ export class LoginService {
     const apiUrl = `${this.logoutUrl}/${userId}`;
     const headers=new HttpHeaders()
       .set('Authorization',`Bearer ${this.getToken()}`)
-    console.log(apiUrl);
     return this.httpClient.post<any>(apiUrl, {}, { headers});
   }
 

@@ -11,6 +11,8 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {ButtonModule} from "primeng/button";
+import {CustomerModule} from "../customer/customer.module";
+import {DriverModule} from "../driver/driver.module";
 
 
 @NgModule({
@@ -26,7 +28,7 @@ import {ButtonModule} from "primeng/button";
     MatToolbarModule,
     RouterOutlet,
     RouterLink,
-    ButtonModule
+    ButtonModule,CustomerModule,DriverModule
 
   ],
   exports: [

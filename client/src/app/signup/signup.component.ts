@@ -24,10 +24,10 @@ export class SignupComponent {
     this.signupForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
-      first_name:['',Validators.required],
-      last_name:['',Validators.required],
-      mobile:['',Validators.required],
-
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      mobile: ['', Validators.required],
+      is_driver:[false]
     });
   }
 
@@ -54,6 +54,7 @@ export class SignupComponent {
   onSubmit() {
 
     if (this.signupForm.valid) {
+      console.log(this.signupForm.value);
       const userData = {
         first_name: this.signupForm.value.first_name,
         last_name: this.signupForm.value.last_name,
@@ -91,7 +92,6 @@ export class SignupComponent {
       is_driver: false // Adjusted to match the form control name
     });
   }
-
 
   private handleError(error: any): void {
     const errorMessage = error?.error?.message || 'Service not available';

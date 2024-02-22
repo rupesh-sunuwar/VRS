@@ -2,6 +2,8 @@ package com.project.vrs.resources.request;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,8 @@ public class ReserveRequest implements Serializable {
     @JsonProperty("from_location")
     private String fromLocation;
 
+    @Min(value = 1, message = "Passenger must be at least 1")
+    @Max(value = 5, message = "Passenger must not exceed 5")
     @JsonProperty("no_of_passengers")
     private int noOfPassengers;
 
