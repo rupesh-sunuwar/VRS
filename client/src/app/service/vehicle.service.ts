@@ -1,14 +1,13 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {environment, route} from "../env/environment";
-import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LoginService} from "../auth/login.service";
-import {ReserveRequest} from "../model/reserve-request.model";
+import {Vehicle} from "../model/vehicle.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookingServiceService {
+export class VehicleService {
 
   private auth_url: string = environment.localhost + route.vrs_auth;
 
@@ -17,14 +16,19 @@ export class BookingServiceService {
   }
 
 
-  reserveVehicles(reserveRequest: ReserveRequest) {
-    const url = `${this.auth_url}reserve`;
+  getVehicles() {
+    const url = `${this.auth_url}get_vehicles`; // Corrected URL construction
+    return this.httpClient.get<any>(url, {headers: this.getHeaders()});
+  }
 
-    return this.httpClient.post(url, reserveRequest, {headers: this.getHeaders()})
+  addVehicle(vehicle: Vehicle) {
+    const url = `${this.auth_url}add_vehicle`; // Corrected URL construction
+    return this.httpClient.post<any>(url, vehicle, {headers: this.getHeaders()});
   }
 
   getHeaders() {
     return new HttpHeaders()
       .set('Authorization', `Bearer ${this.loginService.getToken()}`)
   }
+
 }

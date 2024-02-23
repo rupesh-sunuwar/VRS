@@ -2,6 +2,7 @@ package com.project.vrs.security.entity;
 
 import com.project.vrs.enums.Role;
 import com.project.vrs.enums.UserStatus;
+import com.project.vrs.enums.UserType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,11 +36,15 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     private LocalDateTime createdAt;
 
-    public String fullName(){
+    public String fullName() {
         return this.firstName + " " + this.lastName;
     }
 }

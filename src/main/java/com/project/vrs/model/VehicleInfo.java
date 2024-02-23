@@ -23,7 +23,7 @@ public class VehicleInfo extends AbstractEntity implements Serializable {
 
 
     @NotNull
-    private Long id;
+    private Long idVehicle;
     private boolean isMaintenanceRequired;
     private boolean isClean;
     private int vehicleUsageTimeInMonths;

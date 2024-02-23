@@ -1,19 +1,17 @@
 import {Component} from '@angular/core';
-import {Vehicle} from "../model/vehicle.model";
-import {catchError, tap, throwError} from "rxjs";
-import {CustomMessageService} from "../service/message-service/custom-message.service";
+import {Vehicle} from "../../model/vehicle.model";
+import {CustomMessageService} from "../../service/message-service/custom-message.service";
 import {MatDialog} from "@angular/material/dialog";
-import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component";
-import {VehicleService} from "../service/vehicle.service";
+import {catchError, tap, throwError} from "rxjs";
+import {ReserveDialogComponent} from "../../reserve-dialog/reserve-dialog.component";
+import {VehicleService} from "../../service/vehicle.service";
 
 @Component({
-  selector: 'app-vehicles-list',
-  templateUrl: './vehicles-list.component.html',
-  styleUrls: ['./vehicles-list.component.scss']
+  selector: 'app-list-my-vehicles',
+  templateUrl: './list-my-vehicles.component.html',
+  styleUrls: ['./list-my-vehicles.component.scss']
 })
-export class VehiclesListComponent {
-
-
+export class ListMyVehiclesComponent {
   vehicles: Vehicle[] = []; // Assuming you have an array of vehicles
 
   constructor(private vehicleService: VehicleService,

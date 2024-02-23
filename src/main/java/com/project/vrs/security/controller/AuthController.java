@@ -3,6 +3,7 @@ package com.project.vrs.security.controller;
 import com.project.vrs.constant.Routes;
 import com.project.vrs.enums.Role;
 import com.project.vrs.enums.UserStatus;
+import com.project.vrs.enums.UserType;
 import com.project.vrs.exception.UserException;
 import com.project.vrs.resources.request.LoginRequest;
 import com.project.vrs.resources.request.UserDto;
@@ -67,9 +68,10 @@ public class AuthController {
         createdUser.setUserStatus(UserStatus.ACTIVE);
         createdUser.setFirstName(firstName);
         createdUser.setLastName(lastName);
+        createdUser.setUserType(UserType.UNVERIFIED);
         if (user.isDriver()) {
             createdUser.setRole(Role.DRIVER);
-        } else {
+        } else{
             createdUser.setRole(Role.CUSTOMER);
         }
 

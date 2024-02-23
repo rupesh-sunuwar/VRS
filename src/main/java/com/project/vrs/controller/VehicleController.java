@@ -1,9 +1,10 @@
 package com.project.vrs.controller;
 
 import com.project.vrs.constant.Routes;
-import com.project.vrs.model.Vehicle;
 import com.project.vrs.model.VehicleInfo;
+import com.project.vrs.resources.request.VehicleAddRequest;
 import com.project.vrs.resources.response.GenericResponse;
+import com.project.vrs.resources.response.VehicleResponse;
 import com.project.vrs.service.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,13 @@ public class VehicleController {
     private final VehicleService vehicleService;
 
     @GetMapping(Routes.AVAILABLE_VEHICLES)
-    public List<Vehicle> getAvailableVehicles() {
+    public List<VehicleResponse> getAvailableVehicles() {
         return vehicleService.getAvailableVehicles();
     }
 
     @PostMapping(Routes.ADD_VEHICLE)
-    public void addVehicle(@RequestBody Vehicle vehicle) {
-        vehicleService.addVehicles(vehicle);
+    public GenericResponse addVehicle(@RequestBody VehicleAddRequest vehicle) {
+        return vehicleService.addVehicles(vehicle);
     }
 
     @GetMapping(Routes.VEHICLE_QUALITY)
@@ -33,7 +34,12 @@ public class VehicleController {
     }
 
     @PostMapping(Routes.ADD_VEHICLE_QUALITY)
-    public GenericResponse addVehicleQualityInfo(@RequestBody VehicleInfo vehicleInfo){
+    public GenericResponse addVehicleQualityInfo(@RequestBody VehicleInfo vehicleInfo) {
         return vehicleService.addVehicleQualityInfo(vehicleInfo);
+    }
+
+    @GetMapping(Routes.USER_VEHICLES)
+    public List<VehicleResponse> findAllByUsers_Email(@PathVariable("email") String userEmail) {
+        return vehicleService.findAllByUsers_Email(userEmail);
     }
 }

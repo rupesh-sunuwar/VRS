@@ -13,6 +13,7 @@ public class Routes {
     public static final String LOGIN = VRS + "/sign_in";
     public static final String RESERVE = AUTH_VRS + "/reserve";
     public static final String AVAILABLE_VEHICLES = AUTH_VRS + "/get_vehicles";
+    public static final String USER_VEHICLES = AUTH_VRS + "/get_vehicles/{email}";
     public static final String ADD_VEHICLE = AUTH_VRS + "/add_vehicle";
     public static final String VEHICLE_QUALITY = AUTH_VRS + "/quality_info/{vehicle_id}";
     public static final String ADD_VEHICLE_QUALITY = AUTH_VRS + "/quality_info";
