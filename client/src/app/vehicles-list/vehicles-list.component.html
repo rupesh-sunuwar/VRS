@@ -1,6 +1,10 @@
 <p-toast></p-toast>
-<div class="vehicle-list">
   <mat-card *ngFor="let vehicle of vehicles" class="vehicle-card">
+    <div class="vehicle-list">
+      <div class="photo-frame">
+        <img src="assets/mountain.avif" alt="Vehicle Photo">
+      </div>
+      </div>
     <mat-card-header>
       <mat-card-title>{{ vehicle.vehicle_type }}</mat-card-title>
     </mat-card-header>
@@ -15,4 +19,4 @@
       </div>
     </mat-card-content>
   </mat-card>
-</div>
+

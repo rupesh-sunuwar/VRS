@@ -33,7 +33,7 @@ public class VehicleController {
     @GetMapping(Routes.VEHICLE_QUALITY)
     public VehicleInfoResponse getVehicleQualityInfo(@PathVariable("vehicle_id") Long vehicleId) {
         return vehicleService.vehiclequalityinfo(vehicleId);
-    }
+    }g
 
     @PostMapping(Routes.ADD_VEHICLE_QUALITY)
     public GenericResponse addVehicleQualityInfo(@Valid @RequestBody VehicleInfoRequest vehicleInfo) {
