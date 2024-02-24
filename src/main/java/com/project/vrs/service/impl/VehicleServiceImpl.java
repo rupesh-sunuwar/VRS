@@ -8,6 +8,7 @@ import com.project.vrs.repository.VehicleRepo;
 import com.project.vrs.resources.request.VehicleAddRequest;
 import com.project.vrs.resources.request.VehicleInfoRequest;
 import com.project.vrs.resources.response.GenericResponse;
+import com.project.vrs.resources.response.VehicleInfoResponse;
 import com.project.vrs.resources.response.VehicleResponse;
 import com.project.vrs.security.entity.Users;
 import com.project.vrs.security.repository.UserRepository;
@@ -84,12 +85,22 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Optional<VehicleInfo> vehiclequalityinfo(Long vehicleId) {
-        return vehicleRepo.findById(vehicleId).flatMap(
-                response -> Optional.ofNullable(response.getVehicleInfo())
-        );
+    public VehicleInfoResponse vehiclequalityinfo(Long vehicleId) {
+        Vehicle vehicle = vehicleRepo.findById(vehicleId).orElseThrow(() -> new VehicleException("Vehicle Doesnt Exist"));
+
+        return vehicleInfoToVehicleResponse(vehicle.getVehicleInfo());
     }
 
+    public VehicleInfoResponse vehicleInfoToVehicleResponse(VehicleInfo vehicleInfo) {
+        VehicleInfoResponse response = new VehicleInfoResponse();
+        response.setVehicleId(vehicleInfo.getId());
+        response.setMaintenanceRequired(vehicleInfo.isMaintenanceRequired());
+        response.setClean(vehicleInfo.isClean());
+        response.setVehicleUsageTimeInMonths(vehicleInfo.getVehicleUsageTimeInMonths());
+        response.setTireCondition(vehicleInfo.getTireCondition());
+        return response;
+
+    }
 
     @Override
     @Transactional

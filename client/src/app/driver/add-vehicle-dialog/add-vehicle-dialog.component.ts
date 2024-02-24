@@ -4,6 +4,7 @@ import {VehicleService} from "../../service/vehicle.service";
 import {Vehicle} from "../../model/vehicle.model";
 import {CustomMessageService} from "../../service/message-service/custom-message.service";
 import {catchError, tap, throwError} from "rxjs";
+import {LoginService} from "../../auth/login.service";
 
 @Component({
   selector: 'app-add-vehicle-dialog',
@@ -17,7 +18,8 @@ export class AddVehicleDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddVehicleDialogComponent>
     , private vehicleService: VehicleService,
-              private messageService: CustomMessageService) {
+              private messageService: CustomMessageService,
+              private loginService:LoginService) {
   }
 
   ngOnInit(): void {
@@ -30,9 +32,8 @@ export class AddVehicleDialogComponent implements OnInit {
   addVehicle(): void {
     // Implement logic to add the new vehicle
     // You can send the newVehicle object along with the selected file to your backend API
-    console.log('New vehicle:');
-    console.log('Selected file:', this.selectedFile);
-    console.log('response')
+    this.newVehicle.user_email=this.loginService.getSessionUserId();
+    console.log(this.newVehicle);
     this.vehicleService.addVehicle(this.newVehicle).pipe(
       tap(response => {
         const successMessage = response?.response?.message || 'Success Message';

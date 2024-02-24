@@ -6,6 +6,8 @@ import {catchError, tap} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {VehicleService} from '../../service/vehicle.service';
 import {AddVehicleInfoDialogComponent} from "../add-vehicle-info-dialog/add-vehicle-info-dialog.component";
+import {CheckStatusDialogComponent} from "../../check-status-dialog/check-status-dialog.component";
+import {VehicleInfoResponse} from "../../model/vehicle-info-response";
 
 @Component({
   selector: 'app-list-my-vehicles',
@@ -43,7 +45,7 @@ export class ListMyVehiclesComponent implements OnInit {
   addVehicleInfo(vehicle: Vehicle): void {
     const dialogRef = this.dialog.open(AddVehicleInfoDialogComponent, {
       width: '300px',
-      data: {vehicle:vehicle}
+      data: {vehicle: vehicle}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -56,6 +58,7 @@ export class ListMyVehiclesComponent implements OnInit {
       .pipe(
         tap(response => {
           console.log(response);
+          this.openStatusDialog(response);
         }),
         catchError(error => {
           this.handleError(error);
@@ -63,6 +66,18 @@ export class ListMyVehiclesComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  private openStatusDialog(vehicleInfoResponse: VehicleInfoResponse): void {
+    const dialogRef = this.dialog.open(CheckStatusDialogComponent, {
+      width: '300px',
+      data: {
+        vehicleInfoResponse: vehicleInfoResponse
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The status dialog was closed');
+    });
   }
 
   private handleError(error: any): void {

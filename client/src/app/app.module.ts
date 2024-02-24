@@ -30,6 +30,7 @@ import {BookingServiceService} from "./service/booking-service.service";
 import {PaymentService} from "./service/payment.service";
 import {VehicleService} from "./service/vehicle.service";
 import {LogoutConfirmationDailogComponent} from "./logout-confirmation-dailog/logout-confirmation-dailog.component";
+import { CheckStatusDialogComponent } from './check-status-dialog/check-status-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {LogoutConfirmationDailogComponent} from "./logout-confirmation-dailog/lo
     VehiclesListComponent,
     ReserveDialogComponent,
     EsewaIntegrationComponent,
-    LogoutConfirmationDailogComponent
+    LogoutConfirmationDailogComponent,
+    CheckStatusDialogComponent
   ],
   imports: [
     BrowserModule,

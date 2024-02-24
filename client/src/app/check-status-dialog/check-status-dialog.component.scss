@@ -1,0 +1,19 @@
+/* Add this CSS to your component's CSS file */
+.status-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status-card p {
+  margin: 8px 0;
+}
+
+.mat-dialog-content {
+  padding: 0;
+}
+
+.maintenance-required, .clean, .vehicle-usage-time, .tyre-condition {
+  margin: 0;
+}

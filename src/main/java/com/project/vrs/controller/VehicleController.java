@@ -1,10 +1,11 @@
 package com.project.vrs.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.project.vrs.constant.Routes;
-import com.project.vrs.model.VehicleInfo;
 import com.project.vrs.resources.request.VehicleAddRequest;
 import com.project.vrs.resources.request.VehicleInfoRequest;
 import com.project.vrs.resources.response.GenericResponse;
+import com.project.vrs.resources.response.VehicleInfoResponse;
 import com.project.vrs.resources.response.VehicleResponse;
 import com.project.vrs.service.VehicleService;
 import jakarta.validation.Valid;
@@ -12,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +31,7 @@ public class VehicleController {
     }
 
     @GetMapping(Routes.VEHICLE_QUALITY)
-    public Optional<VehicleInfo> getVehicleQualityInfo(@PathVariable("vehicle_id") Long vehicleId) {
+    public VehicleInfoResponse getVehicleQualityInfo(@PathVariable("vehicle_id") Long vehicleId) {
         return vehicleService.vehiclequalityinfo(vehicleId);
     }
 
