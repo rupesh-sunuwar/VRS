@@ -107,8 +107,8 @@ public class VehicleServiceImpl implements VehicleService {
         VehicleInfo vehicleInfo = new VehicleInfo();
         vehicleInfo.setMaintenanceRequired(vehicleInfoRequest.isMaintenanceRequired());
         vehicleInfo.setClean(vehicleInfoRequest.isClean());
-        vehicleInfo.setVehicleUsageTimeInMonths(vehicleInfo.getVehicleUsageTimeInMonths());
-        vehicleInfo.setTireCondition(vehicleInfo.getTireCondition());
+        vehicleInfo.setVehicleUsageTimeInMonths(vehicleInfoRequest.getVehicleUsageTimeInMonths());
+        vehicleInfo.setTireCondition(vehicleInfoRequest.getTireCondition());
         return vehicleInfo;
     }
 

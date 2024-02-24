@@ -20,7 +20,7 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { AddVehicleInfoDialogComponent } from './add-vehicle-info-dialog/add-vehicle-info-dialog.component';
+import {AddVehicleInfoDialogComponent} from './add-vehicle-info-dialog/add-vehicle-info-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
 
 
@@ -34,24 +34,24 @@ import {MatSelectModule} from "@angular/material/select";
   exports: [
     DriverDashboardComponent
   ],
-    imports: [
-        CommonModule,
-        MatBadgeModule,
-        MatButtonModule,
-        MatIconModule,
-        MatListModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        RouterLink,
-        RouterOutlet,
-        MatCardModule,
-        ToastModule,
-        MatInputModule,
-        FormsModule,
-        MatDialogModule,
-        MatCheckboxModule,
-        MatSelectModule
-    ],
+  imports: [
+    CommonModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    RouterLink,
+    RouterOutlet,
+    MatCardModule,
+    ToastModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatSelectModule
+  ],
   providers: [LoginService, JwtService,
     PasswordService, MessageService],
 })

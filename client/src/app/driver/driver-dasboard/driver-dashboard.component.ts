@@ -5,6 +5,7 @@ import {catchError, tap, throwError} from "rxjs";
 import {LoginService} from "../../auth/login.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddVehicleDialogComponent} from "../add-vehicle-dialog/add-vehicle-dialog.component";
+import {LogoutConfirmationDailogComponent} from "../../logout-confirmation-dailog/logout-confirmation-dailog.component";
 
 @Component({
   selector: 'app-driver-dashboard',
@@ -27,19 +28,30 @@ export class DriverDashboardComponent {
   }
 
   logout() {
-    const userId = this.loginService.getSessionUserId();
+    const dialogRef = this.dialog.open(LogoutConfirmationDailogComponent, {
+      width: '300px',
+      data: {},
+    });
 
-    this.loginService.logout(userId).pipe(
-      tap(response => {
-        this.loginService.clearLocalStorage();
-        this.messageService.showSuccess("Success", "Logged out Successfully");
-        this.router.navigateByUrl('login');
-      }),
-      catchError(error => {
-        this.handleError(error);
-        return throwError(error);
-      })
-    ).subscribe();
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        const userId = this.loginService.getSessionUserId();
+
+        this.loginService.logout(userId).pipe(
+          tap(response => {
+            this.loginService.clearLocalStorage();
+            this.messageService.showSuccess("Success", "Logged out Successfully");
+            this.router.navigateByUrl('login');
+          }),
+          catchError(error => {
+            this.handleError(error);
+            return throwError(error);
+          })
+        ).subscribe();
+      } else {
+        // Do nothing if user canceled
+      }
+    });
   }
 
 

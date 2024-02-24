@@ -29,6 +29,7 @@ import {EsewaIntegrationComponent} from './esewa-integration/esewa-integration.c
 import {BookingServiceService} from "./service/booking-service.service";
 import {PaymentService} from "./service/payment.service";
 import {VehicleService} from "./service/vehicle.service";
+import {LogoutConfirmationDailogComponent} from "./logout-confirmation-dailog/logout-confirmation-dailog.component";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {VehicleService} from "./service/vehicle.service";
     VehiclesListComponent,
     ReserveDialogComponent,
     EsewaIntegrationComponent,
+    LogoutConfirmationDailogComponent
   ],
   imports: [
     BrowserModule,

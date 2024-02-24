@@ -7,6 +7,7 @@ import com.project.vrs.resources.request.VehicleInfoRequest;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.resources.response.VehicleResponse;
 import com.project.vrs.service.VehicleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class VehicleController {
     }
 
     @PostMapping(Routes.ADD_VEHICLE_QUALITY)
-    public GenericResponse addVehicleQualityInfo(@RequestBody VehicleInfoRequest vehicleInfo) {
+    public GenericResponse addVehicleQualityInfo(@Valid @RequestBody VehicleInfoRequest vehicleInfo) {
         return vehicleService.addVehicleQualityInfo(vehicleInfo);
     }
 

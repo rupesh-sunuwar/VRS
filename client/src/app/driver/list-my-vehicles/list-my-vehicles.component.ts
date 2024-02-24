@@ -43,7 +43,7 @@ export class ListMyVehiclesComponent implements OnInit {
   addVehicleInfo(vehicle: Vehicle): void {
     const dialogRef = this.dialog.open(AddVehicleInfoDialogComponent, {
       width: '300px',
-      data: {vehicle}
+      data: {vehicle:vehicle}
     });
 
     dialogRef.afterClosed().subscribe(result => {

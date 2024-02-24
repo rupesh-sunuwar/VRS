@@ -27,7 +27,7 @@ export class SignupComponent {
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       mobile: ['', Validators.required],
-      is_driver:[false]
+      is_driver: [false]
     });
   }
 
@@ -54,7 +54,6 @@ export class SignupComponent {
   onSubmit() {
 
     if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
       const userData = {
         first_name: this.signupForm.value.first_name,
         last_name: this.signupForm.value.last_name,
