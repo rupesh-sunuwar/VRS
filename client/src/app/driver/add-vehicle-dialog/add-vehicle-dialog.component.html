@@ -1,0 +1,36 @@
+<p-toast></p-toast>
+<h2 mat-dialog-title>Add Vehicle</h2>
+<form #addVehicleForm="ngForm">
+  <mat-form-field>
+    <mat-label>Manufacturer</mat-label>
+    <input matInput placeholder="Manufacturer" [(ngModel)]="newVehicle.manufactured_by" name="manufacturedBy" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Vehicle Number</mat-label>
+    <input matInput placeholder="Vehicle Number" [(ngModel)]="newVehicle.vehicle_no" name="vehicleNo" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Vehicle Type</mat-label>
+    <input matInput placeholder="Vehicle Type" [(ngModel)]="newVehicle.vehicle_type" name="vehicleType" required>
+  </mat-form-field>
+
+  <div>
+    <mat-checkbox [(ngModel)]="newVehicle.is_available" name="isAvailable">Is Available</mat-checkbox>
+  </div>
+
+  <mat-form-field>
+    <mat-label>User Email</mat-label>
+    <input matInput placeholder="User Email" [(ngModel)]="newVehicle.user_email" name="userEmail">
+  </mat-form-field>
+</form>
+
+<div class="upload-photo">
+  <input type="file" (change)="onFileChange($event)" accept="image/*">
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="addVehicle()" [disabled]="!addVehicleForm.valid">Add</button>
+</div>

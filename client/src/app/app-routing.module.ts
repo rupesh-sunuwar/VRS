@@ -4,10 +4,11 @@ import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
 import {CustomerDashboardComponent} from "./customer/customer-dashboard/customer-dashboard.component";
 import {authGuard} from "./auth/auth.guard";
-import {DriverDasboardComponent} from "./driver/driver-dasboard/driver-dasboard.component";
+import {DriverDashboardComponent} from "./driver/driver-dasboard/driver-dashboard.component";
 import {HomeComponent} from "./home/home.component";
 import {VehiclesListComponent} from "./vehicles-list/vehicles-list.component";
 import {EsewaIntegrationComponent} from "./esewa-integration/esewa-integration.component";
+import {ListMyVehiclesComponent} from "./driver/list-my-vehicles/list-my-vehicles.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
   },
   {path: 'login', component: LoginComponent},
   {path: 'vehicles', component: VehiclesListComponent},
+  {path: 'vehicle', component: ListMyVehiclesComponent},
   {
     path: 'customer', component: CustomerDashboardComponent,
     children: [
@@ -32,7 +34,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'driver', component: DriverDasboardComponent,
+    path: 'driver', component: DriverDashboardComponent,
     children: [
       {
         path: '',

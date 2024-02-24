@@ -2,18 +2,18 @@
 <div class="vehicle-list">
   <mat-card *ngFor="let vehicle of vehicles" class="vehicle-card">
     <mat-card-title>
-      {{ vehicle.vehicleType === 'two_wheeler' ? 'Bike' : 'Car' }}
+      {{ vehicle.vehicle_type === 'TWO_WHEELER' ? 'Bike' : 'Car' }}
     </mat-card-title>
     <mat-card-content>
-      <p>Manufactured By: {{ vehicle.manufacturedBy }}</p>
-      <p>Vehicle No: {{ vehicle.vehicleNo }}</p>
-      <p>Vehicle Type: {{ vehicle.vehicleType }}</p>
-      <p>{{ vehicle.isAvailable ? 'Available' : 'Not Available' }}</p>
+      <p>Manufactured By: {{ vehicle.manufactured_by }}</p>
+      <p>Vehicle No: {{ vehicle.vehicle_no }}</p>
+      <p>Vehicle Type: {{ vehicle.vehicle_type }}</p>
+      <p>{{ vehicle.is_available ? 'Available' : 'Not Available' }}</p>
       <div class="button-container">
-        <button mat-raised-button color="primary" [disabled]="!vehicle.isAvailable" (click)="reserveVehicle(vehicle)">
+        <button mat-raised-button color="primary" [disabled]="!vehicle.is_available" (click)="reserveVehicle(vehicle)">
           Reserve
         </button>
-        <button mat-raised-button color="accent" (click)="checkStatus(vehicle)">Check Status</button>
+        <button mat-raised-button color="accent" (click)="checkStatus(vehicle.vehicle_id)">Check Status</button>
       </div>
     </mat-card-content>
   </mat-card>

@@ -13,6 +13,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class VehicleResponse implements Serializable {
 
+    @JsonProperty("vehicle_id")
+    private Long vehicleId;
+
     @JsonProperty("manufactured_by")
     private String manufacturedBy;
 
@@ -22,6 +25,7 @@ public class VehicleResponse implements Serializable {
     @JsonProperty("vehicle_type")
     private VehicleType vehicleType;
 
+    @JsonProperty("is_available")
     private Boolean isAvailable;
 
     @JsonProperty("user_email")

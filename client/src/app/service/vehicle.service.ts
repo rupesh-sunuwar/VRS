@@ -21,9 +21,21 @@ export class VehicleService {
     return this.httpClient.get<any>(url, {headers: this.getHeaders()});
   }
 
+  getUserVehicles() {
+    const email = this.loginService.getSessionUserId()
+    const url = `${this.auth_url}get_vehicles/${email}`;
+    return this.httpClient.get<any>(url, {headers: this.getHeaders()});
+  }
+
   addVehicle(vehicle: Vehicle) {
     const url = `${this.auth_url}add_vehicle`; // Corrected URL construction
     return this.httpClient.post<any>(url, vehicle, {headers: this.getHeaders()});
+  }
+
+  getVehicleStatusById(vehicleId: number) {
+
+    const url = `${this.auth_url}quality_info/${vehicleId}`;
+    return this.httpClient.get<any>(url, {headers: this.getHeaders()})
   }
 
   getHeaders() {

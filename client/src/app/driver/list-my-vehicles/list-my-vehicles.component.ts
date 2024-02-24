@@ -27,7 +27,7 @@ export class ListMyVehiclesComponent {
   initializeVehicles() {
     // Fetch vehicles from a service or hardcode them here
     // For example:
-    this.vehicleService.getVehicles().pipe(
+    this.vehicleService.getUserVehicles().pipe(
       tap(response => {
         this.vehicles = response;
       }),
@@ -38,10 +38,6 @@ export class ListMyVehiclesComponent {
     ).subscribe();
   }
 
-  private handleError(error: any) {
-    const errorMessage = error?.error?.message || 'Service not available';
-    this.messageService.showError('Not Available', errorMessage);
-  }
 
   reserveVehicle(vehicle: Vehicle) {
     const dialogRef = this.dialog.open(ReserveDialogComponent, {
@@ -55,7 +51,22 @@ export class ListMyVehiclesComponent {
     });
   }
 
-  checkStatus(vehicle: Vehicle) {
+  checkStatus(vehicleId: number) {
+    this.vehicleService.getVehicleStatusById(vehicleId)
+      .pipe(
+        tap(response => {
+            console.log(response);
+        }),
+        catchError(error => {
+          this.handleError(error);
+          return throwError(error);
+        })
+      )
+      .subscribe();
+  }
 
+  private handleError(error: any) {
+    const errorMessage = error?.error?.message || 'Service not available';
+    this.messageService.showError('Error:', errorMessage);
   }
 }

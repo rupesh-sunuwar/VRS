@@ -1,0 +1,28 @@
+/* Container styles */
+.container {
+  margin: 20px; /* Adjust margin as needed */
+}
+
+/* Form field styles */
+mat-form-field {
+  width: calc(100% - 30px);
+  padding: 10px;/* Adjust margin between form fields */
+  max-width: 400px;
+}
+
+/* Button styles */
+button {
+  margin-right: 10px; /* Adjust margin between buttons */
+}
+
+.required {
+  color: red; /* Red color */
+  margin-left: 5px; /* Adjust the spacing between the asterisk and the form field */
+}
+
+.upload-photo {
+  display: inline-block;
+  vertical-align: top;
+  margin: 20px; /* Adjust margin as needed */
+}
+

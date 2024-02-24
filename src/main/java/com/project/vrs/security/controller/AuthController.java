@@ -61,7 +61,10 @@ public class AuthController {
         if (isEmailExist != null) {
             throw new UserException("Email is already used with another account");
         }
-
+        Users isMobileExist = userRepository.findByMobile(user.getMobile());
+        if (isMobileExist != null) {
+            throw new UserException("Mobile Number is already used with another account");
+        }
         Users createdUser = new Users();
         createdUser.setEmail(email);
         createdUser.setPassword(passwordEncoder.encode(password));
@@ -71,7 +74,7 @@ public class AuthController {
         createdUser.setUserType(UserType.UNVERIFIED);
         if (user.isDriver()) {
             createdUser.setRole(Role.DRIVER);
-        } else{
+        } else {
             createdUser.setRole(Role.CUSTOMER);
         }
 

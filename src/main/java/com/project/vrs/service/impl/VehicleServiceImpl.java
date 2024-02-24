@@ -42,7 +42,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     private VehicleResponse convertToVehicleResponse(Vehicle vehicle) {
 
-        return new VehicleResponse(vehicle.getManufacturedBy(), vehicle.getVehicleNo(),
+        return new VehicleResponse(vehicle.getId(),vehicle.getManufacturedBy(), vehicle.getVehicleNo(),
                 vehicle.getVehicleType(), vehicle.getIsAvailable(), vehicle.getUsers().getEmail());
     }
 

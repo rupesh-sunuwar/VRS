@@ -3,15 +3,19 @@ import {Router} from "@angular/router";
 import {CustomMessageService} from "../../service/message-service/custom-message.service";
 import {catchError, tap, throwError} from "rxjs";
 import {LoginService} from "../../auth/login.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AddVehicleDialogComponent} from "../add-vehicle-dialog/add-vehicle-dialog.component";
 
 @Component({
-  selector: 'app-driver-dasboard',
-  templateUrl: './driver-dasboard.component.html',
-  styleUrls: ['./driver-dasboard.component.scss']
+  selector: 'app-driver-dashboard',
+  templateUrl: './driver-dashboard.component.html',
+  styleUrls: ['./driver-dashboard.component.scss']
 })
-export class DriverDasboardComponent {
+export class DriverDashboardComponent {
   constructor(private loginService: LoginService,
-              private router: Router, private messageService: CustomMessageService
+              private router: Router,
+              private messageService: CustomMessageService,
+              private dialog: MatDialog
   ) {
 
   }
@@ -42,5 +46,17 @@ export class DriverDasboardComponent {
   private handleError(error: any) {
     const errorMessage = error?.error?.message || 'Service not available';
     this.messageService.showError('Access Denied', errorMessage);
+  }
+
+  openAddVehicleDialog(): void {
+    const dialogRef = this.dialog.open(AddVehicleDialogComponent, {
+      width: '300px', // Set the width of the dialog
+      data: {} // Pass any data needed by the dialog component
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle any actions after the dialog is closed, if needed
+    });
   }
 }
