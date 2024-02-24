@@ -3,6 +3,7 @@ package com.project.vrs.controller;
 import com.project.vrs.constant.Routes;
 import com.project.vrs.model.VehicleInfo;
 import com.project.vrs.resources.request.VehicleAddRequest;
+import com.project.vrs.resources.request.VehicleInfoRequest;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.resources.response.VehicleResponse;
 import com.project.vrs.service.VehicleService;
@@ -34,7 +35,7 @@ public class VehicleController {
     }
 
     @PostMapping(Routes.ADD_VEHICLE_QUALITY)
-    public GenericResponse addVehicleQualityInfo(@RequestBody VehicleInfo vehicleInfo) {
+    public GenericResponse addVehicleQualityInfo(@RequestBody VehicleInfoRequest vehicleInfo) {
         return vehicleService.addVehicleQualityInfo(vehicleInfo);
     }
 

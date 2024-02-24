@@ -4,10 +4,7 @@ package com.project.vrs.model;
 import com.project.vrs.enums.VehicleType;
 import com.project.vrs.security.entity.Users;
 import com.project.vrs.shared.domain.AbstractEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,4 +24,7 @@ public class Vehicle extends AbstractEntity {
 
     @ManyToOne
     private Users users;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    VehicleInfo vehicleInfo;
 }

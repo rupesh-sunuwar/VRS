@@ -5,6 +5,7 @@ export class Vehicle {
     public vehicle_no: string,
     public vehicle_type: string,
     public is_available: boolean,
+    public vehicle_info_id:number,
     public user_email: string,
   ) {
   }

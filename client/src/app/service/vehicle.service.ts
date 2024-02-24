@@ -3,6 +3,7 @@ import {environment, route} from "../env/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LoginService} from "../auth/login.service";
 import {Vehicle} from "../model/vehicle.model";
+import {VehicleInfoRequest} from "../model/vehicle-info-request";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,11 @@ export class VehicleService {
 
     const url = `${this.auth_url}quality_info/${vehicleId}`;
     return this.httpClient.get<any>(url, {headers: this.getHeaders()})
+  }
+
+  addVehicleInfo(vehicleInfoRequest:VehicleInfoRequest){
+    const url = `${this.auth_url}quality_info`; // Corrected URL construction
+    return this.httpClient.post<any>(url, vehicleInfoRequest, {headers: this.getHeaders()});
   }
 
   getHeaders() {

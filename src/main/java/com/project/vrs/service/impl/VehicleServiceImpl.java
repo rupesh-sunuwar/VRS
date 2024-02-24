@@ -4,14 +4,15 @@ import com.project.vrs.exception.UserException;
 import com.project.vrs.exception.VehicleException;
 import com.project.vrs.model.Vehicle;
 import com.project.vrs.model.VehicleInfo;
-import com.project.vrs.repository.VehicleInfoRepo;
 import com.project.vrs.repository.VehicleRepo;
 import com.project.vrs.resources.request.VehicleAddRequest;
+import com.project.vrs.resources.request.VehicleInfoRequest;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.resources.response.VehicleResponse;
 import com.project.vrs.security.entity.Users;
 import com.project.vrs.security.repository.UserRepository;
 import com.project.vrs.service.VehicleService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,6 @@ import java.util.Optional;
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepo vehicleRepo;
-    private final VehicleInfoRepo vehicleInfoRepo;
     private final UserRepository userRepository;
 
     @Override
@@ -41,10 +41,21 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     private VehicleResponse convertToVehicleResponse(Vehicle vehicle) {
+        VehicleResponse vehicleResponse = new VehicleResponse();
+        vehicleResponse.setVehicleId(vehicle.getId());
+        vehicleResponse.setManufacturedBy(vehicle.getManufacturedBy());
+        vehicleResponse.setVehicleNo(vehicle.getVehicleNo());
+        vehicleResponse.setVehicleType(vehicle.getVehicleType());
+        vehicleResponse.setIsAvailable(vehicle.getIsAvailable());
+        vehicleResponse.setUserEmail(vehicle.getUsers().getEmail());
 
-        return new VehicleResponse(vehicle.getId(),vehicle.getManufacturedBy(), vehicle.getVehicleNo(),
-                vehicle.getVehicleType(), vehicle.getIsAvailable(), vehicle.getUsers().getEmail());
+        if (vehicle.getVehicleInfo() != null) {
+            vehicleResponse.setVehicleInfoId(vehicle.getVehicleInfo().getId());
+        }
+
+        return vehicleResponse;
     }
+
 
     @Override
     public GenericResponse addVehicles(VehicleAddRequest vehicle) {
@@ -74,17 +85,31 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Optional<VehicleInfo> vehiclequalityinfo(Long vehicleId) {
-        return vehicleInfoRepo.findByVehicle_Id(vehicleId);
+        return vehicleRepo.findById(vehicleId).flatMap(
+                response -> Optional.ofNullable(response.getVehicleInfo())
+        );
     }
 
-    @Override
-    public GenericResponse addVehicleQualityInfo(VehicleInfo vehicleInfo) {
 
-        Vehicle vehicle = vehicleRepo.findById(vehicleInfo.getIdVehicle()).orElseThrow(() ->
+    @Override
+    @Transactional
+    public GenericResponse addVehicleQualityInfo(VehicleInfoRequest vehicleInfoRequest) {
+
+        Vehicle vehicle = vehicleRepo.findById(vehicleInfoRequest.getVehicleId()).orElseThrow(() ->
                 new VehicleException("Vehicle Doesnt Exist"));
-        vehicleInfo.setVehicle(vehicle);
-        vehicleInfoRepo.save(vehicleInfo);
+        VehicleInfo vehicleInfo1 = vehicleInfoRequestToVehicleInfo(vehicleInfoRequest);
+        vehicle.setVehicleInfo(vehicleInfo1);
+        vehicleRepo.save(vehicle);
         return new GenericResponse(1, "Successfully Added");
+    }
+
+    public VehicleInfo vehicleInfoRequestToVehicleInfo(VehicleInfoRequest vehicleInfoRequest) {
+        VehicleInfo vehicleInfo = new VehicleInfo();
+        vehicleInfo.setMaintenanceRequired(vehicleInfoRequest.isMaintenanceRequired());
+        vehicleInfo.setClean(vehicleInfoRequest.isClean());
+        vehicleInfo.setVehicleUsageTimeInMonths(vehicleInfo.getVehicleUsageTimeInMonths());
+        vehicleInfo.setTireCondition(vehicleInfo.getTireCondition());
+        return vehicleInfo;
     }
 
     @Override

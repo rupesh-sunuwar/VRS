@@ -1,0 +1,50 @@
+<p-toast></p-toast>
+<div>
+  <h2 mat-dialog-title>Add VehicleInfo</h2>
+  <form #reserveForm="ngForm">
+    <mat-form-field>
+      <mat-label>
+        Vehicle ID <span class="required">*</span>
+      </mat-label>
+      <input matInput placeholder="Vehicle ID" [(ngModel)]="vehicleInfoRequest.vehicle_id" name="vehicleId">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        Maintenance Required <span class="required">*</span>
+      </mat-label>
+      <mat-select [(ngModel)]="vehicleInfoRequest.is_maintenance_required" name="isMaintenanceRequired">
+        <mat-option value="true">Yes</mat-option>
+        <mat-option value="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        Clean <span class="required">*</span>
+      </mat-label>
+      <mat-select [(ngModel)]="vehicleInfoRequest.is_clean" name="isClean">
+        <mat-option value="true">Yes</mat-option>
+        <mat-option value="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        Vehicle Usage Time (Months) <span class="required">*</span>
+      </mat-label>
+      <input matInput type="number" placeholder="Vehicle Usage Time" [(ngModel)]="vehicleInfoRequest.vehicle_usage_time_in_months" name="vehicleUsageTime">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        Tyre Condition <span class="required">*</span>
+      </mat-label>
+      <mat-select [(ngModel)]="vehicleInfoRequest.tired_condition" name="tyreCondition">
+        <mat-option value="GOOD">Good</mat-option>
+        <mat-option value="FAIR">Fair</mat-option>
+        <mat-option value="POOR">Poor</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="addVehicleInfo()" cdkFocusInitial>Add</button>
+  </div>
+</div>

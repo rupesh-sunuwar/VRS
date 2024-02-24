@@ -12,7 +12,7 @@ import {catchError, tap, throwError} from "rxjs";
 })
 export class AddVehicleDialogComponent implements OnInit {
   newVehicle: Vehicle = new Vehicle(0, '', '', '', false,
-    '');
+    0,'');
   selectedFile: File | null = null;
 
   constructor(public dialogRef: MatDialogRef<AddVehicleDialogComponent>
