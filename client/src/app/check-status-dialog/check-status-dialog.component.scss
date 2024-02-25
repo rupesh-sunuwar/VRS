@@ -1,19 +1,21 @@
-/* Add this CSS to your component's CSS file */
-.status-card {
-  border: 1px solid #ccc;
+.vehicle-status-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.status-card p {
-  margin: 8px 0;
+.status-card {
+  margin-bottom: 20px;
 }
 
-.mat-dialog-content {
-  padding: 0;
+.material-icons {
+  vertical-align: middle;
+  margin-right: 8px;
+  font-size: 18px;
 }
 
-.maintenance-required, .clean, .vehicle-usage-time, .tyre-condition {
-  margin: 0;
+.mat-dialog-actions {
+  text-align: right;
 }

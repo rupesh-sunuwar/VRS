@@ -1,6 +1,5 @@
 package com.project.vrs.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.project.vrs.constant.Routes;
 import com.project.vrs.resources.request.VehicleAddRequest;
 import com.project.vrs.resources.request.VehicleInfoRequest;
@@ -33,7 +32,7 @@ public class VehicleController {
     @GetMapping(Routes.VEHICLE_QUALITY)
     public VehicleInfoResponse getVehicleQualityInfo(@PathVariable("vehicle_id") Long vehicleId) {
         return vehicleService.vehiclequalityinfo(vehicleId);
-    }g
+    }
 
     @PostMapping(Routes.ADD_VEHICLE_QUALITY)
     public GenericResponse addVehicleQualityInfo(@Valid @RequestBody VehicleInfoRequest vehicleInfo) {

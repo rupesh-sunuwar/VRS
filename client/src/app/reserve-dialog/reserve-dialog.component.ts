@@ -4,6 +4,7 @@ import {ReserveRequest} from "../model/reserve-request.model";
 import {BookingServiceService} from "../service/booking-service.service";
 import {catchError, tap, throwError} from "rxjs";
 import {CustomMessageService} from "../service/message-service/custom-message.service";
+import {LoginService} from "../auth/login.service";
 
 @Component({
   selector: 'app-reserve-dialog',
@@ -13,13 +14,14 @@ import {CustomMessageService} from "../service/message-service/custom-message.se
 export class ReserveDialogComponent {
 
   reserveRequest: ReserveRequest = new ReserveRequest(1, 1, '', '',
-    0, '', 0); // Initialize with default values
+    0, '', ''); // Initialize with default values
 
   constructor(
     public dialogRef: MatDialogRef<ReserveDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private bookingService: BookingServiceService,
-    private messageService: CustomMessageService
+    private messageService: CustomMessageService,
+    private loginService:LoginService
   ) {
   }
 
@@ -28,6 +30,8 @@ export class ReserveDialogComponent {
   }
 
   reserveVehicle() {
+    console.log(this.loginService.getSessionUserId());
+    this.reserveRequest.user_email=this.loginService.getSessionUserId();
     this.bookingService.reserveVehicles(this.reserveRequest)
       .pipe(
         tap(response => {
@@ -35,6 +39,7 @@ export class ReserveDialogComponent {
         }),
         catchError(error => {
           this.handleError(error);
+          this.resetForm();
           return throwError(error);
         })
       )
@@ -48,6 +53,6 @@ export class ReserveDialogComponent {
 
   resetForm() {
     this.reserveRequest = new ReserveRequest(1, 1, '', '',
-      0, '', 0); // Initial
+      0, '', ''); // Initial
   }
 }

@@ -1,14 +1,26 @@
-<div>
+<div class="vehicle-status-card">
   <h2 mat-dialog-title>Vehicle Status</h2>
   <div class="mat-dialog-content status-card">
     <div>
-      <p class="maintenance-required">Maintenance Required: {{ vehicleInfoResponse.is_maintenance_required ? 'Yes' : 'No' }}</p>
-      <p class="clean">Clean: {{ vehicleInfoResponse.is_clean ? 'Yes' : 'No' }}</p>
-      <p class="vehicle-usage-time">Vehicle Usage Time (Months): {{ vehicleInfoResponse.vehicle_usage_time_in_months }}</p>
-      <p class="tyre-condition">Tyre Condition: {{ vehicleInfoResponse.tired_condition }}</p>
+      <p>
+        <i class="material-icons">construction</i>
+        Maintenance Required: {{ vehicleInfoResponse.is_maintenance_required ? 'Yes' : 'No' }}
+      </p>
+      <p>
+        <i class="material-icons">cleaning_services</i>
+        Clean: {{ vehicleInfoResponse.is_clean ? 'Yes' : 'No' }}
+      </p>
+      <p>
+        <i class="material-icons">schedule</i>
+        Vehicle Usage Time (Months): {{ vehicleInfoResponse.vehicle_usage_time_in_months }}
+      </p>
+      <p>
+        <i class="material-icons">directions_car</i>
+        Tyre Condition: {{ vehicleInfoResponse.tired_condition }}
+      </p>
     </div>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="closeDialog()">Close</button>
+  <div class="mat-dialog-actions">
+    <button mat-button color="warn" (click)="closeDialog()">Close</button>
   </div>
 </div>

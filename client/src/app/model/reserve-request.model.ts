@@ -6,7 +6,7 @@ export class ReserveRequest {
     public from_location: string,
     public no_of_passengers: number,
     public initiated_by:string,
-    public user_id: number
+    public user_email: string
   ) {}
 }
 

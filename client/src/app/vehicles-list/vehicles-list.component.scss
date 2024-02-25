@@ -22,9 +22,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px; /* Adjust the padding as needed */
+  padding: 0; /* Adjust the padding as needed */
+  margin: 0; /* Center the photo-frame horizontally */
+  box-sizing:border-box;
 }
-
 .photo-frame img {
   max-width: calc(100% - 30px); /* Account for the padding */
   max-height: calc(100% - 20px); /* Account for the padding */

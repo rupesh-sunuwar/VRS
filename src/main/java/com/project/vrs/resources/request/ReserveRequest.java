@@ -31,6 +31,6 @@ public class ReserveRequest implements Serializable {
     @JsonProperty("no_of_passengers")
     private int noOfPassengers;
 
-    @JsonProperty("user_id")
-    private Long userId;
+    @JsonProperty("user_email")
+    private String userEmail;
 }

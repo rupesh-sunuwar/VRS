@@ -5,6 +5,8 @@ import {CustomMessageService} from "../service/message-service/custom-message.se
 import {MatDialog} from "@angular/material/dialog";
 import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component";
 import {VehicleService} from "../service/vehicle.service";
+import {VehicleInfoResponse} from "../model/vehicle-info-response";
+import {CheckStatusDialogComponent} from "../check-status-dialog/check-status-dialog.component";
 
 @Component({
   selector: 'app-vehicles-list',
@@ -57,7 +59,30 @@ export class VehiclesListComponent {
     });
   }
 
-  checkStatus(vehicle: Vehicle) {
+  checkStatus(vehicleId: number): void {
+    this.vehicleService.getVehicleStatusById(vehicleId)
+      .pipe(
+        tap(response => {
+          console.log(response);
+          this.openStatusDialog(response);
+        }),
+        catchError(error => {
+          this.handleError(error);
+          return throwError(error);
+        })
+      )
+      .subscribe();
+  }
 
+  private openStatusDialog(vehicleInfoResponse: VehicleInfoResponse): void {
+    const dialogRef = this.dialog.open(CheckStatusDialogComponent, {
+      width: '300px',
+      data: {
+        vehicleInfoResponse: vehicleInfoResponse
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The status dialog was closed');
+    });
   }
 }

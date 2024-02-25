@@ -2,8 +2,10 @@
 
 <div class="vehicle-list">
   <mat-card *ngFor="let vehicle of vehicles" class="vehicle-card">
-    <div class="photo-frame">
-      <img src="assets/mountain.avif" alt="Vehicle Photo">
+    <div>
+      <div class="photo-frame">
+        <img src="assets/mountain.avif" alt="Vehicle Photo">
+      </div>
     </div>
     <mat-card-title>
       {{ vehicle.vehicle_type === 'TWO_WHEELER' ? 'Bike' : 'Car' }}

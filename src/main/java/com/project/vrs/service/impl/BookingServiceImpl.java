@@ -31,12 +31,13 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public ReservationResponse reserveVehicles(ReserveRequest request) {
-        log.info("Reserving Request with user id {}", request.getUserId());
+        log.info("Reserving Request with user id {}", request.getUserEmail());
 
         Reservation reservation = new Reservation();
-        Users user = userRepository.findById(request.getUserId()).orElseThrow(
-                () -> new UserException("User with ID " + request.getUserId() + " not found")
-        );
+        Users user = userRepository.findByEmail(request.getUserEmail());
+        if (user == null) {
+            throw new UserException("User with ID " + request.getUserEmail() + " not found");
+        }
         reservation.setUser(user);
         Payment payment = paymentRepo.findById(request.getPaymentId()).orElseThrow(() ->
                 new PaymentException("Payment with ID " + request.getPaymentId() + " not found"));
