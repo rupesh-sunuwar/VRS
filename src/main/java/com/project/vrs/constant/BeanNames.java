@@ -1,7 +1,7 @@
 package com.project.vrs.constant;
 
 public record BeanNames() {
-    public static final String CMS_MINIO_CLIENT = "cmsMinioClient";
+    public static final String VRS_MINIO_CLIENT = "vrsMinioClient";
 
-    public static final String CMS_MINIO_SERVICE = "vrsMinioService";
+    public static final String VRS_MINIO_SERVICE = "vrsMinioService";
 }

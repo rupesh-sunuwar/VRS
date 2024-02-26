@@ -14,7 +14,7 @@ import {LoginService} from "../../auth/login.service";
 export class AddVehicleDialogComponent implements OnInit {
   newVehicle: Vehicle = new Vehicle(0, '', '', '', false,
     0, '');
-  selectedFile: File | null = null;
+  selectedFile!: File ;
 
   constructor(public dialogRef: MatDialogRef<AddVehicleDialogComponent>
     , private vehicleService: VehicleService,
@@ -30,21 +30,39 @@ export class AddVehicleDialogComponent implements OnInit {
   }
 
   addVehicle(): void {
-    // Implement logic to add the new vehicle
-    // You can send the newVehicle object along with the selected file to your backend API
-    this.newVehicle.user_email=this.loginService.getSessionUserId();
-    console.log(this.newVehicle);
-    this.vehicleService.addVehicle(this.newVehicle).pipe(
-      tap(response => {
-        const successMessage = response?.response?.message || 'Success Message';
-        this.messageService.showSuccess('Message:',
-          successMessage);
-      }),
-      catchError(error => {
-        this.handleError(error);
-        return throwError(error);
-      })).subscribe();
-    this.dialogRef.close();
+    // Set user email
+    this.newVehicle.user_email = this.loginService.getSessionUserId();
+
+    // Check if selected file exists
+    if (this.selectedFile) {
+      // If file exists, add vehicle with file
+      this.vehicleService.addVehicle(this.newVehicle, this.selectedFile).pipe(
+        tap(response => {
+          const successMessage = response?.response?.message || 'Success Message';
+          this.messageService.showSuccess('Message:', successMessage);
+        }),
+        catchError(error => {
+          this.handleError(error);
+          return throwError(error);
+        })
+      ).subscribe(() => {
+        this.dialogRef.close(); // Close dialog after successful submission
+      });
+    } else {
+      // If file does not exist, add vehicle without file
+      this.vehicleService.addVehicle(this.newVehicle).pipe(
+        tap(response => {
+          const successMessage = response?.response?.message || 'Success Message';
+          this.messageService.showSuccess('Message:', successMessage);
+        }),
+        catchError(error => {
+          this.handleError(error);
+          return throwError(error);
+        })
+      ).subscribe(() => {
+        this.dialogRef.close(); // Close dialog after successful submission
+      });
+    }
   }
 
   onFileChange(event: any): void {

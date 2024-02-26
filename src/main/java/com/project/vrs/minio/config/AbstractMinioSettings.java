@@ -14,12 +14,12 @@ public abstract class AbstractMinioSettings {
     /**
      * Access key (login) on Minio instance
      */
-    private String accessKey = "Q3AM3UQ867SPQQA43P2F";
+    private String accessKey = "esewa";
 
     /**
      * Secret key (password) on Minio instance
      */
-    private String secretKey = "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG";
+    private String secretKey = "esewa@123#";
 
     /**
      * If the scheme is not provided in {@code url} property, define if the connection is done via HTTP or HTTPS.
@@ -29,7 +29,7 @@ public abstract class AbstractMinioSettings {
     /**
      * Bucket name for the application. The bucket must already exists on Minio.
      */
-    private String bucket;
+    private String bucket="vrs-bucket";
 
     /**
      * Metric configuration prefix which are registered on Actuator.

@@ -28,9 +28,20 @@ export class VehicleService {
     return this.httpClient.get<any>(url, {headers: this.getHeaders()});
   }
 
-  addVehicle(vehicle: Vehicle) {
-    const url = `${this.auth_url}add_vehicle`; // Corrected URL construction
-    return this.httpClient.post<any>(url, vehicle, {headers: this.getHeaders()});
+  addVehicle(vehicle: Vehicle, file?: File) {
+    const url = `${this.auth_url}add_vehicle`;
+
+    const formData = new FormData();
+    formData.append('vehicle', new Blob([JSON.stringify(vehicle)], {type: 'application/json'}));
+
+    if (file) {
+      formData.append('file', file, file.name); // Append the file with its name
+    }
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + this.loginService.getToken());
+    headers.append('Content-Type', 'multipart/form-data');
+
+    return this.httpClient.post<any>(url, formData, { headers: headers });
   }
 
   getVehicleStatusById(vehicleId: number) {

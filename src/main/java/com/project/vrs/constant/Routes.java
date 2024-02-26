@@ -18,4 +18,6 @@ public class Routes {
     public static final String VEHICLE_QUALITY = AUTH_VRS + "/quality_info/{vehicle_id}";
     public static final String ADD_VEHICLE_QUALITY = AUTH_VRS + "/quality_info";
     public static final String MAKE_PAYMENT = AUTH_VRS + "/make_payment";
+    public static final String GET_IMAGE = AUTH_VRS + "/get_image/{object_name}";
+    public static final String UPLOAD_IMAGE = AUTH_VRS + "/upload";
 }

@@ -19,3 +19,14 @@ spring:
 
     mvc:
       validation: true
+
+    vrs:
+      minio:
+        url: http://localhost:9000
+        accessKey: esewa
+        secretKey: esewa@123#
+        bucket: vrs-bucket
+        secure: false
+        expiry: 180
+        imageSize: 20971520
+        fileSize: 20971520
