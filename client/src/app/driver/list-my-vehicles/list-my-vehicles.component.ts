@@ -8,6 +8,8 @@ import {VehicleService} from '../../service/vehicle.service';
 import {AddVehicleInfoDialogComponent} from "../add-vehicle-info-dialog/add-vehicle-info-dialog.component";
 import {CheckStatusDialogComponent} from "../../check-status-dialog/check-status-dialog.component";
 import {VehicleInfoResponse} from "../../model/vehicle-info-response";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {FileService} from "../../service/file.service";
 
 @Component({
   selector: 'app-list-my-vehicles',
@@ -16,11 +18,13 @@ import {VehicleInfoResponse} from "../../model/vehicle-info-response";
 })
 export class ListMyVehiclesComponent implements OnInit {
   vehicles: Vehicle[] = [];
+  photoDataMap: { [key: string]: SafeUrl } = {};
 
   constructor(
     private vehicleService: VehicleService,
     private messageService: CustomMessageService,
-    private dialog: MatDialog
+    private dialog: MatDialog, private sanitizer: DomSanitizer,
+    private fileService: FileService
   ) {
   }
 
@@ -29,17 +33,17 @@ export class ListMyVehiclesComponent implements OnInit {
   }
 
   initializeVehicles(): void {
-    this.vehicleService.getUserVehicles()
-      .pipe(
-        tap(response => {
-          this.vehicles = response;
-        }),
-        catchError(error => {
-          this.handleError(error);
-          return throwError(error);
-        })
-      )
-      .subscribe();
+    this.vehicleService.getUserVehicles().pipe(
+      tap(response => {
+        this.vehicles = response;
+        // Fetch photo for each vehicle
+        this.vehicles.forEach(vehicle => this.fetchPhoto(vehicle.vehicle_no));
+      }),
+      catchError(error => {
+        this.handleError(error);
+        return throwError(error);
+      })
+    ).subscribe();
   }
 
   addVehicleInfo(vehicle: Vehicle): void {
@@ -57,7 +61,6 @@ export class ListMyVehiclesComponent implements OnInit {
     this.vehicleService.getVehicleStatusById(vehicleId)
       .pipe(
         tap(response => {
-          console.log(response);
           this.openStatusDialog(response);
         }),
         catchError(error => {
@@ -84,5 +87,27 @@ export class ListMyVehiclesComponent implements OnInit {
 
     const errorMessage = error?.error?.message || 'Service not available';
     this.messageService.showError('Error:', errorMessage);
+  }
+
+  fetchPhoto(vehicleNo: string) {
+    this.fileService.fetchPhoto(vehicleNo).pipe().subscribe(
+      (data: Blob) => {
+        this.convertBlobToSafeUrl(data, vehicleNo);
+      }
+    );
+  }
+
+  convertBlobToSafeUrl(blob: Blob, vehicleNo: string) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64data = reader.result as string;
+      // Sanitize the URL to prevent XSS
+      this.photoDataMap[vehicleNo] = this.sanitizer.bypassSecurityTrustUrl(base64data);
+    };
+    reader.readAsDataURL(blob);
+  }
+
+  getVehiclePhoto(vehicleNo: string): SafeUrl | null {
+    return this.photoDataMap[vehicleNo] || null;
   }
 }

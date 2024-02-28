@@ -71,6 +71,8 @@ public class VehicleServiceImpl implements VehicleService {
         }
         Vehicle vehicle2 = vehicleRequestToVehicle(vehicle);
         vehicle2.setUsers(user);
+        vehicle2.setVehiclePhotoName(vehicle.getVehiclePhotoName());
+        vehicle2.setContentType(vehicle.getContentType());
         vehicleRepo.save(vehicle2);
         return new GenericResponse(1, "Successfully Added.");
     }

@@ -40,7 +40,10 @@ public class VehicleController {
         if (filePart != null && !filePart.isEmpty()) {
             Map<String, String> metaData = new HashMap<>();
             metaData.put("username", vehicle.getUserEmail());
-            minioService.uploadFile(filePart, metaData, vrsMinioSetting.getBucket());
+            metaData.put("vehicleNo", vehicle.getVehicleNo());
+            vehicle.setContentType(filePart.getContentType());
+            String photoName = minioService.uploadFile(filePart, metaData, vrsMinioSetting.getBucket());
+            vehicle.setVehiclePhotoName(photoName);
         }
 
         return vehicleService.addVehicles(vehicle);

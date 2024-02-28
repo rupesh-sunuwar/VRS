@@ -1,9 +1,9 @@
 <p-toast></p-toast>
 <div class="vehicle-list">
   <mat-card *ngFor="let vehicle of vehicles" class="vehicle-card">
-      <div class="photo-frame">
-        <img src="assets/mountain.avif" alt="Vehicle Photo">
-      </div>
+    <div class="photo-frame">
+      <img [src]="getVehiclePhoto(vehicle.vehicle_no)" alt="Vehicle Photo">
+    </div>
     <mat-card-title>
       {{ vehicle.vehicle_type === 'TWO_WHEELER' ? 'Bike' : 'Car' }}
     </mat-card-title>
@@ -13,8 +13,12 @@
       <p>Vehicle Type: {{ vehicle.vehicle_type }}</p>
       <p>{{ vehicle.is_available ? 'Available' : 'Not Available' }}</p>
       <div class="button-container">
-        <button mat-raised-button color="primary" [disabled]="!vehicle.is_available" (click)="reserveVehicle(vehicle)">Reserve</button>
-        <button mat-raised-button color="accent" [disabled]="!vehicle.vehicle_info_id" (click)="checkStatus(vehicle.vehicle_id)">Check Status</button>
+        <button mat-raised-button color="primary" [disabled]="!vehicle.is_available" (click)="reserveVehicle(vehicle)">
+          Reserve
+        </button>
+        <button mat-raised-button color="accent" [disabled]="!vehicle.vehicle_info_id"
+                (click)="checkStatus(vehicle.vehicle_id)">Check Status
+        </button>
       </div>
     </mat-card-content>
   </mat-card>

@@ -26,5 +26,10 @@ public class Vehicle extends AbstractEntity {
     private Users users;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    VehicleInfo vehicleInfo;
+    private VehicleInfo vehicleInfo;
+
+    private String vehiclePhotoName;
+
+    private String contentType;
+
 }

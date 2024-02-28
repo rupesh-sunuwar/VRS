@@ -4,7 +4,7 @@
   <mat-card *ngFor="let vehicle of vehicles" class="vehicle-card">
     <div>
       <div class="photo-frame">
-        <img src="assets/mountain.avif" alt="Vehicle Photo">
+        <img [src]="getVehiclePhoto(vehicle.vehicle_no)" alt="Vehicle Photo">
       </div>
     </div>
     <mat-card-title>

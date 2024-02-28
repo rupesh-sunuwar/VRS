@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface MinioService {
 
-    void uploadFile(MultipartFile multipartFile, Map<String, String> userMetadata, String bucket);
+    String  uploadFile(MultipartFile multipartFile, Map<String, String> userMetadata, String bucket);
 
     InputStream getInputStream(String bucketName,String objectName);
 

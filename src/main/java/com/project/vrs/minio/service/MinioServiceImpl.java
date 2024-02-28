@@ -25,10 +25,11 @@ public class MinioServiceImpl implements MinioService {
     VRSMinioSetting vrsMinioSetting;
 
     @Override
-    public void uploadFile(MultipartFile multipartFile, Map<String, String> userMetadata, String bucket) {
+    public String uploadFile(MultipartFile multipartFile, Map<String, String> userMetadata, String bucket) {
         log.info("Uploading file : {} to minIO", multipartFile.getOriginalFilename());
 
         String contentType = extractWordBeforeSlash(Objects.requireNonNull(multipartFile.getContentType()));
+        String photoName = userMetadata.get("vehicleNo") + "." + extractWordAfterSlash(multipartFile.getContentType());
 
         if (!contentType.equals("image")) {
             throw new FtpException("Content Type Not valid.");
@@ -38,12 +39,13 @@ public class MinioServiceImpl implements MinioService {
             minioClient.putObject(
                     PutObjectArgs.builder()
                             .bucket(bucket)
-                            .object(userMetadata.get("username")+ "." + extractWordAfterSlash(multipartFile.getContentType()))
+                            .object(photoName)
                             .stream(multipartFile.getInputStream(), -1, vrsMinioSetting.getFileSize())
                             .contentType(String.valueOf(multipartFile.getContentType()))
                             .userMetadata(userMetadata)
                             .build()
             );
+            return photoName;
         } catch (Exception ex) {
             log.error("Error while uploading file : {}, error: {}", multipartFile.getOriginalFilename(), ex.getMessage());
             throw new FtpException("Error while uploading file");
@@ -125,6 +127,14 @@ public class MinioServiceImpl implements MinioService {
 
     public static String extractWordAfterSlash(String input) {
         int slashIndex = input.indexOf('/');
+        if (slashIndex != -1 && slashIndex + 1 < input.length()) { // Check if slash exists and if there's a character after it
+            return input.substring(slashIndex + 1);
+        }
+        return ""; // Return an empty string if no slash found or if it's the last character
+    }
+
+    public static String extractWordAfterDot(String input) {
+        int slashIndex = input.indexOf('.');
         if (slashIndex != -1 && slashIndex + 1 < input.length()) { // Check if slash exists and if there's a character after it
             return input.substring(slashIndex + 1);
         }

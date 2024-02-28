@@ -27,4 +27,10 @@ public class VehicleAddRequest implements Serializable {
 
     @JsonProperty("user_email")
     private String userEmail;
+
+    @JsonProperty("vehicle_photo_name")
+    private String vehiclePhotoName;
+
+    @JsonProperty("content_type")
+    private String contentType;
 }

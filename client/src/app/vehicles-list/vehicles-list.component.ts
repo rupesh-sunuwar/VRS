@@ -7,6 +7,8 @@ import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component
 import {VehicleService} from "../service/vehicle.service";
 import {VehicleInfoResponse} from "../model/vehicle-info-response";
 import {CheckStatusDialogComponent} from "../check-status-dialog/check-status-dialog.component";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {FileService} from "../service/file.service";
 
 @Component({
   selector: 'app-vehicles-list',
@@ -17,10 +19,13 @@ export class VehiclesListComponent {
 
 
   vehicles: Vehicle[] = []; // Assuming you have an array of vehicles
+  photoDataMap: { [key: string]: SafeUrl } = {};
 
   constructor(private vehicleService: VehicleService,
               private messageService: CustomMessageService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private sanitizer: DomSanitizer,
+              private fileService: FileService) {
   }
 
   ngOnInit(): void {
@@ -34,6 +39,8 @@ export class VehiclesListComponent {
     this.vehicleService.getVehicles().pipe(
       tap(response => {
         this.vehicles = response;
+        // Fetch photo for each vehicle
+        this.vehicles.forEach(vehicle => this.fetchPhoto(vehicle.vehicle_no));
       }),
       catchError(error => {
         this.handleError(error);
@@ -41,6 +48,7 @@ export class VehiclesListComponent {
       })
     ).subscribe();
   }
+
 
   private handleError(error: any) {
     const errorMessage = error?.error?.message || 'Service not available';
@@ -63,7 +71,6 @@ export class VehiclesListComponent {
     this.vehicleService.getVehicleStatusById(vehicleId)
       .pipe(
         tap(response => {
-          console.log(response);
           this.openStatusDialog(response);
         }),
         catchError(error => {
@@ -84,5 +91,28 @@ export class VehiclesListComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The status dialog was closed');
     });
+  }
+
+  fetchPhoto(vehicleNo: string) {
+    this.fileService.fetchPhoto(vehicleNo).pipe().subscribe(
+      (data:Blob)=>{
+        this.convertBlobToSafeUrl(data, vehicleNo);
+      }
+
+    );
+  }
+
+  convertBlobToSafeUrl(blob: Blob, vehicleNo: string) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64data = reader.result as string;
+      // Sanitize the URL to prevent XSS
+      this.photoDataMap[vehicleNo] = this.sanitizer.bypassSecurityTrustUrl(base64data);
+    };
+    reader.readAsDataURL(blob);
+  }
+
+  getVehiclePhoto(vehicleNo: string): SafeUrl | null {
+    return this.photoDataMap[vehicleNo] || null;
   }
 }
