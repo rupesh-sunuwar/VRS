@@ -6,9 +6,9 @@ import com.project.vrs.resources.response.ReservationResponse;
 import com.project.vrs.service.BookingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,5 +19,11 @@ public class BookingController {
     @PostMapping(Routes.RESERVE)
     public ReservationResponse reserveVehicle(@Valid @RequestBody ReserveRequest request) {
         return bookingService.reserveVehicles(request);
+    }
+
+    @GetMapping(Routes.RESERVATION_LIST)
+    public List<ReservationResponse> getReservationList(@PathVariable String email){
+
+        return bookingService.getReservationList(email);
     }
 }

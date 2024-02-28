@@ -31,6 +31,8 @@ import {PaymentService} from "./service/payment.service";
 import {VehicleService} from "./service/vehicle.service";
 import {LogoutConfirmationDailogComponent} from "./logout-confirmation-dailog/logout-confirmation-dailog.component";
 import { CheckStatusDialogComponent } from './check-status-dialog/check-status-dialog.component';
+import { AboutComponent } from './about/about.component';
+import { ReservationListComponent } from './reservation-list/reservation-list.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { CheckStatusDialogComponent } from './check-status-dialog/check-status-d
     ReserveDialogComponent,
     EsewaIntegrationComponent,
     LogoutConfirmationDailogComponent,
-    CheckStatusDialogComponent
+    CheckStatusDialogComponent,
+    AboutComponent,
+    ReservationListComponent
   ],
   imports: [
     BrowserModule,

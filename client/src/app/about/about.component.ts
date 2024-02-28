@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
+  backgroundImageUrl: string='assets/contact.jpg'
 
 }

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {environment, route} from "../env/environment";
-import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LoginService} from "../auth/login.service";
 import {ReserveRequest} from "../model/reserve-request.model";
@@ -21,6 +20,12 @@ export class BookingServiceService {
     const url = `${this.auth_url}reserve`;
 
     return this.httpClient.post(url, reserveRequest, {headers: this.getHeaders()})
+  }
+
+  getReservationList(email: string) {
+    const url = `${this.auth_url}reservation_list/${email}`;
+    console.log(url);
+    return this.httpClient.get<any>(url, {headers: this.getHeaders()})
   }
 
   getHeaders() {

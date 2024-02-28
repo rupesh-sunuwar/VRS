@@ -3,19 +3,35 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f4f4f4;
-  height: 100vh;
+  background-color: #673ab7; /* Background color for the entire container */
+}
 
   .card {
+    margin-top: 2rem;
     width: 450px;
     padding: 2rem;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+    background-color: #fffefe;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .layout-topbar-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--surface-900);
+      font-size: 1.5rem;
+      font-weight: 500;
+      width: 300px;
+      border-radius: 12px;
+
+      img {
+        height: 5rem;
+      }
+    }
 
     h1 {
       text-align: center;
@@ -66,7 +82,7 @@
     }
 
   }
-}
+
 
 input#email {
   width: 22rem;
@@ -90,4 +106,15 @@ input#password {
     height: 5rem;
   }
 }
+
+h2.login-title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff;
+  position: absolute; /* Position the title */
+  top: 150px; /* Adjust the top position as needed */
+}
+
+
 

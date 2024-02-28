@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -16,12 +17,17 @@ export class HomeComponent implements OnInit {
     // Add more image paths as needed
   ];
 
+  constructor(private route: ActivatedRoute,) {
+
+  }
+
   ngOnInit() {
     interval(5000) // Emit value every 5 seconds
       .subscribe(() => {
         this.changeBackgroundImage();
       });
   }
+
 
   changeBackgroundImage() {
     this.imageIndex = (this.imageIndex + 1) % this.imagePaths.length; // Cycle through image paths

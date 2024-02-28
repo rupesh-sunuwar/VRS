@@ -9,10 +9,18 @@ import {HomeComponent} from "./home/home.component";
 import {VehiclesListComponent} from "./vehicles-list/vehicles-list.component";
 import {EsewaIntegrationComponent} from "./esewa-integration/esewa-integration.component";
 import {ListMyVehiclesComponent} from "./driver/list-my-vehicles/list-my-vehicles.component";
+import {AboutComponent} from "./about/about.component";
+import {ReservationListComponent} from "./reservation-list/reservation-list.component";
 
 const routes: Routes = [
   {
     path: 'home', component: HomeComponent
+  },
+  {
+    path: 'about', component: AboutComponent
+  },
+  {
+    path: 'reservation-list', component:ReservationListComponent
   },
   {
     path: 'signup', component: SignupComponent

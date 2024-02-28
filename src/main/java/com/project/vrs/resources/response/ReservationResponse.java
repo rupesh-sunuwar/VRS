@@ -2,6 +2,7 @@ package com.project.vrs.resources.response;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.vrs.enums.ReservationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,4 +29,7 @@ public class ReservationResponse implements Serializable {
 
     @JsonProperty("payment_id")
     private Long paymentId;
+
+    @JsonProperty("reservation_status")
+    private ReservationStatus reservationStatus;
 }

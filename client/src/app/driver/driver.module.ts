@@ -22,6 +22,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {AddVehicleInfoDialogComponent} from './add-vehicle-info-dialog/add-vehicle-info-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -34,24 +35,25 @@ import {MatSelectModule} from "@angular/material/select";
   exports: [
     DriverDashboardComponent
   ],
-  imports: [
-    CommonModule,
-    MatBadgeModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    RouterLink,
-    RouterOutlet,
-    MatCardModule,
-    ToastModule,
-    MatInputModule,
-    FormsModule,
-    MatDialogModule,
-    MatCheckboxModule,
-    MatSelectModule
-  ],
+    imports: [
+        CommonModule,
+        MatBadgeModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        RouterLink,
+        RouterOutlet,
+        MatCardModule,
+        ToastModule,
+        MatInputModule,
+        FormsModule,
+        MatDialogModule,
+        MatCheckboxModule,
+        MatSelectModule,
+        MatTooltipModule
+    ],
   providers: [LoginService, JwtService,
     PasswordService, MessageService],
 })

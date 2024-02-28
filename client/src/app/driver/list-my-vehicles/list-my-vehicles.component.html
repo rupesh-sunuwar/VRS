@@ -16,7 +16,7 @@
       <p>Vehicle Type: {{ vehicle.vehicle_type }}</p>
       <p>{{ vehicle.is_available ? 'Available' : 'Not Available' }}</p>
       <div class="button-container">
-        <button mat-raised-button color="primary" [disabled]="!vehicle.is_available" (click)="addVehicleInfo(vehicle)">
+        <button mat-raised-button color="primary" (click)="addVehicleInfo(vehicle)">
           Add VehicleInfo
         </button>
         <button mat-raised-button color="accent" [disabled]="!vehicle.vehicle_info_id"

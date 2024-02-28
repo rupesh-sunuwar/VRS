@@ -1,11 +1,10 @@
 package com.project.vrs.model;
 
 
+import com.project.vrs.enums.ReservationStatus;
 import com.project.vrs.security.entity.Users;
 import com.project.vrs.shared.domain.AbstractEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,6 +23,9 @@ public class Reservation extends AbstractEntity {
     private String fromLocation;
 
     private int noOfPassengers;
+
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus reservationStatus;
 
     @ManyToOne
     private Users user;

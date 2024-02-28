@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f4f4f4;
+  background-color: #673ab7;
 }
 
 .card {
@@ -16,6 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto; /* Center the card horizontally */
 }
 
 h1 {
@@ -59,8 +60,7 @@ input#password,
 input#firstName,
 input#lastName,
 input#mobile,
-input#isDriver,
-{
+input#isDriver {
   width: 22rem;
 }
 
@@ -81,5 +81,31 @@ input#isDriver,
 
 .p-field label span {
   color: red;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.column {
+  flex: 0 0 calc(50% - 0.5rem);
+  margin-right: 1rem;
+}
+
+.column:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 768px) {
+  .column {
+    flex: 0 0 100%;
+    margin-right: 0;
+  }
+}
+
+.p-field {
+  margin-bottom: 0.5rem; /* Add space between each field */
 }
 

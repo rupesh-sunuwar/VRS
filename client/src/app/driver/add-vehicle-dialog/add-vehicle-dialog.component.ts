@@ -38,8 +38,7 @@ export class AddVehicleDialogComponent implements OnInit {
       // If file exists, add vehicle with file
       this.vehicleService.addVehicle(this.newVehicle, this.selectedFile).pipe(
         tap(response => {
-          const successMessage = response?.response?.message || 'Success Message';
-          this.messageService.showSuccess('Message:', successMessage);
+          this.messageService.showSuccess('Message:', "Successfully Vehicles Added.");
         }),
         catchError(error => {
           this.handleError(error);

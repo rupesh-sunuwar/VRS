@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.InputStream;
 
-import static com.project.vrs.minio.service.MinioServiceImpl.extractWordAfterSlash;
-
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
@@ -35,7 +33,7 @@ public class FileController {
 
         Vehicle vehicle = vehicleRepo.findVehicleByVehicleNo(vehicleId)
                 .orElseThrow(() -> new VehicleException("Vehicle Doesnt Exist"));
-        InputStream file = minioService.getInputStream(vrsMinioSetting.getBucket(),vehicle.getVehiclePhotoName() );
+        InputStream file = minioService.getInputStream(vrsMinioSetting.getBucket(), vehicle.getVehiclePhotoName());
         if (file != null) {
             try {
                 HttpHeaders headers = new HttpHeaders();

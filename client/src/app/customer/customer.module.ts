@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {CustomerDashboardComponent} from './customer-dashboard/customer-dashboard.component';
 import {RouterOutlet} from "@angular/router";
 import {ReserveComponent} from './reserve/reserve.component';
-import {AboutComponent} from './about/about.component';
 import {CustomerRoutingModule} from "./customer-routing.module";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatButtonModule} from "@angular/material/button";
@@ -15,28 +14,29 @@ import {LoginService} from "../auth/login.service";
 import {JwtService} from "../auth/jwt.service";
 import {PasswordService} from "../auth/password.service";
 import {MessageService} from "primeng/api";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
   declarations: [
     CustomerDashboardComponent,
-    ReserveComponent,
-    AboutComponent
+    ReserveComponent
   ],
   exports: [
     CustomerDashboardComponent
   ],
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    CustomerRoutingModule,
-    MatBadgeModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule
-  ],
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        CustomerRoutingModule,
+        MatBadgeModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatTooltipModule
+    ],
   providers: [LoginService, JwtService, PasswordService, MessageService],
 })
 export class CustomerModule {

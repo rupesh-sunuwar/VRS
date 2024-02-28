@@ -38,6 +38,7 @@ export class VehiclesListComponent {
     // For example:
     this.vehicleService.getVehicles().pipe(
       tap(response => {
+        console.log(response);
         this.vehicles = response;
         // Fetch photo for each vehicle
         this.vehicles.forEach(vehicle => this.fetchPhoto(vehicle.vehicle_no));
@@ -58,7 +59,9 @@ export class VehiclesListComponent {
   reserveVehicle(vehicle: Vehicle) {
     const dialogRef = this.dialog.open(ReserveDialogComponent, {
       width: '300px', // Set the width of the dialog
-      data: {vehicle} // Pass any data needed by the dialog component
+      data: {
+        vehicle:vehicle
+    } // Pass any data needed by the dialog component
     });
 
     dialogRef.afterClosed().subscribe(result => {
