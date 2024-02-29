@@ -11,6 +11,7 @@ import {EsewaIntegrationComponent} from "./esewa-integration/esewa-integration.c
 import {ListMyVehiclesComponent} from "./driver/list-my-vehicles/list-my-vehicles.component";
 import {AboutComponent} from "./about/about.component";
 import {ReservationListComponent} from "./reservation-list/reservation-list.component";
+import {ReservationRequestComponent} from "./driver/reservation-request/reservation-request.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'reservation-list', component:ReservationListComponent
+  },
+  {
+    path:'reservation-request',component:ReservationRequestComponent
   },
   {
     path: 'signup', component: SignupComponent

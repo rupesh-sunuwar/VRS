@@ -33,6 +33,9 @@ import {LogoutConfirmationDailogComponent} from "./logout-confirmation-dailog/lo
 import { CheckStatusDialogComponent } from './check-status-dialog/check-status-dialog.component';
 import { AboutComponent } from './about/about.component';
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { CancelConfirmationComponent } from './cancel-confirmation/cancel-confirmation.component';
+import { PayConfirmationComponent } from './pay-confirmation/pay-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -46,19 +49,21 @@ import { ReservationListComponent } from './reservation-list/reservation-list.co
     LogoutConfirmationDailogComponent,
     CheckStatusDialogComponent,
     AboutComponent,
-    ReservationListComponent
+    ReservationListComponent,
+    CancelConfirmationComponent,
+    PayConfirmationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CustomerRoutingModule,
-    DriverRoutingModule,
     ReactiveFormsModule,
     ToastModule,
     ButtonModule, HttpClientModule, ChipsModule, BrowserAnimationsModule, AppLayoutModule, FormsModule, MatCardModule, MatButtonModule, MatInputModule, MatDialogModule
   ],
   providers: [LoginService, JwtService, PasswordService, MessageService,
     BookingServiceService, PaymentService, VehicleService],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

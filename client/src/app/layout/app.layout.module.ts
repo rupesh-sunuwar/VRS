@@ -13,10 +13,11 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {ButtonModule} from "primeng/button";
 import {CustomerModule} from "../customer/customer.module";
 import {DriverModule} from "../driver/driver.module";
+import {FooterComponent} from "./footer/footer.component";
 
 
 @NgModule({
-  declarations: [MenuComponent, HeaderComponent],
+  declarations: [MenuComponent, HeaderComponent,FooterComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -28,11 +29,11 @@ import {DriverModule} from "../driver/driver.module";
     MatToolbarModule,
     RouterOutlet,
     RouterLink,
-    ButtonModule,CustomerModule,DriverModule
+    ButtonModule, CustomerModule, DriverModule
 
   ],
   exports: [
-    MenuComponent
+    MenuComponent,FooterComponent
   ]
 })
 export class AppLayoutModule {

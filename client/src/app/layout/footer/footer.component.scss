@@ -1,0 +1,53 @@
+.footer {
+  padding: 20px 0;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer h4 {
+  margin-bottom: 10px;
+}
+
+.footer .payment-methods {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer .payment-methods .list-inline {
+  margin-bottom: 10px;
+}
+
+.footer .payment-methods p {
+  margin-bottom: 0;
+}
+
+.footer ul li {
+  margin-bottom: 5px;
+}
+
+.footer a {
+  color: white;
+}
+
+.footer a:hover {
+  color: #ccc;
+}
+
+@media (max-width: 767px) {
+  .footer .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer .payment-methods {
+    align-items: center;
+  }
+}
+
+.footer .text-white {
+  color: white;
+}

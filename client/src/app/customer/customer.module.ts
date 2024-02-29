@@ -13,8 +13,10 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {LoginService} from "../auth/login.service";
 import {JwtService} from "../auth/jwt.service";
 import {PasswordService} from "../auth/password.service";
-import {MessageService} from "primeng/api";
+import {Footer, MessageService} from "primeng/api";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {FooterComponent} from "../layout/footer/footer.component";
+import {AppModule} from "../app.module";
 
 
 @NgModule({
@@ -25,18 +27,18 @@ import {MatTooltipModule} from "@angular/material/tooltip";
   exports: [
     CustomerDashboardComponent
   ],
-    imports: [
-        CommonModule,
-        RouterOutlet,
-        CustomerRoutingModule,
-        MatBadgeModule,
-        MatButtonModule,
-        MatIconModule,
-        MatListModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatTooltipModule
-    ],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    CustomerRoutingModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatTooltipModule
+  ],
   providers: [LoginService, JwtService, PasswordService, MessageService],
 })
 export class CustomerModule {

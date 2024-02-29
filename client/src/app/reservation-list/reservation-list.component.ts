@@ -6,6 +6,9 @@ import {LoginService} from "../auth/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as CryptoJS from "crypto-js";
 import {CustomMessageService} from "../service/message-service/custom-message.service";
+import {CancelConfirmationComponent} from "../cancel-confirmation/cancel-confirmation.component";
+import {MatDialog} from "@angular/material/dialog";
+import {PayConfirmationComponent} from "../pay-confirmation/pay-confirmation.component";
 
 @Component({
   selector: 'app-reservation-list',
@@ -22,7 +25,8 @@ export class ReservationListComponent {
   constructor(private bookingService: BookingServiceService,
               private loginService: LoginService,
               private fb: FormBuilder,
-              private messageService: CustomMessageService) {
+              private messageService: CustomMessageService,
+              public dialog:MatDialog) {
   }
 
   ngOnInit(): void {
@@ -40,10 +44,16 @@ export class ReservationListComponent {
   }
 
   cancelReservation(reservation: ReservationResponse) {
-    this.bookingService.changeReservationStatus(reservation.vehicle_id, ReservationStatus.CANCELLED).pipe(
-      tap(response => {
-        this.messageService.showSuccess("Successfully", "Cancelled Reservation Request.")
-      })).subscribe();
+    const dialogRef = this.dialog.open(CancelConfirmationComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.bookingService.changeReservationStatus(reservation.vehicle_id, ReservationStatus.CANCELLED).pipe(
+          tap(response => {
+            this.messageService.showSuccess('Successfully', 'Cancelled Reservation Request.');
+          })
+        ).subscribe();
+      }
+    });
   }
 
   createForm() {
@@ -64,36 +74,43 @@ export class ReservationListComponent {
   }
 
   submit(amount: number, vehicleId: number) {
-    this.vehicleId = vehicleId;
-    const vehicle_id = this.vehicleId;
-    this.esewaForm.patchValue({
-      amount: amount,
-      total_amount: amount,
-      success_url: `http://localhost:4200/home?vehicleId=${vehicle_id}`,
-    });
 
-    this.generateUUIDandSignature();
-    console.log(this.esewaForm);
-    const myform = document.createElement('form');
-    myform.method = 'POST';
-    myform.enctype = 'application/x-www-form-urlencoded';
-    myform.action = 'https://rc-epay.esewa.com.np/api/epay/main/v2/form';
-    myform.style.display = 'none';
+    const dialogRef = this.dialog.open(PayConfirmationComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Proceed with payment
+        this.vehicleId = vehicleId;
+        const vehicle_id = this.vehicleId;
+        this.esewaForm.patchValue({
+          amount: amount,
+          total_amount: amount,
+          success_url: `http://localhost:4200/home?vehicleId=${vehicle_id}`,
+        });
 
-    for (const key in this.esewaForm.value) {
-      if (this.esewaForm.value.hasOwnProperty(key)) {
-        const field = document.createElement('input');
-        field.type = 'text';
-        field.name = key;
-        field.value = this.esewaForm.value[key];
-        myform.appendChild(field);
+        this.generateUUIDandSignature();
+        console.log(this.esewaForm);
+        const myform = document.createElement('form');
+        myform.method = 'POST';
+        myform.enctype = 'application/x-www-form-urlencoded';
+        myform.action = 'https://rc-epay.esewa.com.np/api/epay/main/v2/form';
+        myform.style.display = 'none';
+
+        for (const key in this.esewaForm.value) {
+          if (this.esewaForm.value.hasOwnProperty(key)) {
+            const field = document.createElement('input');
+            field.type = 'text';
+            field.name = key;
+            field.value = this.esewaForm.value[key];
+            myform.appendChild(field);
+          }
+        }
+        console.log(this.esewaForm);
+
+        document.body.appendChild(myform);
+        console.log(myform);
+        myform.submit();
       }
-    }
-    console.log(this.esewaForm);
-
-    document.body.appendChild(myform);
-    console.log(myform);
-    myform.submit();
+    });
   }
 
   generateUUIDandSignature() {
