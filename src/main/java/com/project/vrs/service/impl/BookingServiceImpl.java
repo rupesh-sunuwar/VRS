@@ -9,6 +9,7 @@ import com.project.vrs.repository.PaymentRepo;
 import com.project.vrs.repository.ReservationRepo;
 import com.project.vrs.repository.VehicleRepo;
 import com.project.vrs.resources.request.ReserveRequest;
+import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.resources.response.ReservationResponse;
 import com.project.vrs.security.entity.Users;
 import com.project.vrs.security.repository.UserRepository;
@@ -42,17 +43,15 @@ public class BookingServiceImpl implements BookingService {
             throw new UserException("User with Email " + request.getUserEmail() + " not found");
         }
         reservation.setUser(user);
-//        Payment payment = paymentRepo.findById(request.getPaymentId()).orElseThrow(() ->
-//                new PaymentException("Payment with ID " + request.getPaymentId() + " not found"));
 
         Vehicle vehicle = vehicleRepo.findById(request.getVehicleId()).orElseThrow(() ->
                 new PaymentException("Vehicle with ID " + request.getPaymentId() + " not found"));
         vehicle.setIsAvailable(false);
         vehicleRepo.save(vehicle);
 
+        reservation.setAmount(request.getRequestAmount());
         reservation.setReservationStatus(ReservationStatus.IN_PROGRESS);
         reservation.setVehicle(vehicle);
-//        reservation.setPayment(payment);
         reservation.setNoOfPassengers(request.getNoOfPassengers());
         reservation.setFromLocation(request.getFromLocation());
         reservation.setDestination(request.getDestination());
@@ -65,7 +64,35 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<ReservationResponse> getReservationList(String email) {
-        return convertReservationList(reservationRepo.findByUser_Email(email));
+        return convertReservationList(reservationRepo.findAllByUser_Email(email));
+    }
+
+    @Override
+    public List<ReservationResponse> getReservationRequest(String email) {
+        return convertReservationList(reservationRepo.findAllByVehicle_Users_Email(email));
+    }
+
+    @Override
+    public GenericResponse changeReservationStatus(Long vehicleId,ReservationStatus reservationStatus) {
+        Reservation reservation = reservationRepo.findByVehicle_Id(vehicleId);
+        if (reservation != null) {
+            reservation.setReservationStatus(reservationStatus);
+            reservationRepo.save(reservation);
+            return new GenericResponse(1, "Request Accepted");
+        }
+        return new GenericResponse(0, "No vehicle with Id " + vehicleId);
+    }
+
+    @Override
+    public Reservation completeBooking(Long vehicleId) {
+        Reservation reservation = reservationRepo.findByVehicle_Id(vehicleId);
+        if (reservation != null) {
+            reservation.setReservationStatus(ReservationStatus.CONFIRMED);
+
+            reservationRepo.save(reservation);
+            return reservationRepo.save(reservation);
+        }
+        return null;
     }
 
     public static List<ReservationResponse> convertReservationList(List<Reservation> reservations) {
@@ -77,8 +104,8 @@ public class BookingServiceImpl implements BookingService {
             response.setFrom(reservation.getFromLocation());
             response.setNoOfPassengers(reservation.getNoOfPassengers());
             response.setInitiatedBy(reservation.getUser().fullName());
-//            response.setPaymentId(reservation.getPayment().getId());
             response.setReservationStatus(reservation.getReservationStatus());
+            response.setRequestAmount(reservation.getAmount());
             responseList.add(response);
         }
         return responseList;

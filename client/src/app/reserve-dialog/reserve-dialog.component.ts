@@ -7,7 +7,6 @@ import {CustomMessageService} from "../service/message-service/custom-message.se
 import {LoginService} from "../auth/login.service";
 import {Router} from "@angular/router";
 import {Vehicle} from "../model/vehicle.model";
-import {VehicleInfoResponse} from "../model/vehicle-info-response";
 
 @Component({
   selector: 'app-reserve-dialog',
@@ -17,7 +16,7 @@ import {VehicleInfoResponse} from "../model/vehicle-info-response";
 export class ReserveDialogComponent {
 
   reserveRequest: ReserveRequest = new ReserveRequest(1, 1, '', '',
-    0, '', ''); // Initialize with default values
+    0, '', '', 0); // Initialize with default values
 
   vehicle!: Vehicle;
 
@@ -29,7 +28,6 @@ export class ReserveDialogComponent {
     private loginService: LoginService,
     private router: Router,
   ) {
-    console.log(data)
     this.vehicle = data.vehicle;
   }
 
@@ -65,6 +63,6 @@ export class ReserveDialogComponent {
 
   resetForm() {
     this.reserveRequest = new ReserveRequest(1, 1, '', '',
-      0, '', ''); // Initial
+      0, '', '', 0); // Initial
   }
 }

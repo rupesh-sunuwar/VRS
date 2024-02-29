@@ -23,6 +23,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {AddVehicleInfoDialogComponent} from './add-vehicle-info-dialog/add-vehicle-info-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { ReservationRequestComponent } from './reservation-request/reservation-request.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     DriverDashboardComponent,
     ListMyVehiclesComponent,
     AddVehicleDialogComponent,
-    AddVehicleInfoDialogComponent
+    AddVehicleInfoDialogComponent,
+    ReservationRequestComponent
   ],
   exports: [
     DriverDashboardComponent

@@ -6,10 +6,12 @@ import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class Payment  extends AbstractEntity {
+public class Payment  extends AbstractEntity implements Serializable {
 
     private String paymentNo;
 
@@ -17,4 +19,5 @@ public class Payment  extends AbstractEntity {
 
     private double amount;
 
+    private Long vehicleId;
 }

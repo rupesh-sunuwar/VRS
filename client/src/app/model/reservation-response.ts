@@ -8,9 +8,14 @@ export interface ReservationResponse {
   initiated_by: string;
   payment_id: number;
   reservation_status: ReservationStatus;
+  request_amount:number;
 }
 
 
 export enum ReservationStatus {
-  // Define your reservation status enums here
+  PENDING="PENDING",
+  CONFIRMED="CONFIRMED",
+  CANCELLED="CANCELLED",
+  COMPLETED="COMPLETED",
+  IN_PROGRESS="IN_PROGRESS"
 }

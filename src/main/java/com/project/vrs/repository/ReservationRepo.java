@@ -7,5 +7,9 @@ import java.util.List;
 
 public interface ReservationRepo extends JpaRepository<Reservation, Long> {
 
-    List<Reservation> findByUser_Email(String email);
+    List<Reservation> findAllByUser_Email(String email);
+
+    List<Reservation> findAllByVehicle_Users_Email(String email);
+
+    Reservation findByVehicle_Id(Long vehicleId);
 }

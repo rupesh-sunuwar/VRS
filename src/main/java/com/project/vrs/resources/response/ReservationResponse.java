@@ -32,4 +32,7 @@ public class ReservationResponse implements Serializable {
 
     @JsonProperty("reservation_status")
     private ReservationStatus reservationStatus;
+
+    @JsonProperty("request_amount")
+    private Double requestAmount;
 }

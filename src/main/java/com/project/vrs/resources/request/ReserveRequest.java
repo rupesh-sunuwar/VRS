@@ -33,4 +33,8 @@ public class ReserveRequest implements Serializable {
 
     @JsonProperty("user_email")
     private String userEmail;
+
+    @Min(value = 1, message = "Request Amount must be at least 1")
+    @JsonProperty("request_amount")
+    private Double requestAmount;
 }

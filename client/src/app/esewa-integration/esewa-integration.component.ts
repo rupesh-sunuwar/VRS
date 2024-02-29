@@ -64,7 +64,8 @@ export class EsewaIntegrationComponent {
     let transaction_uuid = (document.getElementById("transaction_uuid") as HTMLInputElement)?.value;
     let product_code = (document.getElementById("product_code") as HTMLInputElement)?.value;
     let secret = (document.getElementById("secret") as HTMLInputElement)?.value;
-    let hash = CryptoJS.HmacSHA256(`total_amount=${total_amount},transaction_uuid=${transaction_uuid},product_code=${product_code}`, `${secret}`);
+    let hash = CryptoJS.HmacSHA256(`total_amount=$
+    {total_amount},transaction_uuid=${transaction_uuid},product_code=${product_code}`, `${secret}`);
     let hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
     this.esewaForm.patchValue({ signature: hashInBase64 });
   }

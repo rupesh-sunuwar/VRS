@@ -5,21 +5,28 @@
   <form #reserveForm="ngForm">
     <mat-form-field>
       <mat-label>
-        Destination
-      </mat-label>
-      <input matInput placeholder="Destination" [(ngModel)]="reserveRequest.destination" name="destination" required>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>
         From Location
       </mat-label>
       <input matInput placeholder="From Location" [(ngModel)]="reserveRequest.from_location" name="fromLocation" required>
     </mat-form-field>
     <mat-form-field>
       <mat-label>
+        Destination
+      </mat-label>
+      <input matInput placeholder="Destination" [(ngModel)]="reserveRequest.destination" name="destination" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
         No. of Passengers
       </mat-label>
       <input matInput type="number" placeholder="noOfPassengers" [(ngModel)]="reserveRequest.no_of_passengers" name="noOfPassengers" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>
+        Request Amount
+      </mat-label>
+      <input matInput type="number" placeholder="requestAmount" [(ngModel)]="reserveRequest.request_amount" name="requestAmount" required>
     </mat-form-field>
   </form>
   <div mat-dialog-actions>

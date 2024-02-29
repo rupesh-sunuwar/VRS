@@ -41,3 +41,12 @@
   background-color: #f44336;
   color: #fff;
 }
+
+.accept-button:hover, .reject-button:hover {
+  opacity: 0.8;
+}
+
+.no-reservations-message {
+  color: #999;
+  font-style: italic;
+}

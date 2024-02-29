@@ -1,7 +1,9 @@
 import {Injectable} from "@angular/core";
 import {environment, route} from "../env/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LoginService} from "../auth/login.service";
+import {ReserveRequest} from "../model/reserve-request.model";
+import {Payment, PaymentStatus} from "../model/payment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +16,13 @@ export class PaymentService {
               private loginService: LoginService) {
   }
 
+  makePayment(payment: Payment) {
+    const url = `${this.auth_url}make_payment`;
+    return this.httpClient.post(url,payment,{headers: this.getHeaders()})
+  }
 
+  getHeaders() {
+    return new HttpHeaders()
+      .set('Authorization', `Bearer ${this.loginService.getToken()}`)
+  }
 }

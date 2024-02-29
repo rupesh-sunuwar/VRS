@@ -21,4 +21,6 @@ public class Routes {
     public static final String GET_IMAGE = AUTH_VRS + "/get_image/{vehicle_id}";
     public static final String UPLOAD_IMAGE = AUTH_VRS + "/upload";
     public static final String RESERVATION_LIST = AUTH_VRS+ "/reservation_list/{email}";
+    public static final String RESERVATION_REQUEST = AUTH_VRS+ "/reservation_request/{email}";
+    public static final String RESERVE_ACTON =AUTH_VRS+"/reserve_action" ;
 }

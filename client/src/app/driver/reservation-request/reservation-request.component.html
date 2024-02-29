@@ -1,42 +1,41 @@
 <div class="reservation-list">
-  <h2>Reservation List</h2>
-
-  <ng-container *ngIf="reservations && reservations.length > 0; else noReservations">
+  <h2>Reservation Request</h2>
+  <ng-container *ngIf="reservations.length > 0; else noReservations">
     <div *ngFor="let reservation of reservations" class="reservation-box">
       <div class="field">
         <label>Vehicle ID:</label>
         <span>{{ reservation.vehicle_id }}</span>
       </div>
       <div class="field">
-        <label>From:</label>
-        <span>{{ reservation.from }}</span>
-      </div>
-      <div class="field">
         <label>Destination:</label>
         <span>{{ reservation.destination }}</span>
+      </div>
+      <div class="field">
+        <label>From:</label>
+        <span>{{ reservation.from }}</span>
       </div>
       <div class="field">
         <label>No. of Passengers:</label>
         <span>{{ reservation.no_of_passengers }}</span>
       </div>
       <div class="field">
-        <label>Request Amount:</label>
-        <span>{{ reservation.request_amount }}</span>
+        <label>Initiated By:</label>
+        <span>{{ reservation.initiated_by }}</span>
       </div>
       <div class="field">
         <label>Reservation Status:</label>
         <span>{{ reservation.reservation_status }}</span>
       </div>
       <div class="field">
-        <button mat-button color="warn" (click)="cancelReservation(reservation)" class="reject-button" [disabled]="isButtonDisabled(reservation.reservation_status)">Cancel</button>
-        <button mat-button color="primary" (click)="submit(reservation.request_amount, reservation.vehicle_id)" class="accept-button" [disabled]="isButtonDisabled(reservation.reservation_status)">Pay</button>
+        <button mat-button color="primary" (click)="acceptReservation(reservation.vehicle_id)" class="accept-button">Accept</button>
+        <button mat-button color="warn" (click)="rejectReservation(reservation)" class="reject-button">Reject</button>
       </div>
     </div>
   </ng-container>
 
   <ng-template #noReservations>
     <div class="no-reservations-message">
-      No reservations found. Please reserve a vehicle to see the reservation list.
+      No reservations found.
     </div>
   </ng-template>
 </div>

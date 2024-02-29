@@ -32,4 +32,6 @@ public class Reservation extends AbstractEntity {
 
     @OneToOne
     private Payment payment;
+
+    private Double amount;
 }
