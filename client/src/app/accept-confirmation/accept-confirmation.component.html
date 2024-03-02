@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Accept Confirmation</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="confirmation-message">
+    Are you sure you want to accept the reservation?
+  </mat-card-content>
+  <mat-card-actions>
+
+    <button mat-raised-button color="warn" (click)="onCancel()" class="cancel-button">Cancel</button>
+    <span class="button-space"></span>
+    <button mat-raised-button  (click)="onConfirm()" class="confirm-button green-button">Yes</button>
+  </mat-card-actions>
+</mat-card>

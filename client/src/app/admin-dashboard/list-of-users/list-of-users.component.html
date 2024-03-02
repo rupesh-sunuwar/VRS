@@ -1,0 +1,22 @@
+<p-table [value]="users">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>IsDriver</th>
+      <th>Role</th>
+      <th>Status</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td>{{ user.full_name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.mobile }}</td>
+      <td>{{ user.is_driver }}</td>
+      <td>{{ user.role }}</td>
+      <td>{{ user.status }}</td>
+    </tr>
+  </ng-template>
+</p-table>

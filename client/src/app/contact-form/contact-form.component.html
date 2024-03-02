@@ -1,0 +1,46 @@
+<p-toast></p-toast>
+
+<div class="scrollable-dialog-content">
+  <h2 mat-dialog-title>Contact Form</h2>
+  <form #contactForm="ngForm">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" [(ngModel)]="contactFormModel.name" name="name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" [(ngModel)]="contactFormModel.email" name="email" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Subject</mat-label>
+      <input matInput placeholder="Subject" [(ngModel)]="contactFormModel.subject" name="subject" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Message</mat-label>
+      <textarea matInput placeholder="Message" [(ngModel)]="contactFormModel.message" name="message" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <input matInput placeholder="Phone Number" [(ngModel)]="contactFormModel.phoneNumber" name="phoneNumber" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>To User</mat-label>
+      <input matInput placeholder="toUser" [(ngModel)]="contactFormModel.toUser" name="toUser" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <input matInput placeholder="Country" [(ngModel)]="contactFormModel.country" name="country" required>
+    </mat-form-field>
+  </form>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="addContact()" [disabled]="!contactForm.valid">Post</button>
+  </div>
+</div>

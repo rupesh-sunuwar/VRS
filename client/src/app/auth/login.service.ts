@@ -95,16 +95,23 @@ export class LoginService {
     return this.loginForm;
   }
 
-  logout(userId: string):Observable<string> {
+  logout(userId: string): Observable<string> {
     const apiUrl = `${this.logoutUrl}/${userId}`;
-    const headers=new HttpHeaders()
-      .set('Authorization',`Bearer ${this.getToken()}`)
-    return this.httpClient.post<any>(apiUrl, {}, { headers});
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.getToken()}`)
+    return this.httpClient.post<any>(apiUrl, {}, {headers});
   }
 
   findUserById(userId: string): Observable<any> {
     const url = `${this.auth_url}/user/${userId}`; // Corrected URL construction
     return this.httpClient.get<any>(url);
+  }
+
+  getAllUsers() {
+    const url = `${this.auth_url}get_users`; // Remove the semicolon at the end of the URL
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.getToken()}`);
+    return this.httpClient.get<any>(url, {headers: headers}); // Use the object syntax for options
   }
 
   clearLocalStorage(): void {

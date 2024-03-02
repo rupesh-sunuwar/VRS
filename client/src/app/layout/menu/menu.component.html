@@ -1,11 +1,17 @@
 <div *ngIf="isLoggedIn(); else LoginPage">
-   <div *ngIf="isDriver(); else customerPage">
-     <app-driver-dashboard></app-driver-dashboard>
-
-   </div>
-
-  <ng-template #customerPage>
-     <app-customer-dashboard></app-customer-dashboard>
+  <div *ngIf="isAdmin(); else driverOrCustomerPage">
+    <!-- If admin, navigate to admin dashboard -->
+    <app-admin-dashboard></app-admin-dashboard>
+  </div>
+  <ng-template #driverOrCustomerPage>
+    <div *ngIf="isDriver(); else customerPage">
+      <!-- If driver, show driver dashboard -->
+      <app-driver-dashboard></app-driver-dashboard>
+    </div>
+    <ng-template #customerPage>
+      <!-- If customer, show customer dashboard -->
+      <app-customer-dashboard></app-customer-dashboard>
+    </ng-template>
   </ng-template>
 </div>
 <ng-template #LoginPage>

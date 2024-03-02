@@ -11,7 +11,7 @@
     <button routerLink="/vehicles" mat-icon-button aria-label="Vehicles" matTooltip="Vehicles">
       <mat-icon>directions_car</mat-icon>
     </button>
-    <button routerLink="/contact" mat-icon-button aria-label="Contact" matTooltip="Contact">
+    <button (click)="openContactFormDialog()" mat-icon-button aria-label="Contact" matTooltip="Contact">
       <mat-icon>mail</mat-icon>
     </button>
     <button routerLink="/reservation-list" mat-icon-button aria-label="Reservation List" matTooltip="Reservation List">

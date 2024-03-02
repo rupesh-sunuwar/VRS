@@ -4,6 +4,10 @@ import {BookingServiceService} from "../../service/booking-service.service";
 import {LoginService} from "../../auth/login.service";
 import {tap} from "rxjs";
 import {CustomMessageService} from "../../service/message-service/custom-message.service";
+import {MatDialog} from "@angular/material/dialog";
+import {CancelConfirmationComponent} from "../../cancel-confirmation/cancel-confirmation.component";
+import {GenericResponse} from "../../model/generic-response";
+import {AcceptConfirmationComponent} from "../../accept-confirmation/accept-confirmation.component";
 
 @Component({
   selector: 'app-reservation-request',
@@ -15,7 +19,8 @@ export class ReservationRequestComponent {
 
   constructor(private bookingService: BookingServiceService,
               private loginService: LoginService,
-              private messageService: CustomMessageService) {
+              private messageService: CustomMessageService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -32,14 +37,41 @@ export class ReservationRequestComponent {
   }
 
   acceptReservation(vehicleID: number) {
-
-    this.bookingService.changeReservationStatus(vehicleID,ReservationStatus.CONFIRMED).pipe(
-      tap(response => {
-        this.messageService.showSuccess("Successfully", "Accepted")
-      })).subscribe();
+    this.changeReservationStatus(vehicleID, ReservationStatus.CONFIRMED);
   }
 
-  rejectReservation(reservation: ReservationResponse) {
+  rejectReservation(vehicleId: number) {
+    this.changeReservationStatus(vehicleId, ReservationStatus.CANCELLED);
+  }
 
+  changeReservationStatus(vehicleId: number, reservationStatus: ReservationStatus) {
+    let component: any;
+    if (reservationStatus == ReservationStatus.CANCELLED) {
+      component = CancelConfirmationComponent;
+    } else {
+      component = AcceptConfirmationComponent;
+    }
+    const dialogRef = this.dialog.open(component);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.bookingService.changeReservationStatus(vehicleId, reservationStatus).pipe(
+          tap((response: GenericResponse) => {
+            if (response.status_code === 200) {
+              this.messageService.showSuccess("Successfully", "Accepted");
+            } else {
+              this.messageService.showError("Error", response.message);
+            }
+          })
+        ).subscribe();
+      }
+    });
+  }
+
+  isButtonDisabled(reservationStatus: ReservationStatus): boolean {
+    return (
+      reservationStatus === ReservationStatus.CONFIRMED ||
+      reservationStatus === ReservationStatus.CANCELLED ||
+      reservationStatus === ReservationStatus.COMPLETED
+    );
   }
 }

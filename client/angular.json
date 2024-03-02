@@ -30,15 +30,20 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/apexcharts/dist/apexcharts.min.js"
+            ]
           },
           "configurations": {
             "development": {
               "browserTarget": "login:build:development",
-              "proxyConfig": "proxy.conf.json" //
+              "proxyConfig": "proxy.conf.json"
             },
             "production": {
               "budgets": [

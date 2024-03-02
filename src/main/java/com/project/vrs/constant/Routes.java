@@ -23,4 +23,6 @@ public class Routes {
     public static final String RESERVATION_LIST = AUTH_VRS+ "/reservation_list/{email}";
     public static final String RESERVATION_REQUEST = AUTH_VRS+ "/reservation_request/{email}";
     public static final String RESERVE_ACTON =AUTH_VRS+"/reserve_action" ;
+    public static final String POST_MESSAGE = AUTH_VRS+"/post_message";
+    public static final String ALL_USERS = AUTH_VRS+"/get_users";
 }

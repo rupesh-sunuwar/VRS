@@ -14,24 +14,25 @@ import {ButtonModule} from "primeng/button";
 import {CustomerModule} from "../customer/customer.module";
 import {DriverModule} from "../driver/driver.module";
 import {FooterComponent} from "./footer/footer.component";
+import {AdminDashboardModule} from "../admin-dashboard/admin-dashboard.module";
 
 
 @NgModule({
   declarations: [MenuComponent, HeaderComponent,FooterComponent],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatListModule,
-    MatSidenavModule,
-    MatBadgeModule,
-    MatToolbarModule,
-    RouterOutlet,
-    RouterLink,
-    ButtonModule, CustomerModule, DriverModule
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatListModule,
+        MatSidenavModule,
+        MatBadgeModule,
+        MatToolbarModule,
+        RouterOutlet,
+        RouterLink,
+        ButtonModule, CustomerModule, DriverModule, AdminDashboardModule
 
-  ],
+    ],
   exports: [
     MenuComponent,FooterComponent
   ]

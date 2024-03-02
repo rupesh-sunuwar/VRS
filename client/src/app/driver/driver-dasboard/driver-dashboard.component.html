@@ -18,19 +18,21 @@
     <button routerLink="/contact" mat-button aria-label="Contact" matTooltip="Contact">
       <mat-icon>mail</mat-icon>
     </button>
-    <button routerLink="/reservation-request" mat-icon-button aria-label="Reservation List" matTooltip="Reservation List">
+    <button routerLink="/reservation-request" mat-icon-button aria-label="Reservation List"
+            matTooltip="Reservation List">
       <mat-icon>list</mat-icon>
     </button>
     <button (click)="logout()" mat-button aria-label="Logout" matTooltip="Logout">
       <mat-icon>exit_to_app</mat-icon>
     </button>
-
-    <a href="https://www.youtube.com/channel/UCsbmVmB_or8sVLLEq4XhE_A/join" mat-raised-button color="accent" aria-label="Join Us" matTooltip="Join Us">
+    <a href="https://www.youtube.com" mat-raised-button color="accent" aria-label="Join Us" matTooltip="Join Us">
       Join Us
     </a>
 
     <button (click)="badgevisibility()" mat-icon-button aria-label="Notifications" matTooltip="Notifications">
-      <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible" matBadgeSize="small">notifications</mat-icon>
+      <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible" matBadgeSize="small">
+        notifications
+      </mat-icon>
     </button>
 
   </mat-toolbar>

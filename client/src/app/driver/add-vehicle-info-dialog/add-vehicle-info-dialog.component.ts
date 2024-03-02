@@ -15,9 +15,7 @@ import {Router} from "@angular/router";
 })
 export class AddVehicleInfoDialogComponent {
 
-  vehicleInfoRequest: VehicleInfoRequest = new VehicleInfoRequest(1,
-    true, true,
-    0, TyreCondition.FAIR); // Initialize with default values
+  vehicleInfoRequest: VehicleInfoRequest = new VehicleInfoRequest(0); // Initialize with default values
 
   vehicle1!: Vehicle;
 

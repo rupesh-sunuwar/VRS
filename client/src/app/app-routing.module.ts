@@ -12,6 +12,7 @@ import {ListMyVehiclesComponent} from "./driver/list-my-vehicles/list-my-vehicle
 import {AboutComponent} from "./about/about.component";
 import {ReservationListComponent} from "./reservation-list/reservation-list.component";
 import {ReservationRequestComponent} from "./driver/reservation-request/reservation-request.component";
+import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard/admin-dashboard.component";
 
 const routes: Routes = [
   {
@@ -21,15 +22,15 @@ const routes: Routes = [
     path: 'about', component: AboutComponent
   },
   {
-    path: 'reservation-list', component:ReservationListComponent
+    path: 'reservation-list', component: ReservationListComponent
   },
   {
-    path:'reservation-request',component:ReservationRequestComponent
+    path: 'reservation-request', component: ReservationRequestComponent
   },
   {
     path: 'signup', component: SignupComponent
-  },{
-  path:'payment',component:EsewaIntegrationComponent
+  }, {
+    path: 'payment', component: EsewaIntegrationComponent
   },
   {path: 'login', component: LoginComponent},
   {path: 'vehicles', component: VehiclesListComponent},
@@ -55,6 +56,17 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'admin', component: AdminDashboardComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then((m) => m.AdminDashboardModule),
+        canActivate: [authGuard],
+      }
+    ]
+  }
+  ,
   {path: '', redirectTo: '/login', pathMatch: 'full'}, // Default route
 ];
 

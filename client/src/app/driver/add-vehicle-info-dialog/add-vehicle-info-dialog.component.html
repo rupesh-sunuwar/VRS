@@ -4,34 +4,34 @@
   <form #vehicleInfoForm="ngForm">
     <mat-form-field>
       <mat-label>
-        Maintenance Required <span class="required">*</span>
+        Maintenance Required
       </mat-label>
-      <mat-select [(ngModel)]="vehicleInfoRequest.is_maintenance_required" name="isMaintenanceRequired">
+      <mat-select [(ngModel)]="vehicleInfoRequest.is_maintenance_required" name="isMaintenanceRequired" required>
         <mat-option value="true">Yes</mat-option>
         <mat-option value="false">No</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>
-        Clean <span class="required">*</span>
+        Clean
       </mat-label>
-      <mat-select [(ngModel)]="vehicleInfoRequest.is_clean" name="isClean">
+      <mat-select [(ngModel)]="vehicleInfoRequest.is_clean" name="isClean" required>
         <mat-option value="true">Yes</mat-option>
         <mat-option value="false">No</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>
-        Vehicle Usage Time (Months) <span class="required">*</span>
+        Vehicle Usage Time (Months)
       </mat-label>
       <input matInput type="number" placeholder="Vehicle Usage Time"
-             [(ngModel)]="vehicleInfoRequest.vehicle_usage_time_in_months" name="vehicleUsageTime">
+             [(ngModel)]="vehicleInfoRequest.vehicle_usage_time_in_months" name="vehicleUsageTime" required>
     </mat-form-field>
     <mat-form-field>
       <mat-label>
-        Tyre Condition <span class="required">*</span>
+        Tyre Condition
       </mat-label>
-      <mat-select [(ngModel)]="vehicleInfoRequest.tired_condition" name="tyreCondition">
+      <mat-select [(ngModel)]="vehicleInfoRequest.tired_condition" name="tyreCondition" required>
         <mat-option value="GOOD">Good</mat-option>
         <mat-option value="FAIR">Fair</mat-option>
         <mat-option value="POOR">Poor</mat-option>
@@ -40,7 +40,7 @@
   </form>
   <div mat-dialog-actions>
     <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="addVehicleInfo()" [disabled]="!vehicleInfoForm.valid"
+    <button mat-raised-button color="primary" (click)="addVehicleInfo()" [disabled]="!vehicleInfoForm"
             cdkFocusInitial>Add
     </button>
   </div>

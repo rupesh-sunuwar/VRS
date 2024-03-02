@@ -30,3 +30,12 @@ spring:
         expiry: 180
         imageSize: 20971520
         fileSize: 20971520
+
+
+    default-user:
+      firstName: super
+      middleName:
+      lastName: admin
+      password: superadmin
+      email: superadmin@gmail.com
+      mobileNumber: 9843123495

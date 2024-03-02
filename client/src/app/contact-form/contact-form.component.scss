@@ -1,0 +1,31 @@
+/* Container styles */
+.container {
+  margin: 20px; /* Adjust margin as needed */
+  width:fit-content;
+}
+
+
+mat-form-field {
+  width: calc(100% - 30px);
+  padding: 10px; /* Adjust margin between form fields */
+  max-width: 400px;
+}
+
+/* Button styles */
+button {
+  margin-right: 10px; /* Adjust margin between buttons */
+}
+
+.required {
+  color: red; /* Red color */
+  margin-left: 5px; /* Adjust the spacing between the asterisk and the form field */
+}
+
+.scrollable-dialog-content {
+  max-height: 600px; /* Set maximum height for the scrollable content */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.scrollable-dialog-content::-webkit-scrollbar {
+  display: none;
+}

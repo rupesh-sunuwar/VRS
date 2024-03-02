@@ -54,4 +54,8 @@ export class MenuComponent {
   isDriver() {
     return this.loginService.getSessionRole() == "DRIVER";
   }
+
+  isAdmin(){
+    return this.loginService.getSessionRole()=="ADMIN";
+  }
 }

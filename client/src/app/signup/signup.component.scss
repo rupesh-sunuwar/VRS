@@ -6,8 +6,10 @@
   background-color: #673ab7;
 }
 
+
 .card {
-  width: 450px;
+  width: 90%; /* Adjust width as needed */
+  max-width: 450px; /* Add a maximum width to prevent overflow */
   padding: 2rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
@@ -17,6 +19,20 @@
   justify-content: center;
   align-items: center;
   margin: auto; /* Center the card horizontally */
+  height: 90vh; /* Fixed height for the card */
+  overflow-y: auto; /* Enable vertical scrolling */
+
+  .button-container {
+    margin-top: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.card::-webkit-scrollbar {
+  width: 0;  /* Hide scrollbar */
 }
 
 h1 {
@@ -43,17 +59,7 @@ label {
   font-size: 0.9rem;
 }
 
-.button-container {
-  margin-top: 1rem;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.forgot-password-link {
-  text-align: right;
-}
 
 input#email,
 input#password,
@@ -62,6 +68,7 @@ input#lastName,
 input#mobile,
 input#isDriver {
   width: 22rem;
+  height:1rem;
 }
 
 .layout-topbar-logo {
@@ -109,3 +116,14 @@ input#isDriver {
   margin-bottom: 0.5rem; /* Add space between each field */
 }
 
+.button-container {
+  margin-top: 1rem;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p-button {
+
+}

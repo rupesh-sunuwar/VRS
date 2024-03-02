@@ -14,6 +14,7 @@ import com.project.vrs.security.repository.UserRepository;
 import com.project.vrs.security.services.CustomUserServiceImpl;
 import com.project.vrs.security.services.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.tool.schema.internal.exec.ScriptSourceInputFromReader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,6 +24,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -67,6 +71,8 @@ public class AuthController {
         }
         Users createdUser = new Users();
         createdUser.setEmail(email);
+        createdUser.setMobile(user.getMobile());
+        createdUser.setDriver(user.isDriver());
         createdUser.setPassword(passwordEncoder.encode(password));
         createdUser.setUserStatus(UserStatus.ACTIVE);
         createdUser.setFirstName(firstName);
@@ -112,10 +118,23 @@ public class AuthController {
         return ResponseEntity.ok(mapToUserDto(userService.findByEmail(userId)));
     }
 
+    @GetMapping(Routes.ALL_USERS)
+    public List<UserDto> getAllUsers() {
+        return convertToDtoList(userRepository.findAll());
+    }
+
+    public List<UserDto> convertToDtoList(List<Users> userList) {
+        return userList.stream()
+                .map(this::mapToUserDto)
+                .collect(Collectors.toList());
+    }
+
     UserDto mapToUserDto(Users users) {
         UserDto userDto = new UserDto();
         userDto.setFullName(users.fullName());
+        userDto.setMobile(users.getMobile());
         userDto.setEmail(users.getEmail());
+        userDto.setDriver(users.isDriver());
         userDto.setRole(String.valueOf(users.getRole()));
         userDto.setStatus(String.valueOf(users.getUserStatus()));
         return userDto;

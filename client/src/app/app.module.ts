@@ -17,8 +17,6 @@ import {ChipsModule} from "primeng/chips";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppLayoutModule} from "./layout/app.layout.module";
 import {HomeComponent} from './home/home.component';
-import {CustomerRoutingModule} from "./customer/customer-routing.module";
-import {DriverRoutingModule} from "./driver/driver-routing.module";
 import {VehiclesListComponent} from './vehicles-list/vehicles-list.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
@@ -30,12 +28,22 @@ import {BookingServiceService} from "./service/booking-service.service";
 import {PaymentService} from "./service/payment.service";
 import {VehicleService} from "./service/vehicle.service";
 import {LogoutConfirmationDailogComponent} from "./logout-confirmation-dailog/logout-confirmation-dailog.component";
-import { CheckStatusDialogComponent } from './check-status-dialog/check-status-dialog.component';
-import { AboutComponent } from './about/about.component';
-import { ReservationListComponent } from './reservation-list/reservation-list.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { CancelConfirmationComponent } from './cancel-confirmation/cancel-confirmation.component';
-import { PayConfirmationComponent } from './pay-confirmation/pay-confirmation.component';
+import {CheckStatusDialogComponent} from './check-status-dialog/check-status-dialog.component';
+import {AboutComponent} from './about/about.component';
+import {ReservationListComponent} from './reservation-list/reservation-list.component';
+import {CancelConfirmationComponent} from './cancel-confirmation/cancel-confirmation.component';
+import {PayConfirmationComponent} from './pay-confirmation/pay-confirmation.component';
+import {AcceptConfirmationComponent} from './accept-confirmation/accept-confirmation.component';
+import {MessageModule} from "primeng/message";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {AccordionModule} from "primeng/accordion";
+import {PanelModule} from "primeng/panel";
+import {TabViewModule} from "primeng/tabview";
+import {ContactFormComponent} from './contact-form/contact-form.component';
+import {MatOptionModule} from "@angular/material/core";
+import {NgxEchartsModule} from "ngx-echarts";
+import {NgApexchartsModule} from "ng-apexcharts";
+import  * as echarts from "echarts";
 
 @NgModule({
   declarations: [
@@ -52,18 +60,26 @@ import { PayConfirmationComponent } from './pay-confirmation/pay-confirmation.co
     ReservationListComponent,
     CancelConfirmationComponent,
     PayConfirmationComponent,
+    AcceptConfirmationComponent,
+    ContactFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     ToastModule,
-    ButtonModule, HttpClientModule, ChipsModule, BrowserAnimationsModule, AppLayoutModule, FormsModule, MatCardModule, MatButtonModule, MatInputModule, MatDialogModule
+    ButtonModule, HttpClientModule,
+    ChipsModule, BrowserAnimationsModule,
+    AppLayoutModule, FormsModule, MatCardModule,
+    MatButtonModule, MatInputModule,
+    MatDialogModule, MessageModule, RadioButtonModule,
+    AccordionModule, PanelModule, TabViewModule,
+    MatOptionModule, NgApexchartsModule,
+    NgxEchartsModule.forRoot({echarts}),
   ],
   providers: [LoginService, JwtService, PasswordService, MessageService,
     BookingServiceService, PaymentService, VehicleService],
-  exports: [
-  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

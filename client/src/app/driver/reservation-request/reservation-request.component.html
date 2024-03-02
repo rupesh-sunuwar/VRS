@@ -27,8 +27,8 @@
         <span>{{ reservation.reservation_status }}</span>
       </div>
       <div class="field">
-        <button mat-button color="primary" (click)="acceptReservation(reservation.vehicle_id)" class="accept-button">Accept</button>
-        <button mat-button color="warn" (click)="rejectReservation(reservation)" class="reject-button">Reject</button>
+        <button mat-button color="warn" (click)="rejectReservation(reservation.vehicle_id)" [disabled]="isButtonDisabled(reservation.reservation_status)" class="reject-button">Reject</button>
+        <button mat-button color="primary" (click)="acceptReservation(reservation.vehicle_id)" [disabled]="isButtonDisabled(reservation.reservation_status)" class="accept-button">Accept</button>
       </div>
     </div>
   </ng-container>

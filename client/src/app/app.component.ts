@@ -8,6 +8,7 @@ import {LoginService} from "./auth/login.service";
 })
 export class AppComponent {
   title = 'client';
+  pizzaSelection: any;
 
   constructor(private loginService: LoginService,
   ) {

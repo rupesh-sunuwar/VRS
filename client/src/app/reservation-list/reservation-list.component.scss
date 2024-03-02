@@ -41,3 +41,9 @@
   background-color: #f44336;
   color: #fff;
 }
+
+.accept-button[disabled], .reject-button[disabled] {
+  background-color: #ccc; /* Change color to a disabled state */
+  color: #999; /* Change text color to a lighter shade */
+  cursor: not-allowed; /* Change cursor to not-allowed */
+}
