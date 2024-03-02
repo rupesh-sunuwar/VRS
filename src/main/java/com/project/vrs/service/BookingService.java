@@ -19,4 +19,6 @@ public interface BookingService {
     GenericResponse changeReservationStatus(Long vehicleId, ReservationStatus reservationStatus);
 
     Reservation completeBooking(Long vehicleID);
+
+    List<ReservationResponse> getAllReservationList();
 }

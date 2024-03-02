@@ -12,9 +12,10 @@ import {ContactForm} from "../../model/contact-from";
 export class CustomMessageService {
 
   private auth_url: string = environment.localhost + route.vrs_auth;
+
   constructor(private messageService: MessageService,
-              private loginService:LoginService,
-              private httpClient:HttpClient) {
+              private loginService: LoginService,
+              private httpClient: HttpClient) {
   }
 
   showSuccess(summary: string, detail: string) {
@@ -47,10 +48,15 @@ export class CustomMessageService {
     this.messageService.clear()
   }
 
-  postContactForm(contactForm:ContactForm){
+  postContactForm(contactForm: ContactForm) {
 
     const url = `${this.auth_url}post_message`; // Corrected URL construction
     return this.httpClient.post<any>(url, contactForm, {headers: this.getHeaders()});
+  }
+
+  getAllUsersMessage() {
+    const url = `${this.auth_url}users_message`; // Corrected URL construction
+    return this.httpClient.get<any>(url, {headers: this.getHeaders()});
   }
 
   getHeaders() {

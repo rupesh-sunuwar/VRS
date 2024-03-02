@@ -8,6 +8,8 @@ import com.project.vrs.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
@@ -19,5 +21,10 @@ public class MessageServiceImpl implements MessageService {
 
         messageRepo.save(contactForm);
         return new GenericResponse(1, "Contact Successfully posted.");
+    }
+
+    @Override
+    public List<ContactForm> getUsersMessage() {
+        return messageRepo.findAll();
     }
 }

@@ -44,6 +44,7 @@ import {MatOptionModule} from "@angular/material/core";
 import {NgxEchartsModule} from "ngx-echarts";
 import {NgApexchartsModule} from "ng-apexcharts";
 import  * as echarts from "echarts";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -75,7 +76,7 @@ import  * as echarts from "echarts";
     MatDialogModule, MessageModule, RadioButtonModule,
     AccordionModule, PanelModule, TabViewModule,
     MatOptionModule, NgApexchartsModule,
-    NgxEchartsModule.forRoot({echarts}),
+    NgxEchartsModule.forRoot({echarts}), MatIconModule,
   ],
   providers: [LoginService, JwtService, PasswordService, MessageService,
     BookingServiceService, PaymentService, VehicleService],

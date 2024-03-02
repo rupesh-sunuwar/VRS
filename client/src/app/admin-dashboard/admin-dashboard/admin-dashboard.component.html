@@ -14,7 +14,7 @@
     <button (click)="openContactFormDialog()" mat-icon-button aria-label="Contact" matTooltip="Contact">
       <mat-icon>mail</mat-icon>
     </button>
-    <button routerLink="/reservation-list" mat-icon-button aria-label="Reservation List" matTooltip="Reservation List">
+    <button routerLink="/users-reservation" mat-icon-button aria-label="Reservation List" matTooltip="Reservation List">
       <mat-icon>list</mat-icon>
     </button>
     <button (click)="logout()" mat-icon-button aria-label="Logout" matTooltip="Logout">
@@ -58,12 +58,12 @@
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button mat-icon-button aria-label="Help">
-            <mat-icon>help</mat-icon>
+          <button routerLink="queries" mat-icon-button aria-label="Help">
+            <mat-icon>message</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button mat-icon-button aria-label="Analytics">
+          <button routerLink="/reporting" mat-icon-button aria-label="Analytics">
             <mat-icon>analytics</mat-icon>
           </button>
         </mat-list-item>

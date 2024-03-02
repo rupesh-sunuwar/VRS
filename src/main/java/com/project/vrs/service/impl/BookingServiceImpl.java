@@ -64,16 +64,19 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<ReservationResponse> getReservationList(String email) {
+        log.info("Getting all reservation list of  with user id {}", email);
         return convertReservationList(reservationRepo.findAllByUser_Email(email));
     }
 
     @Override
     public List<ReservationResponse> getReservationRequest(String email) {
+        log.info("Getting all reservation list of  with user id {}", email);
         return convertReservationList(reservationRepo.findAllByVehicle_Users_Email(email));
     }
 
     @Override
-    public GenericResponse changeReservationStatus(Long vehicleId,ReservationStatus reservationStatus) {
+    public GenericResponse changeReservationStatus(Long vehicleId, ReservationStatus reservationStatus) {
+        log.info("Changing reservation status to{}", reservationStatus);
         Reservation reservation = reservationRepo.findByVehicle_Id(vehicleId);
         if (reservation != null) {
             reservation.setReservationStatus(reservationStatus);
@@ -85,6 +88,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Reservation completeBooking(Long vehicleId) {
+        log.info("Complete  booking of vehicle  with vehicleId{}", vehicleId);
         Reservation reservation = reservationRepo.findByVehicle_Id(vehicleId);
         if (reservation != null) {
             reservation.setReservationStatus(ReservationStatus.CONFIRMED);
@@ -93,6 +97,11 @@ public class BookingServiceImpl implements BookingService {
             return reservationRepo.save(reservation);
         }
         return null;
+    }
+
+    @Override
+    public List<ReservationResponse> getAllReservationList() {
+        return convertReservationList(reservationRepo.findAll());
     }
 
     public static List<ReservationResponse> convertReservationList(List<Reservation> reservations) {

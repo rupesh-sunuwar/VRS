@@ -18,8 +18,7 @@
       </div>
       <div class="field">
         <mat-icon>place</mat-icon>
-        <label>Destination:</label>
-        <span>{{ reservation.destination }}</span>
+        <label>Destination:</label> <span>{{ reservation.destination }}</span>
       </div>
       <div class="field">
         <mat-icon>people</mat-icon>
@@ -34,19 +33,18 @@
       <div class="field">
         <mat-icon>assignment_turned_in</mat-icon>
         <label>Reservation Status:</label>
-        <span [ngStyle]="{ 'color': getColorForStatus(reservation.reservation_status)}">{{ reservation.reservation_status }}</span>
-
-      </div>
-      <div class="field">
-        <button mat-button color="warn" (click)="cancelReservation(reservation)" class="reject-button" [disabled]="isButtonDisabled(reservation.reservation_status)">Cancel</button>
-        <button mat-button color="primary" (click)="submit(reservation.request_amount, reservation.vehicle_id)" class="accept-button" [disabled]="isButtonDisabled(reservation.reservation_status)">Pay</button>
+        <span [ngClass]="{
+          'CANCELLED': (reservation.reservation_status === 'CANCELLED'),
+          'CONFIRMED': (reservation.reservation_status === 'CONFIRMED'),
+          'COMPLETED': (reservation.reservation_status === 'COMPLETED')
+        }">{{ reservation.reservation_status }}</span>
       </div>
     </div>
   </ng-container>
 
   <ng-template #noReservations>
     <div class="no-reservations-message">
-      No reservations found. Please reserve a vehicle to see the reservation list.
+      No reservations found of any users.
     </div>
   </ng-template>
 </div>

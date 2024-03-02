@@ -14,6 +14,10 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import { ReportingDashboardComponent } from './reporting-dashboard/reporting-dashboard.component';
 import {NgApexchartsModule} from "ng-apexcharts";
 import {NgxEchartsDirective} from "ngx-echarts";
+import { GeographyComponent } from './geography/geography.component';
+import { AnalyticsReservatioReportComponent } from './analytics-reservatio-report/analytics-reservatio-report.component';
+import { UsersReservationListComponent } from './users-reservation-list/users-reservation-list.component';
+import { UsersQueriesComponent } from './users-queries/users-queries.component';
 
 
 
@@ -21,7 +25,11 @@ import {NgxEchartsDirective} from "ngx-echarts";
   declarations: [
     ListOfUsersComponent,
     AdminDashboardComponent,
-    ReportingDashboardComponent
+    ReportingDashboardComponent,
+    GeographyComponent,
+    AnalyticsReservatioReportComponent,
+    UsersReservationListComponent,
+    UsersQueriesComponent
   ],
   exports: [
     AdminDashboardComponent

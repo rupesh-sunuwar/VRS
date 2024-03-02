@@ -138,6 +138,18 @@ export class ReservationListComponent {
     );
   }
 
-  protected readonly ReservationStatus = ReservationStatus;
+  getColorForStatus(status: string): string {
+    switch(status) {
+      case 'CANCELLED':
+        return 'red';
+      case 'CONFIRMED':
+        return 'blue';
+      case 'COMPLETED':
+        return 'green';
+      default:
+        return 'black'; // Default color
+    }
+  }
+
 }
 

@@ -57,3 +57,33 @@
   color: #999; /* Change text color to a lighter shade */
   cursor: not-allowed; /* Change cursor to not-allowed */
 }
+
+/* Add styles for the different reservation status */
+.cancelled {
+  color: red;
+}
+
+.confirmed {
+  color: blue;
+}
+
+.completed {
+  color: green;
+}
+
+/* Adjust button styles based on reservation status */
+.reject-button {
+  background-color: red;
+  color: white;
+}
+
+.accept-button {
+  background-color: blue;
+  color: white;
+}
+
+.completed-button {
+  background-color: green;
+  color: white;
+}
+

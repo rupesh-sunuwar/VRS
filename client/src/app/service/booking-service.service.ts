@@ -29,6 +29,11 @@ export class BookingServiceService {
     return this.httpClient.get<any>(url, {headers: this.getHeaders()})
   }
 
+  getAllUsersReservationList(){
+    const url = `${this.auth_url}reservation_list`;
+    return this.httpClient.get<any>(url, {headers: this.getHeaders()})
+  }
+
   getReservationRequest(email: string) {
     const url = `${this.auth_url}reservation_request/${email}`;
     return this.httpClient.get<any>(url, {headers: this.getHeaders()})

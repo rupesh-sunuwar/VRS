@@ -1,0 +1,12 @@
+<div class="message-list">
+  <div *ngFor="let message of messages" class="message-item">
+    <div class="user-info">
+      <span class="user-name"><i class="material-icons">person</i> Name:{{ message.name }}</span>
+      <span class="user-email"><i class="material-icons">email</i> Email:{{ message.email }}</span>
+    </div>
+    <div class="message-content">
+      <span class="message-subject"><i class="material-icons">subject</i> Subject: {{ message.subject }}</span>
+      <p class="message-body"><i class="material-icons">message</i> Message:{{ message.message }}</p>
+    </div>
+  </div>
+</div>

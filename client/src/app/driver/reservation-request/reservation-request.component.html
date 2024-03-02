@@ -1,41 +1,55 @@
 <div class="reservation-list">
-  <h2>Reservation Request</h2>
+  <h2>
+    <mat-icon>list_alt</mat-icon>
+    Reservation Request
+  </h2>
+
   <ng-container *ngIf="reservations.length > 0; else noReservations">
     <div *ngFor="let reservation of reservations" class="reservation-box">
       <div class="field">
+        <mat-icon>directions_car</mat-icon>
         <label>Vehicle ID:</label>
         <span>{{ reservation.vehicle_id }}</span>
       </div>
       <div class="field">
+        <mat-icon>place</mat-icon>
         <label>Destination:</label>
         <span>{{ reservation.destination }}</span>
       </div>
       <div class="field">
+        <mat-icon>date_range</mat-icon>
         <label>From:</label>
         <span>{{ reservation.from }}</span>
       </div>
       <div class="field">
+        <mat-icon>people</mat-icon>
         <label>No. of Passengers:</label>
         <span>{{ reservation.no_of_passengers }}</span>
       </div>
       <div class="field">
+        <mat-icon>person</mat-icon>
         <label>Initiated By:</label>
         <span>{{ reservation.initiated_by }}</span>
       </div>
       <div class="field">
+        <mat-icon>assignment</mat-icon>
         <label>Reservation Status:</label>
         <span>{{ reservation.reservation_status }}</span>
       </div>
       <div class="field">
-        <button mat-button color="warn" (click)="rejectReservation(reservation.vehicle_id)" [disabled]="isButtonDisabled(reservation.reservation_status)" class="reject-button">Reject</button>
-        <button mat-button color="primary" (click)="acceptReservation(reservation.vehicle_id)" [disabled]="isButtonDisabled(reservation.reservation_status)" class="accept-button">Accept</button>
+        <button mat-icon-button color="warn" (click)="rejectReservation(reservation.vehicle_id)" [disabled]="isButtonDisabled(reservation.reservation_status)">
+          <mat-icon>clear</mat-icon>Reject
+        </button>
+        <button mat-icon-button color="primary" (click)="acceptReservation(reservation.vehicle_id)" [disabled]="isButtonDisabled(reservation.reservation_status)">
+          <mat-icon>check</mat-icon>Accept
+        </button>
       </div>
     </div>
   </ng-container>
 
   <ng-template #noReservations>
     <div class="no-reservations-message">
-      No reservations found.
+      No reservations Request Found.
     </div>
   </ng-template>
 </div>

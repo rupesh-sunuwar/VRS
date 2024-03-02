@@ -2,6 +2,11 @@
   margin-top: 20px;
 }
 
+
+.reservation-list h2 mat-icon {
+  margin-right: 10px;
+}
+
 .reservation-box {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -11,7 +16,13 @@
 }
 
 .field {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
+}
+
+.field mat-icon {
+  margin-right: 10px;
 }
 
 .field label {
@@ -23,7 +34,8 @@
   color: #333;
 }
 
-.accept-button, .reject-button {
+.accept-button,
+.reject-button {
   padding: 8px 16px;
   margin-right: 10px;
   border: none;
@@ -42,8 +54,39 @@
   color: #fff;
 }
 
-.accept-button[disabled], .reject-button[disabled] {
-  background-color: #ccc; /* Change color to a disabled state */
-  color: #999; /* Change text color to a lighter shade */
-  cursor: not-allowed; /* Change cursor to not-allowed */
+.accept-button[disabled],
+.reject-button[disabled] {
+  background-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
 }
+
+.cancelled {
+  color: red;
+}
+
+.confirmed {
+  color: blue;
+}
+
+.completed {
+  color: green;
+}
+
+/* Adjust button styles based on reservation status */
+.reject-button {
+  background-color: red;
+  color: white;
+}
+
+.accept-button {
+  background-color: blue;
+  color: white;
+}
+
+.completed-button {
+  background-color: green;
+  color: white;
+}
+
+

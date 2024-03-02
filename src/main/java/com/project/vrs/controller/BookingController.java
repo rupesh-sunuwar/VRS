@@ -2,6 +2,7 @@ package com.project.vrs.controller;
 
 import com.project.vrs.constant.Routes;
 import com.project.vrs.enums.ReservationStatus;
+import com.project.vrs.model.Reservation;
 import com.project.vrs.resources.request.ReserveRequest;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.resources.response.ReservationResponse;
@@ -27,6 +28,11 @@ public class BookingController {
     public List<ReservationResponse> getReservationList(@PathVariable String email){
 
         return bookingService.getReservationList(email);
+    }
+
+    @GetMapping(Routes.All_RESERVATION_LIST)
+    public List<ReservationResponse> getAllReservationList(){
+        return bookingService.getAllReservationList();
     }
 
     @GetMapping(Routes.RESERVATION_REQUEST)

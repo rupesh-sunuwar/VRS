@@ -1,0 +1,31 @@
+.reservation-list {
+  margin-top: 20px;
+}
+
+.reservation-box {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.field label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.field span {
+  color: #333;
+}
+
+.mat-icon {
+  margin-right: 8px;
+  color: #666;
+}

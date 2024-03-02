@@ -1,0 +1,43 @@
+<div class="grid grid-cols-2 gap-4 mt-4">
+  <div
+    class="block p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="box" style="background-color: white; color:black; border-radius: 7px">
+      <div id="chart">
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [xaxis]="chartOptions.xaxis"
+          [stroke]="chartOptions.stroke"
+          [tooltip]="chartOptions.tooltip"
+          [dataLabels]="chartOptions.dataLabels"
+          [legend]="chartOptions.legend"
+          [markers]="chartOptions.markers"
+          [grid]="chartOptions.grid"
+          [yaxis]="chartOptions.yaxis"
+          [title]="chartOptions.title"
+        ></apx-chart>
+      </div>
+    </div>
+  </div>
+  <div
+    class="block p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="box" style="background-color: white; color:black; border-radius: 7px">
+      <div id="chart-mixed">
+        <apx-chart
+          [series]="chartOptionsMixed.series"
+          [chart]="chartOptionsMixed.chart"
+          [yaxis]="chartOptionsMixed.yaxis"
+          [xaxis]="chartOptionsMixed.xaxis"
+          [labels]="chartOptionsMixed.labels"
+          [stroke]="chartOptionsMixed.stroke"
+          [plotOptions]="chartOptionsMixed.plotOptions"
+          [markers]="chartOptionsMixed.markers"
+          [fill]="chartOptionsMixed.fill"
+          [tooltip]="chartOptionsMixed.tooltip"
+          [title]="chartOptionsMixed.title"
+        ></apx-chart>
+      </div>
+
+    </div>
+  </div>
+</div>

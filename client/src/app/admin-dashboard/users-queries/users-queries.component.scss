@@ -1,0 +1,36 @@
+.message-list {
+  width: 100%;
+  padding: 20px;
+}
+
+.message-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.user-info, .message-content {
+  flex-basis: 50%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.user-info {
+  border-right: 1px solid #ccc;
+}
+
+.user-name, .user-email, .message-subject, .message-body {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.material-icons {
+  vertical-align: middle;
+  margin-right: 5px;
+  font-size: 20px;
+  color: #3f51b5; /* Adjust color as needed */
+}
