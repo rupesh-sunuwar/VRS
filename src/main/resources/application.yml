@@ -39,3 +39,17 @@ spring:
       password: superadmin
       email: superadmin@gmail.com
       mobileNumber: 9843123495
+
+  main:
+    allow-bean-definition-overriding: true
+
+
+mongodb:
+  secondary:
+    host: localhost
+    port: 27017
+    database: vrs
+    username: root
+    password: root
+    authenticationDatabase: admin
+

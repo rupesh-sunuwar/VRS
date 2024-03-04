@@ -45,7 +45,7 @@ export class ReserveDialogComponent {
           this.messageService.showSuccess("Message", "Reserved Successfully.");
           this.resetForm();
           this.dialogRef.close();
-          this.router.navigate(['/home']);
+          this.router.navigate(['/reservation-list']);
         }),
         catchError(error => {
           this.handleError(error);

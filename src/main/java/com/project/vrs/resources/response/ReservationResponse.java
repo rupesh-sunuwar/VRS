@@ -17,6 +17,12 @@ public class ReservationResponse implements Serializable {
     @JsonProperty("vehicle_id")
     private Long vehicleId;
 
+    @JsonProperty("vehicle_no")
+    private String vehicleNo;
+
+    @JsonProperty("booking_no")
+    private String bookingNo;
+
     private String destination;
 
     private String from;

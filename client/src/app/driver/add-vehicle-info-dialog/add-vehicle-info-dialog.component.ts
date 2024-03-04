@@ -64,8 +64,8 @@ export class AddVehicleInfoDialogComponent {
   }
 
  resetForm(){
-    this.vehicleInfoRequest=new VehicleInfoRequest(1,
-      true, true,
+    this.vehicleInfoRequest=new VehicleInfoRequest(1,false,
+      false, true,
       0, TyreCondition.FAIR);
 }
 

@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class PaymentResponse implements Serializable {
 
-    private double amount;
+    private String amount;
     @JsonProperty("payment_id")
     private Long paymentId;
 }

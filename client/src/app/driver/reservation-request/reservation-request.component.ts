@@ -36,15 +36,15 @@ export class ReservationRequestComponent {
     ).subscribe();
   }
 
-  acceptReservation(vehicleID: number) {
-    this.changeReservationStatus(vehicleID, ReservationStatus.CONFIRMED);
+  acceptReservation(bookingNo: string) {
+    this.changeReservationStatus(bookingNo, ReservationStatus.CONFIRMED);
   }
 
-  rejectReservation(vehicleId: number) {
-    this.changeReservationStatus(vehicleId, ReservationStatus.CANCELLED);
+  rejectReservation(bookingNo: string) {
+    this.changeReservationStatus(bookingNo, ReservationStatus.CANCELLED);
   }
 
-  changeReservationStatus(vehicleId: number, reservationStatus: ReservationStatus) {
+  changeReservationStatus(bookingNo: string, reservationStatus: ReservationStatus) {
     let component: any;
     if (reservationStatus == ReservationStatus.CANCELLED) {
       component = CancelConfirmationComponent;
@@ -54,7 +54,7 @@ export class ReservationRequestComponent {
     const dialogRef = this.dialog.open(component);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.bookingService.changeReservationStatus(vehicleId, reservationStatus).pipe(
+        this.bookingService.changeReservationStatus(bookingNo, reservationStatus).pipe(
           tap((response: GenericResponse) => {
             if (response.status_code === 200) {
               this.messageService.showSuccess("Successfully", "Accepted");
@@ -73,5 +73,18 @@ export class ReservationRequestComponent {
       reservationStatus === ReservationStatus.CANCELLED ||
       reservationStatus === ReservationStatus.COMPLETED
     );
+  }
+
+  getColorForStatus(status: string): string {
+    switch(status) {
+      case 'CANCELLED':
+        return 'red';
+      case 'CONFIRMED':
+        return 'blue';
+      case 'COMPLETED':
+        return 'green';
+      default:
+        return 'black'; // Default color
+    }
   }
 }

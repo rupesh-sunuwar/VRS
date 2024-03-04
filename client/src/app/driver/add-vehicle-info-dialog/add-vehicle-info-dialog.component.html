@@ -13,6 +13,15 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>
+        Is Available
+      </mat-label>
+      <mat-select [(ngModel)]="vehicleInfoRequest.is_available" name="isAvailable" required>
+        <mat-option value="true">Yes</mat-option>
+        <mat-option value="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
         Clean
       </mat-label>
       <mat-select [(ngModel)]="vehicleInfoRequest.is_clean" name="isClean" required>

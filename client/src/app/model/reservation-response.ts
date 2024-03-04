@@ -2,6 +2,8 @@
 
 export interface ReservationResponse {
   vehicle_id: number;
+  vehicle_no: string;
+  booking_no:string;
   destination: string;
   from: string;
   no_of_passengers: number;

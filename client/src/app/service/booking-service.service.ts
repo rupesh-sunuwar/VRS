@@ -39,11 +39,11 @@ export class BookingServiceService {
     return this.httpClient.get<any>(url, {headers: this.getHeaders()})
   }
 
-  changeReservationStatus(vehicleId: number, reservationStatus: ReservationStatus): Observable<any> {
+  changeReservationStatus(bookingNo: string, reservationStatus: ReservationStatus): Observable<any> {
     const url = `${this.auth_url}reserve_action`;
     const headers = this.getHeaders();
     let params = new HttpParams();
-    params = params.append('vehicleId', vehicleId);
+    params = params.append('vehicleId', bookingNo);
     params = params.append('reservationStatus', reservationStatus);
 
     return this.httpClient.post<any>(url, {}, { headers, params });

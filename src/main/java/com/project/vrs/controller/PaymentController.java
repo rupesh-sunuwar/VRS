@@ -1,7 +1,7 @@
 package com.project.vrs.controller;
 
 import com.project.vrs.constant.Routes;
-import com.project.vrs.model.Payment;
+import com.project.vrs.postgres.model.Payment;
 import com.project.vrs.resources.response.PaymentResponse;
 import com.project.vrs.service.PaymentService;
 import lombok.RequiredArgsConstructor;

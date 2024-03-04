@@ -1,6 +1,6 @@
 package com.project.vrs.service;
 
-import com.project.vrs.model.ContactForm;
+import com.project.vrs.postgres.model.ContactForm;
 import com.project.vrs.resources.response.GenericResponse;
 
 import java.util.List;

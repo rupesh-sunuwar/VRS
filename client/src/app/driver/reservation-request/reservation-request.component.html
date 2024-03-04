@@ -8,13 +8,24 @@
     <div *ngFor="let reservation of reservations" class="reservation-box">
       <div class="field">
         <mat-icon>directions_car</mat-icon>
-        <label>Vehicle ID:</label>
-        <span>{{ reservation.vehicle_id }}</span>
+        <label>Vehicle NO:</label>
+        <span>{{ reservation.vehicle_no}}</span>
+      </div>
+      <div class="field">
+        <mat-icon>place</mat-icon>
+        <label>Pick up:</label>
+        <span>{{ reservation.from }}</span>
       </div>
       <div class="field">
         <mat-icon>place</mat-icon>
         <label>Destination:</label>
         <span>{{ reservation.destination }}</span>
+      </div>
+
+      <div class="field">
+        <mat-icon>date_range</mat-icon>
+        <label>From:</label>
+        <span>{{ reservation.from }}</span>
       </div>
       <div class="field">
         <mat-icon>date_range</mat-icon>
@@ -31,18 +42,20 @@
         <label>Initiated By:</label>
         <span>{{ reservation.initiated_by }}</span>
       </div>
+
+      <div class="field">
+        <mat-icon>attach_money</mat-icon>
+        <label>Request Amount:</label>
+        <span>Rs:{{ reservation.request_amount }}</span>
+      </div>
       <div class="field">
         <mat-icon>assignment</mat-icon>
         <label>Reservation Status:</label>
-        <span>{{ reservation.reservation_status }}</span>
+        <span [ngStyle]="{ 'color': getColorForStatus(reservation.reservation_status)}">{{reservation.reservation_status}}</span>
       </div>
       <div class="field">
-        <button mat-icon-button color="warn" (click)="rejectReservation(reservation.vehicle_id)" [disabled]="isButtonDisabled(reservation.reservation_status)">
-          <mat-icon>clear</mat-icon>Reject
-        </button>
-        <button mat-icon-button color="primary" (click)="acceptReservation(reservation.vehicle_id)" [disabled]="isButtonDisabled(reservation.reservation_status)">
-          <mat-icon>check</mat-icon>Accept
-        </button>
+        <button mat-button color="warn" (click)="rejectReservation(reservation.booking_no)" class="reject-button" [disabled]="isButtonDisabled(reservation.reservation_status)">Cancel</button>
+        <button mat-button color="success" (click)="acceptReservation( reservation.booking_no)" class="accept-button" [disabled]="isButtonDisabled(reservation.reservation_status)">Accept</button>
       </div>
     </div>
   </ng-container>

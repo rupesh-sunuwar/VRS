@@ -2,7 +2,6 @@ package com.project.vrs.controller;
 
 import com.project.vrs.constant.Routes;
 import com.project.vrs.enums.ReservationStatus;
-import com.project.vrs.model.Reservation;
 import com.project.vrs.resources.request.ReserveRequest;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.resources.response.ReservationResponse;
@@ -41,7 +40,7 @@ public class BookingController {
     }
 
     @PostMapping(Routes.RESERVE_ACTON)
-    public GenericResponse changeReservationStatus(@RequestParam Long vehicleId ,
+    public GenericResponse changeReservationStatus(@RequestParam String vehicleId ,
                                               @RequestParam ReservationStatus reservationStatus) {
         return bookingService.changeReservationStatus(vehicleId,reservationStatus);
     }

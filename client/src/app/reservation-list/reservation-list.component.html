@@ -8,12 +8,12 @@
     <div *ngFor="let reservation of reservations" class="reservation-box">
       <div class="field">
         <mat-icon>directions_car</mat-icon>
-        <label>Vehicle ID:</label>
-        <span>{{ reservation.vehicle_id }}</span>
+        <label>Vehicle No:</label>
+        <span>{{ reservation.vehicle_no }}</span>
       </div>
       <div class="field">
-        <mat-icon>date_range</mat-icon>
-        <label>From:</label>
+        <mat-icon>place</mat-icon>
+        <label>Pick up:</label>
         <span>{{ reservation.from }}</span>
       </div>
       <div class="field">
@@ -29,7 +29,7 @@
       <div class="field">
         <mat-icon>attach_money</mat-icon>
         <label>Request Amount:</label>
-        <span>{{ reservation.request_amount }}</span>
+        <span>Rs:{{ reservation.request_amount }}</span>
       </div>
       <div class="field">
         <mat-icon>assignment_turned_in</mat-icon>
@@ -39,7 +39,7 @@
       </div>
       <div class="field">
         <button mat-button color="warn" (click)="cancelReservation(reservation)" class="reject-button" [disabled]="isButtonDisabled(reservation.reservation_status)">Cancel</button>
-        <button mat-button color="primary" (click)="submit(reservation.request_amount, reservation.vehicle_id)" class="accept-button" [disabled]="isButtonDisabled(reservation.reservation_status)">Pay</button>
+        <button mat-button class="mat-button-green" (click)="submit(reservation.request_amount, reservation.booking_no)"  [disabled]="isPaymentEnabled(reservation.reservation_status) ||reservation.payment_id!=null">PAY VIA ESEWA</button>
       </div>
     </div>
   </ng-container>

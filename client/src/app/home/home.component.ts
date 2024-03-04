@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     // Add more image paths as needed
   ];
   vehicleId: number | null = null;
-  transactionData!:TransactionData;
+
 
   constructor(private route: ActivatedRoute,
               private paymentService: PaymentService,
@@ -54,16 +54,19 @@ export class HomeComponent implements OnInit {
       const wordBeforeQuestionMark = vehicleId.substring(0, vehicleId.indexOf('?'));
       const vehicleIdParam = vehicleId.split('=')[1]; // Extract value after '='
       const paymentResponse = atob(vehicleIdParam);
-      this.transactionData=JSON.parse(paymentResponse);
+      const transactionData=JSON.parse(paymentResponse);
 
-      console.log(this.transactionData);
+      console.log(transactionData);
       const payment: Payment = {
         paymentNo:'',
          // Replace with actual payment number
         paymentStatus: PaymentStatus.SUCCESSFUL, // Set initial status as PENDING
-        amount: parseInt(this.transactionData.total_amount), // Set the payment amount
-        vehicleId: parseInt(wordBeforeQuestionMark) // Parse vehicle ID from query params
+        amount: transactionData.total_amount,
+        // Set the payment amount
+        vehicleId:0,
+        bookingNo: wordBeforeQuestionMark
       };
+      console.log(payment)
       this.paymentService.makePayment(payment).pipe(
         tap(response => {
           this.messageService.showSuccess("Message", "Reserved Successfully.");

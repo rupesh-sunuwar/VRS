@@ -32,3 +32,30 @@
   object-fit: cover; /* Ensure the image covers the entire frame */
 }
 
+.no-vehicles-message
+{
+  position: absolute;
+  top:10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.vehicle-list mat-icon {
+  position: absolute;
+  top:5%;
+  left: 38%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+h2{
+  position: absolute;
+  top:5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+

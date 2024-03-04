@@ -18,7 +18,7 @@ import {PayConfirmationComponent} from "../pay-confirmation/pay-confirmation.com
 export class ReservationListComponent {
   reservations: ReservationResponse[] = []; // Array to hold reservation data
   esewaForm!: FormGroup;
-  vehicleId!: number;
+  vehicleId!: string;
   amount!: number;
 
 
@@ -26,7 +26,7 @@ export class ReservationListComponent {
               private loginService: LoginService,
               private fb: FormBuilder,
               private messageService: CustomMessageService,
-              public dialog:MatDialog) {
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class ReservationListComponent {
     const dialogRef = this.dialog.open(CancelConfirmationComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.bookingService.changeReservationStatus(reservation.vehicle_id, ReservationStatus.CANCELLED).pipe(
+        this.bookingService.changeReservationStatus(reservation.booking_no, ReservationStatus.CANCELLED).pipe(
           tap(response => {
             this.messageService.showSuccess('Successfully', 'Cancelled Reservation Request.');
           })
@@ -73,7 +73,7 @@ export class ReservationListComponent {
     });
   }
 
-  submit(amount: number, vehicleId: number) {
+  submit(amount: number, vehicleId: string) {
 
     const dialogRef = this.dialog.open(PayConfirmationComponent);
     dialogRef.afterClosed().subscribe(result => {
@@ -138,8 +138,15 @@ export class ReservationListComponent {
     );
   }
 
+  isPaymentEnabled(reservationStatus: ReservationStatus): boolean {
+    return (
+      reservationStatus === ReservationStatus.IN_PROGRESS ||
+      reservationStatus === ReservationStatus.PENDING  ||
+    reservationStatus === ReservationStatus.CANCELLED);
+  }
+
   getColorForStatus(status: string): string {
-    switch(status) {
+    switch (status) {
       case 'CANCELLED':
         return 'red';
       case 'CONFIRMED':

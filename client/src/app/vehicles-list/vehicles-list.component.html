@@ -1,26 +1,34 @@
 <p-toast></p-toast>
 <div class="vehicle-list">
-  <mat-card *ngFor="let vehicle of vehicles" class="vehicle-card">
-    <div class="photo-frame">
-      <img [src]="getVehiclePhoto(vehicle.vehicle_no)" alt="Vehicle Photo">
-    </div>
-    <mat-card-title>
-      {{ vehicle.vehicle_type === 'TWO_WHEELER' ? 'Bike' : 'Car' }}
-    </mat-card-title>
-    <mat-card-content>
-      <p>Manufactured By: {{ vehicle.manufactured_by }}</p>
-      <p>Vehicle No: {{ vehicle.vehicle_no }}</p>
-      <p>Vehicle Type: {{ vehicle.vehicle_type }}</p>
-      <p>{{ vehicle.is_available ? 'Available' : 'Not Available' }}</p>
-      <div class="button-container">
-        <button mat-raised-button color="primary" [disabled]="!vehicle.is_available" (click)="reserveVehicle(vehicle)">
-          Reserve
-        </button>
-        <button mat-raised-button color="accent" [disabled]="!vehicle.vehicle_info_id"
-                (click)="checkStatus(vehicle.vehicle_id)">Check Status
-        </button>
+  <ng-container *ngIf="vehicles && vehicles.length > 0; else noVehicles">
+    <mat-card *ngFor="let vehicle of vehicles" class="vehicle-card">
+      <div class="photo-frame">
+        <img [src]="getVehiclePhoto(vehicle.vehicle_no)" alt="Vehicle Photo">
       </div>
-    </mat-card-content>
-  </mat-card>
-</div>
+      <mat-card-title>
+        {{ vehicle.vehicle_type === 'TWO_WHEELER' ? 'Bike' : 'Car' }}
+      </mat-card-title>
+      <mat-card-content>
+        <p>Manufactured By: {{ vehicle.manufactured_by }}</p>
+        <p>Vehicle No: {{ vehicle.vehicle_no }}</p>
+        <p>Vehicle Type: {{ vehicle.vehicle_type }}</p>
+        <p>{{ vehicle.is_available ? 'Available' : 'Not Available' }}</p>
+        <div class="button-container">
+          <button mat-raised-button color="primary" [disabled]="!vehicle.is_available"
+                  (click)="reserveVehicle(vehicle)">
+            Reserve
+          </button>
+          <button mat-raised-button color="accent" [disabled]="!vehicle.vehicle_info_id"
+                  (click)="checkStatus(vehicle.vehicle_id)">Check Status
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
 
+  <ng-template #noVehicles>
+    <div class="no-vehicles-message">
+      No vehicles available for reservation.
+    </div>
+  </ng-template>
+</div>

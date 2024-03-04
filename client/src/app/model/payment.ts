@@ -1,8 +1,9 @@
 export interface Payment {
   paymentNo: string;
   paymentStatus: PaymentStatus;
-  amount: number;
+  amount: string;
   vehicleId: number;
+  bookingNo:string;
 }
 
 

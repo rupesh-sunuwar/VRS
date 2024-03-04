@@ -90,3 +90,13 @@
 }
 
 
+.mat-button-green {
+  background-color: green;
+  color: white;
+}
+
+.mat-button-green[disabled] {
+  background-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
+}

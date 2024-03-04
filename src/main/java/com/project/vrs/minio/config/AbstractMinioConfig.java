@@ -8,7 +8,7 @@ public class AbstractMinioConfig {
 
     protected MinioClient buildMinioClient(AbstractMinioSettings abstractMinioSettings) {
 
-        log.info("Minio Configuration: {}", abstractMinioSettings.toString());
+        log.info("Minio VrsConfiguration: {}", abstractMinioSettings.toString());
 
         MinioClient minioClient = MinioClient
                 .builder()

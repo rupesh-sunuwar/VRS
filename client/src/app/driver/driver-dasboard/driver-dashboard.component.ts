@@ -6,6 +6,7 @@ import {LoginService} from "../../auth/login.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddVehicleDialogComponent} from "../add-vehicle-dialog/add-vehicle-dialog.component";
 import {LogoutConfirmationDailogComponent} from "../../logout-confirmation-dailog/logout-confirmation-dailog.component";
+import {ContactFormComponent} from "../../contact-form/contact-form.component";
 
 @Component({
   selector: 'app-driver-dashboard',
@@ -69,6 +70,19 @@ export class DriverDashboardComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       // Handle any actions after the dialog is closed, if needed
+    });
+  }
+
+  openContactFormDialog() {
+    console.log("Clicked.")
+    const dialogRef = this.dialog.open(ContactFormComponent, {
+      width: '500px',
+      data: { /* You can pass data to the dialog if needed */ }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle any actions after the dialog is closed if needed
     });
   }
 }

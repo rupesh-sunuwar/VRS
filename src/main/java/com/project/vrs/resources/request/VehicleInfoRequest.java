@@ -21,6 +21,9 @@ public class VehicleInfoRequest {
     @JsonProperty("is_clean")
     private boolean isClean;
 
+    @JsonProperty("is_available")
+    private Boolean isAvailable;
+
     @JsonProperty("vehicle_usage_time_in_months")
     @Min(value=0 ,message ="Minimum value must be 0.")
     private int vehicleUsageTimeInMonths;

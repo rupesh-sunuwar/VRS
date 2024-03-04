@@ -1,7 +1,7 @@
 package com.project.vrs.controller;
 
 import com.project.vrs.constant.Routes;
-import com.project.vrs.model.ContactForm;
+import com.project.vrs.postgres.model.ContactForm;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.service.MessageService;
 import lombok.RequiredArgsConstructor;
