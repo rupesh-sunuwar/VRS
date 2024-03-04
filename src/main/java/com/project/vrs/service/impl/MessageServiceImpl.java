@@ -1,8 +1,8 @@
 package com.project.vrs.service.impl;
 
 
-import com.project.vrs.model.ContactForm;
-import com.project.vrs.repository.MessageRepo;
+import com.project.vrs.postgres.model.ContactForm;
+import com.project.vrs.postgres.repository.MessageRepo;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.service.MessageService;
 import lombok.RequiredArgsConstructor;

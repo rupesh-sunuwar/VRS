@@ -1,10 +1,10 @@
 package com.project.vrs.service.impl;
 
 import com.project.vrs.enums.PaymentStatus;
-import com.project.vrs.model.Payment;
-import com.project.vrs.model.Reservation;
-import com.project.vrs.repository.PaymentRepo;
-import com.project.vrs.repository.ReservationRepo;
+import com.project.vrs.postgres.model.Payment;
+import com.project.vrs.postgres.model.Reservation;
+import com.project.vrs.postgres.repository.PaymentRepo;
+import com.project.vrs.postgres.repository.ReservationRepo;
 import com.project.vrs.resources.response.PaymentResponse;
 import com.project.vrs.service.BookingService;
 import com.project.vrs.service.PaymentService;
@@ -32,7 +32,7 @@ public class PaymentServiceImpl implements PaymentService {
         paymentResponse.setAmount(payment.getAmount());
         paymentResponse.setPaymentId(payment.getId());
         if(payment.getPaymentStatus()==PaymentStatus.SUCCESSFUL){
-          Reservation reservation=  bookingService.completeBooking(payment.getVehicleId());
+          Reservation reservation=  bookingService.completeBooking(payment.getBookingNo());
           reservation.setPayment(success);
           reservationRepo.save(reservation);
         }

@@ -2,16 +2,16 @@ package com.project.vrs.service.impl;
 
 import com.project.vrs.exception.UserException;
 import com.project.vrs.exception.VehicleException;
-import com.project.vrs.model.Vehicle;
-import com.project.vrs.model.VehicleInfo;
-import com.project.vrs.repository.VehicleRepo;
+import com.project.vrs.postgres.model.Vehicle;
+import com.project.vrs.postgres.model.VehicleInfo;
+import com.project.vrs.postgres.repository.VehicleRepo;
 import com.project.vrs.resources.request.VehicleAddRequest;
 import com.project.vrs.resources.request.VehicleInfoRequest;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.resources.response.VehicleInfoResponse;
 import com.project.vrs.resources.response.VehicleResponse;
-import com.project.vrs.security.entity.Users;
-import com.project.vrs.security.repository.UserRepository;
+import com.project.vrs.postgres.security.entity.Users;
+import com.project.vrs.postgres.security.repository.UserRepository;
 import com.project.vrs.service.VehicleService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -112,6 +112,7 @@ public class VehicleServiceImpl implements VehicleService {
                 new VehicleException("Vehicle Doesnt Exist"));
         VehicleInfo vehicleInfo1 = vehicleInfoRequestToVehicleInfo(vehicleInfoRequest);
         vehicle.setVehicleInfo(vehicleInfo1);
+        vehicle.setIsAvailable(vehicleInfoRequest.getIsAvailable());
         vehicleRepo.save(vehicle);
         return new GenericResponse(1, "Successfully Added");
     }

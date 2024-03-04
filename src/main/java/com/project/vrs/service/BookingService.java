@@ -1,7 +1,7 @@
 package com.project.vrs.service;
 
 import com.project.vrs.enums.ReservationStatus;
-import com.project.vrs.model.Reservation;
+import com.project.vrs.postgres.model.Reservation;
 import com.project.vrs.resources.request.ReserveRequest;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.resources.response.ReservationResponse;
@@ -16,9 +16,11 @@ public interface BookingService {
 
     List<ReservationResponse> getReservationRequest(String email);
 
-    GenericResponse changeReservationStatus(Long vehicleId, ReservationStatus reservationStatus);
+    GenericResponse changeReservationStatus(String vehicleId, ReservationStatus reservationStatus);
 
-    Reservation completeBooking(Long vehicleID);
+    Reservation completeBooking(String vehicleID);
 
     List<ReservationResponse> getAllReservationList();
+
+    Reservation saveReservation(Reservation reservation);
 }

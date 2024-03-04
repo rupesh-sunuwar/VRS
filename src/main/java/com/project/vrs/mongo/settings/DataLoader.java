@@ -5,6 +5,7 @@ import com.project.vrs.enums.Role;
 import com.project.vrs.enums.UserStatus;
 import com.project.vrs.security.entity.Users;
 import com.project.vrs.security.repository.UserRepository;
+import com.project.vrs.settings.repo.ConfigurationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,6 +20,8 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements CommandLineRunner {
 
     private final UserRepository userRepository;
+
+    private final ConfigurationRepository configurationRepo;
     private final PasswordEncoder encoder;
     @Qualifier("defaultUserConstant")
     private final DefaultUserConstant userConstant;
@@ -47,6 +50,10 @@ public class DataLoader implements CommandLineRunner {
         user.setUserStatus(UserStatus.ACTIVE);
         user.setRole(Role.ADMIN);
         userRepository.save(user);
+    }
+
+    private void loadConfigurations(){
+
     }
 }
 
