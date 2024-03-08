@@ -11,8 +11,4 @@ import java.util.List;
 public interface MessageRepo extends JpaRepository<ContactForm, Long> {
 
     List<ContactForm> findAllByEmailOrToUser(String name, String toUser);
-
-    List<ContactForm> findByEmail(String email);
-
-    List<ContactForm> findByToUser(String email);
 }

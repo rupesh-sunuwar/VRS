@@ -1,5 +1,6 @@
 package com.project.vrs.postgres.security.entity;
 
+import com.project.vrs.enums.KycStatus;
 import com.project.vrs.enums.Role;
 import com.project.vrs.enums.UserStatus;
 import com.project.vrs.enums.UserType;
@@ -38,6 +39,9 @@ public class Users {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    @Enumerated(EnumType.STRING)
+    private KycStatus kycStatus;
 
     @Enumerated(EnumType.STRING)
     private Role role;
