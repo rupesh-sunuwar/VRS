@@ -45,6 +45,8 @@ import {NgxEchartsModule} from "ngx-echarts";
 import {NgApexchartsModule} from "ng-apexcharts";
 import  * as echarts from "echarts";
 import {MatIconModule} from "@angular/material/icon";
+import { MyQueriesComponent } from './my-queries/my-queries.component';
+import { ReplyDialogContentComponent } from './reply-dialog-content/reply-dialog-content.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import {MatIconModule} from "@angular/material/icon";
     PayConfirmationComponent,
     AcceptConfirmationComponent,
     ContactFormComponent,
+    MyQueriesComponent,
+    ReplyDialogContentComponent,
   ],
   imports: [
     BrowserModule,

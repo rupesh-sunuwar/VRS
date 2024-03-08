@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -41,4 +42,10 @@ public class ReservationResponse implements Serializable {
 
     @JsonProperty("request_amount")
     private Double requestAmount;
+
+    @JsonProperty("from_date")
+    private LocalDateTime fromDate;
+
+    @JsonProperty("to_date")
+    private LocalDateTime toDate;
 }

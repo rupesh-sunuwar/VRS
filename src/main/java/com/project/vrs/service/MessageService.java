@@ -9,4 +9,6 @@ public interface MessageService {
     GenericResponse postMessage(ContactForm contactForm);
 
     List<ContactForm> getUsersMessage();
+
+    List<ContactForm> getMessageByUser(String email);
 }

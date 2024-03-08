@@ -34,3 +34,30 @@
   font-size: 20px;
   color: #3f51b5; /* Adjust color as needed */
 }
+
+.reply-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 8px;
+  cursor: pointer;
+  float: right; /* Aligns the button to the right */
+}
+
+.reply-button:hover {
+  background-color: #45a049;
+}
+
+/* Adjust this class as needed for your dialog styling */
+.reply-dialog {
+  /* Your dialog styles here */
+}
+
+.message-list h2 {
+  font-weight: bold;
+}

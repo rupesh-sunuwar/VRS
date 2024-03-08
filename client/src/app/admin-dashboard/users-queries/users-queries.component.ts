@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {CustomMessageService} from "../../service/message-service/custom-message.service";
 import {ContactForm} from "../../model/contact-from";
 import {catchError, pipe, tap, throwError} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {ReplyDialogContentComponent} from "../../reply-dialog-content/reply-dialog-content.component";
 
 @Component({
   selector: 'app-users-queries',
@@ -12,7 +14,8 @@ export class UsersQueriesComponent {
 
   messages: ContactForm[] = []
 
-  constructor(private messageService: CustomMessageService) {
+  constructor(private messageService: CustomMessageService,
+              private dialog:MatDialog) {
 
   }
 
@@ -35,6 +38,16 @@ export class UsersQueriesComponent {
       .subscribe();
   }
 
+  openReplyDialog(contactForm: ContactForm) {
+    const dialogRef = this.dialog.open(ReplyDialogContentComponent, {
+      width: '400px', // Adjust width as needed
+      data: {contactForm: contactForm } // Pass message data to the reply dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
   private handleError(error: any) {
     const errorMessage = error?.error?.message || 'Service not available';

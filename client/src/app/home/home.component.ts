@@ -66,7 +66,6 @@ export class HomeComponent implements OnInit {
         vehicleId:0,
         bookingNo: wordBeforeQuestionMark
       };
-      console.log(payment)
       this.paymentService.makePayment(payment).pipe(
         tap(response => {
           this.messageService.showSuccess("Message", "Reserved Successfully.");

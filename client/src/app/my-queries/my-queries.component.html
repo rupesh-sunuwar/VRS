@@ -1,7 +1,7 @@
 <div class="message-list">
   <h2><strong>Messages</strong></h2>
-  <div *ngIf="messages && messages.length > 0; else noMessages">
-    <div *ngFor="let message of messages" class="message-item">
+  <div *ngIf="userMessages && userMessages.length > 0; else noMessages">
+    <div *ngFor="let message of userMessages" class="message-item" (mouseenter)="showReplies = true" (mouseleave)="showReplies = false">
       <div class="user-info">
         <span class="user-name"><i class="material-icons">person</i> Name:{{ message.name }}</span>
         <span class="user-email"><i class="material-icons">email</i> Email:{{ message.email }}</span>
@@ -9,6 +9,14 @@
       <div class="message-content">
         <span class="message-subject"><i class="material-icons">subject</i> Subject: {{ message.subject }}</span>
         <p class="message-body"><i class="material-icons">message</i> Message:{{ message.message }}</p>
+      </div>
+      <div class="replies-card" *ngIf="showReplies">
+        <div class="replies-card-content">
+          <p><strong>Replies:</strong></p>
+          <ul>
+            <li *ngFor="let reply of message.replies">{{ reply }}</li>
+          </ul>
+        </div>
       </div>
       <div>
         <button (click)="openReplyDialog(message)" class="material-icons">reply</button>

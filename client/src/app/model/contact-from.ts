@@ -1,4 +1,6 @@
 export class ContactForm {
+
+  id:string;
   name: string;
   email: string;
   subject: string;
@@ -6,8 +8,9 @@ export class ContactForm {
   phoneNumber?: string;
   toUser?: string;
   country?: string;
+  replies: string[]; // Specify the type of elements in the array
 
-  constructor(
+  constructor(id:string,
     name: string,
     email: string,
     subject: string,
@@ -15,7 +18,9 @@ export class ContactForm {
     toUser: string,
     phoneNumber?: string,
     country?: string,
+    replies?: string[] // Update the type here as well
   ) {
+    this.id=id;
     this.name = name;
     this.email = email;
     this.subject = subject;
@@ -23,5 +28,6 @@ export class ContactForm {
     this.toUser = toUser;
     this.phoneNumber = phoneNumber;
     this.country = country;
+    this.replies = replies || []; // Initialize with an empty array if no replies are provided
   }
 }

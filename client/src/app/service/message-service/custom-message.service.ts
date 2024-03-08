@@ -59,6 +59,12 @@ export class CustomMessageService {
     return this.httpClient.get<any>(url, {headers: this.getHeaders()});
   }
 
+  getUserMessage() {
+    const email=this.loginService.getSessionUserId();
+    const url = `${this.auth_url}user_message/${email}`;
+    return this.httpClient.get<any>(url, {headers: this.getHeaders()})
+  }
+
   getHeaders() {
     return new HttpHeaders()
       .set('Authorization', `Bearer ${this.loginService.getToken()}`)

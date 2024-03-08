@@ -20,11 +20,13 @@ public class Routes {
     public static final String MAKE_PAYMENT = AUTH_VRS + "/make_payment";
     public static final String GET_IMAGE = AUTH_VRS + "/get_image/{vehicle_id}";
     public static final String UPLOAD_IMAGE = AUTH_VRS + "/upload";
-    public static final String RESERVATION_LIST = AUTH_VRS+ "/reservation_list/{email}";
-    public static final String RESERVATION_REQUEST = AUTH_VRS+ "/reservation_request/{email}";
-    public static final String RESERVE_ACTON =AUTH_VRS+"/reserve_action" ;
-    public static final String POST_MESSAGE = AUTH_VRS+"/post_message";
-    public static final String ALL_USERS = AUTH_VRS+"/get_users";
-    public static final String All_RESERVATION_LIST=AUTH_VRS+ "/reservation_list";
-    public static final String GET_USERS_MESSAGE = AUTH_VRS+ "/users_message";
+    public static final String RESERVATION_LIST = AUTH_VRS + "/reservation_list/{email}";
+    public static final String RESERVATION_REQUEST = AUTH_VRS + "/reservation_request/{email}";
+    public static final String RESERVE_ACTON = AUTH_VRS + "/reserve_action";
+    public static final String POST_MESSAGE = AUTH_VRS + "/post_message";
+    public static final String ALL_USERS = AUTH_VRS + "/get_users";
+    public static final String All_RESERVATION_LIST = AUTH_VRS + "/reservation_list";
+    public static final String GET_USERS_MESSAGE = AUTH_VRS + "/users_message";
+    public static final String USER_MESSAGE = AUTH_VRS + "/user_message/{email}";
+    ;
 }

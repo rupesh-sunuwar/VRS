@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -37,4 +38,10 @@ public class ReserveRequest implements Serializable {
     @Min(value = 1, message = "Request Amount must be at least 1")
     @JsonProperty("request_amount")
     private Double requestAmount;
+
+    @JsonProperty("from_date")
+    private LocalDateTime fromDate;
+
+    @JsonProperty("to_date")
+    private LocalDateTime toDate;
 }

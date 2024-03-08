@@ -58,6 +58,8 @@ public class BookingServiceImpl implements BookingService {
         reservation.setBookingNo(generateRandomString(5));
         reservation.setReservationStatus(ReservationStatus.IN_PROGRESS);
         reservation.setVehicle(vehicle);
+        reservation.setFromDate(request.getFromDate());
+        reservation.setToDate(request.getToDate());
         reservation.setNoOfPassengers(request.getNoOfPassengers());
         reservation.setFromLocation(request.getFromLocation());
         reservation.setDestination(request.getDestination());
@@ -131,6 +133,8 @@ public class BookingServiceImpl implements BookingService {
             response.setReservationStatus(reservation.getReservationStatus());
             response.setRequestAmount(reservation.getAmount());
             responseList.add(response);
+            response.setFromDate(reservation.getFromDate());
+            response.setToDate(reservation.getToDate());
         }
         return responseList;
     }
@@ -145,6 +149,8 @@ public class BookingServiceImpl implements BookingService {
         reservationResponse.setNoOfPassengers(reservation.getNoOfPassengers());
         reservationResponse.setFrom(reservation.getFromLocation());
         reservationResponse.setInitiatedBy(reservation.getUser().fullName());
+        reservationResponse.setFromDate(reservation.getFromDate());
+        reservationResponse.setToDate(reservation.getToDate());
         return reservationResponse;
     }
 

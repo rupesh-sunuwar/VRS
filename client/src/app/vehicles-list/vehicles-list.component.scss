@@ -1,13 +1,15 @@
 .vehicle-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* Center the cards horizontally */
   gap: 20px;
+  padding: 20px; /* Add padding around the container */
 }
 
 .vehicle-card {
-  width: 300px;
+  flex: 0 1 calc(33.33% - 20px); /* Flexible width for each card */
   min-height: 200px;
-  margin: 10px;
+  margin-bottom: 20px; /* Adjust margin between rows */
 }
 
 .button-container {
@@ -24,18 +26,18 @@
   align-items: center;
   padding: 0; /* Adjust the padding as needed */
   margin: 0; /* Center the photo-frame horizontally */
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
+
 .photo-frame img {
   max-width: calc(100% - 30px); /* Account for the padding */
   max-height: calc(100% - 20px); /* Account for the padding */
   object-fit: cover; /* Ensure the image covers the entire frame */
 }
 
-.no-vehicles-message
-{
+.no-vehicles-message {
   position: absolute;
-  top:10%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -43,19 +45,16 @@
 
 .vehicle-list mat-icon {
   position: absolute;
-  top:5%;
+  top: 5%;
   left: 38%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
-h2{
+
+h2 {
   position: absolute;
-  top:5%;
+  top: 5%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
-
-
-

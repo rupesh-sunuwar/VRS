@@ -4,6 +4,7 @@ import {ContactForm} from "../model/contact-from";
 import {catchError, tap, throwError} from "rxjs";
 import {CustomMessageService} from "../service/message-service/custom-message.service";
 import {Router} from "@angular/router";
+import {LoginService} from "../auth/login.service";
 
 @Component({
   selector: 'app-contact-form',
@@ -20,7 +21,8 @@ export class ContactFormComponent {
   constructor(
     public dialogRef: MatDialogRef<ContactFormComponent>,
     private messageService: CustomMessageService,
-    private router: Router
+    private router: Router,
+    private loginService:LoginService
   ) {
   }
 
@@ -29,6 +31,7 @@ export class ContactFormComponent {
   }
 
   addContact() {
+    this.contactFormModel.email=this.loginService.getSessionUserId();
     this.messageService.postContactForm(this.contactFormModel)
       .pipe(
         tap(response => {

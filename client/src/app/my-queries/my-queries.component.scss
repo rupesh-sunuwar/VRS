@@ -1,0 +1,73 @@
+.message-list {
+  width: 100%;
+  padding: 20px;
+}
+
+.message-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.user-info, .message-content {
+  flex-basis: 50%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.user-info {
+  border-right: 1px solid #ccc;
+}
+
+.user-name, .user-email, .message-subject, .message-body {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.material-icons {
+  vertical-align: middle;
+  margin-right: 5px;
+  font-size: 20px;
+  color: #3f51b5; /* Adjust color as needed */
+}
+
+.message-list h2 {
+  font-weight: bold;
+}
+
+.message-item {
+  position: relative; /* Added for positioning the replies section */
+}
+
+.message-item {
+  position: relative; /* Added for positioning the replies section */
+}
+
+.replies-card {
+  position: absolute;
+  top: 100%; /* Position below the message */
+  left: 50%; /* Align center */
+  transform: translateX(-50%); /* Center horizontally */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  display: none; /* Initially hidden */
+}
+
+.replies-card-content {
+  max-width: 200px; /* Adjust as needed */
+}
+
+.message-item:hover .replies-card {
+  display: block; /* Show when hovering over message */
+}
+
+
+

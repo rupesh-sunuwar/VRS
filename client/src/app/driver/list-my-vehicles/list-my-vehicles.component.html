@@ -1,5 +1,4 @@
 <p-toast></p-toast>
-
 <div class="vehicle-list">
   <mat-card *ngFor="let vehicle of vehicles" class="vehicle-card">
     <div>
@@ -29,5 +28,6 @@
 </div>
 
 <div *ngIf="vehicles && vehicles.length==0">
+  <h2><strong><i class="material-icons">directions_car</i> Vehicle List</strong></h2>
   <p>Please add vehicles to see the list of vehicles.</p>
 </div>

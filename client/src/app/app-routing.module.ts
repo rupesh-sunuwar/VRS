@@ -13,6 +13,7 @@ import {AboutComponent} from "./about/about.component";
 import {ReservationListComponent} from "./reservation-list/reservation-list.component";
 import {ReservationRequestComponent} from "./driver/reservation-request/reservation-request.component";
 import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard/admin-dashboard.component";
+import {MyQueriesComponent} from "./my-queries/my-queries.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   },
   {
     path: 'about', component: AboutComponent
+  },
+
+  {
+    path: 'my-queries', component: MyQueriesComponent
   },
   {
     path: 'reservation-list', component: ReservationListComponent
