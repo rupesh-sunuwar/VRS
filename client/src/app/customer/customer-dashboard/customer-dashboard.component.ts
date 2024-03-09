@@ -6,6 +6,7 @@ import {catchError, tap, throwError} from "rxjs";
 import {LogoutConfirmationDailogComponent} from "../../logout-confirmation-dailog/logout-confirmation-dailog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ContactFormComponent} from "../../contact-form/contact-form.component";
+import {NotificationDialogComponent} from "../../notification-dialog/notification-dialog.component";
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -70,6 +71,14 @@ export class CustomerDashboardComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       // Handle any actions after the dialog is closed if needed
+    });
+  }
+
+  openNotificationDialog() {
+    const dialogRef = this.dialog.open(NotificationDialogComponent, {
+      width: '400px', // Adjust the width as needed
+      maxHeight: '80vh', // Maximum height to make it scrollable
+      data: { /* Pass any data needed by the dialog */ }
     });
   }
 }

@@ -1,12 +1,17 @@
 server:
   port: 8080
 
+
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/vrs
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: 1234
+
+  aop:
+    auto: true
 
   jpa:
     hibernate:
@@ -53,3 +58,6 @@ mongodb:
     password: root
     authenticationDatabase: admin
 
+logging:
+  level:
+    org.springframework.aop: DEBUG

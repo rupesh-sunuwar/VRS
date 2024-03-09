@@ -33,4 +33,5 @@ public class Routes {
     public static final String KYC_HANDLER = AUTH_VRS + "/users/kyc/{userId}";
     public static final String PROFILE = AUTH_VRS + "/users/kyc/profile";
     public static final String KYC_STATUS = AUTH_VRS + "/users/kyc/{userId}/{kycStatus}";
+    public static final String USER_NOTIFICATION = AUTH_VRS + "/notification/{userId}" ;
 }

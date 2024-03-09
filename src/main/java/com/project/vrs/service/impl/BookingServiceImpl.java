@@ -1,6 +1,5 @@
 package com.project.vrs.service.impl;
 
-import com.project.vrs.annotation.Notification;
 import com.project.vrs.enums.ReservationStatus;
 import com.project.vrs.exception.PaymentException;
 import com.project.vrs.exception.UserException;
@@ -10,6 +9,7 @@ import com.project.vrs.postgres.repository.ReservationRepo;
 import com.project.vrs.postgres.repository.VehicleRepo;
 import com.project.vrs.postgres.security.entity.Users;
 import com.project.vrs.postgres.security.repository.UserRepository;
+import com.project.vrs.postgres.security.services.UserService;
 import com.project.vrs.resources.request.ReserveRequest;
 import com.project.vrs.resources.response.GenericResponse;
 import com.project.vrs.resources.response.ReservationResponse;
@@ -32,6 +32,7 @@ public class BookingServiceImpl implements BookingService {
     private final VehicleRepo vehicleRepo;
     private final ReservationRepo reservationRepo;
     private final UserRepository userRepository;
+    private final UserService userService;
 
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final SecureRandom RANDOM = new SecureRandom();
@@ -64,7 +65,7 @@ public class BookingServiceImpl implements BookingService {
         reservation.setFromLocation(request.getFromLocation());
         reservation.setDestination(request.getDestination());
 
-        saveReservation(reservation);
+        userService.saveReservation(reservation);
 
         return reservationResponse(reservation);
 
@@ -88,7 +89,7 @@ public class BookingServiceImpl implements BookingService {
         Reservation reservation = reservationRepo.findByBookingNo(bookingNo);
         if (reservation != null) {
             reservation.setReservationStatus(reservationStatus);
-            saveReservation(reservation);
+            userService.saveReservation(reservation);
             return new GenericResponse(1, "Request Accepted");
         }
         return new GenericResponse(0, "No bookingId with Id " + bookingNo);
@@ -110,11 +111,6 @@ public class BookingServiceImpl implements BookingService {
         return convertReservationList(reservationRepo.findAll());
     }
 
-    @Override
-    @Notification
-    public Reservation saveReservation(Reservation reservation) {
-        return reservationRepo.save(reservation);
-    }
 
     public static List<ReservationResponse> convertReservationList(List<Reservation> reservations) {
         List<ReservationResponse> responseList = new ArrayList<>();

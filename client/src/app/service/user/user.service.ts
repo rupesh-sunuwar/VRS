@@ -77,6 +77,12 @@ export class UserService {
     return this.http.get(`${this.auth_url}users/kyc/${userId}` ,{headers: this.getHeaders()});
   }
 
+  getUserNotification() {
+    const userId = this.loginService.getSessionUserId(); // Change to retrieve userId from session storage
+    return this.http.get(`${this.auth_url}notification/${userId}`, { headers: this.getHeaders() }); // Fix typo
+  }
+
+
   getHeaders() {
     return new HttpHeaders()
       .set('Authorization', `Bearer ${this.loginService.getToken()}`)

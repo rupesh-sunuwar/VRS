@@ -8,27 +8,31 @@ import java.util.Map;
 public enum ConfigurationKey {
 
     NOTIFICATION_MESSAGE_INITIATED(
-            Map.of("web", "File {fileName} has Initiated for Approval",
-                    "title", "Request Initiated for Approval")),
+            Map.of("web", "Reservation request by {username} has Initiated for Approval",
+                    "title", "Request Initiated for Reservation")),
 
     NOTIFICATION_MESSAGE_APPROVED(
-            Map.of("web", "Initiated File {fileName} Request Approved by: {initiator}",
-                    "title", "File Request Approved")),
-
-    NOTIFICATION_MESSAGE_REQUEST_FOR_APPROVAL_FOR_ASSIGNEE(
-            Map.of("web", "Dear {assignee}, {username} has assigned a File {fileName} to you for approval",
-                    "title", "Request Initiated for Approval")),
+            Map.of("web", "Initiated Reservation {fileName} Request Approved by: {username}",
+                    "title", "Reservation Request Accepted")),
 
     NOTIFICATION_MESSAGE_REJECTED(
-            Map.of("web", "Initiated File Request Rejected by: {initiator}",
-                    "title", "File Request Rejected")),
+            Map.of("web", "Reservation Request Rejected by: {username}",
+                    "title", "Reservation Request Rejected")),
 
-    NOTIFICATION_MESSAGE_REJECTED_FOR_ASSIGNEE(
-            Map.of("web", "Initiated File {fileName} Request Rejected by: {initiator}",
-                    "title", "File Request Rejected")),
+    NOTIFICATION_MESSAGE_COMPLETED(
+            Map.of("web", "Reservation Request Completed",
+                    "title", "Reservation Request Completed")),
+
+    NOTIFICATION_MESSAGE_CONFIRMED(
+            Map.of("web", "Reservation Request Confirmed",
+                    "title", "Reservation Request Confirmed.")),
+
+    NOTIFICATION_MESSAGE_PAYMENT(
+            Map.of("web", "Payment done by user: {username}",
+                    "title", "Payment Completed")),
 
     NOTIFICATION_MESSAGE_CANCELLED(
-            Map.of("web", "Initiated File {fileName} Request for  Cancelled successfully",
+            Map.of("web", "Reservation Request  Cancelled by  {username} .",
                     "title", "Cancelled Initiated Request"));
 
     private final Map<String, String> value;

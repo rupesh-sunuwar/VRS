@@ -1,0 +1,23 @@
+<div class="notifications-card" *ngIf="notifications.length > 0">
+  <div class="notifications-header">
+    <h2>Notifications</h2>
+    <button mat-icon-button (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="notifications-body">
+    <!-- Your scrollable notifications content here -->
+    <div class="notification" *ngFor="let notification of notifications">
+      {{notification.message}}
+      <div class="notify-icon">
+        <span class="notify-letter" [style.color]="notification.notification_read_status ? 'grey' : 'initial'">{{ notification.properties.username[0] }}</span>
+      </div>
+      <div class="notify-content" (click)="handleNotificationClick(notification)">
+        <h4 [style.color]="notification.notification_read_status ? 'grey' : 'initial'">{{ notification.title }}</h4>
+        <p [style.color]="notification.notification_read_status ? 'grey' : 'initial'">{{ notification.message }}</p>
+        <small [style.color]="notification.notification_read_status ? 'grey' : 'initial'">{{ notification.created_at }}</small>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="notifications.length === 0">No notifications available.</div>

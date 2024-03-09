@@ -18,7 +18,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @Slf4j
@@ -51,6 +53,7 @@ public class NotificationServiceImpl implements NotificationService {
     public Notification saveNotification(String notificationId, Map<String, String> properties, String title, String message) {
 
         Notification notification = new Notification();
+        notification.setId(generateRandomLong());
         notification.setTitle(NarrationUtils.compileMessage(title, properties));
         notification.setMessage(NarrationUtils.compileMessage(message, properties));
         notification.setNotificationId(notificationId);
@@ -59,8 +62,24 @@ public class NotificationServiceImpl implements NotificationService {
         notification.setNotificationStatus(NotificationStatus.PENDING);
         log.info("Saving Notification Based on Status");
 
-        log.info("Saving Notification Based on Status");
         return notificationRepo.save(notification);
+    }
+
+    public  long generateRandomLong() {
+
+        long randomLong = ThreadLocalRandom.current().nextLong(Long.MAX_VALUE);
+
+        while (isDuplicate(randomLong)) {
+
+            randomLong = ThreadLocalRandom.current().nextLong(Long.MAX_VALUE);
+        }
+
+        // Return the generated random long value
+        return randomLong;
+    }
+
+    private  boolean isDuplicate(long randomLong) {
+        return notificationRepo.findById(randomLong).isPresent();
     }
 
     @Override
@@ -74,12 +93,12 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public Notification getNotificationByReadStatus(String userId, Pageable pageable) {
-        return null;
+    public List<Notification> getNotificationByReadStatus(String userId, Pageable pageable) {
+        return notificationRepo.findAllByUserId(userId);
     }
 
     private Map<String, String> mapReservationData(Reservation reservation) {
-        log.info("Mapping File Info Data");
+        log.info("Mapping Notification Data");
         Map<String, String> props = new HashMap<>();
         props.put("userId", reservation.getUser().getEmail());
         props.put("reservationId", String.valueOf(reservation.getId()));
@@ -91,30 +110,28 @@ public class NotificationServiceImpl implements NotificationService {
     private String getTitleFromStatus(ReservationStatus reservationStatus) {
         log.info("Getting Title on the basis of Status");
         return switch (reservationStatus) {
-            case PENDING ->
-                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_INITIATED, "web");
+            case PENDING, IN_PROGRESS ->
+                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_INITIATED, "title");
             case CANCELLED ->
-                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_CANCELLED, "web");
+                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_CANCELLED, "title");
             case COMPLETED ->
-                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_APPROVED, "web");
+                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_COMPLETED, "title");
             case CONFIRMED ->
-                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_REJECTED, "web");
-            default -> "";
+                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_CONFIRMED, "title");
         };
     }
 
     private String getMessage(ReservationStatus reservationStatus) {
         log.info("Getting Message from Status");
         return switch (reservationStatus) {
-            case PENDING ->
+            case PENDING, IN_PROGRESS ->
                     displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_INITIATED, "web");
             case CANCELLED ->
                     displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_CANCELLED, "web");
             case COMPLETED ->
-                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_REJECTED, "web");
+                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_COMPLETED, "web");
             case CONFIRMED ->
-                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_REJECTED, "web");
-            default -> "";
+                    displayMessage.retrieveResponseMessage(ConfigurationKey.NOTIFICATION_MESSAGE_CONFIRMED, "web");
         };
     }
 

@@ -16,9 +16,10 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Document
-public class Notification extends AbstractEntity implements Serializable {
+public class Notification implements Serializable {
+
+    private Long id;
 
     private String title;
 

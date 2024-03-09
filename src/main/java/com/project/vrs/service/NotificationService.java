@@ -5,8 +5,11 @@ import com.project.vrs.postgres.model.ContactForm;
 import com.project.vrs.mongo.settings.model.Notification;
 import com.project.vrs.postgres.model.Reservation;
 import com.project.vrs.resources.response.GenericResponse;
+import org.aspectj.weaver.ast.Not;
+import org.checkerframework.checker.units.qual.N;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Map;
 
 public interface NotificationService {
@@ -38,5 +41,5 @@ public interface NotificationService {
 
     GenericResponse markAllNotificationReadStatusTrue(String id);
 
-    Notification getNotificationByReadStatus(String userId, Pageable pageable);
+    List<Notification> getNotificationByReadStatus(String userId, Pageable pageable);
 }

@@ -1,6 +1,8 @@
 package com.project.vrs.postgres.security.services;
 
+import com.project.vrs.annotation.Notification;
 import com.project.vrs.exception.UserException;
+import com.project.vrs.postgres.model.Reservation;
 import com.project.vrs.postgres.model.UserKYC;
 import com.project.vrs.postgres.security.entity.Users;
 import com.project.vrs.resources.request.UserKycRequest;
@@ -24,4 +26,7 @@ public interface UserService {
     UserKYC submitKycForm(Users user, UserKycRequest userKycRequest, MultipartFile citizenFront, MultipartFile citizenBack) throws UserException;
 
     UserKYC getUserKYC(Long userId) throws UserException;
+
+
+    Reservation saveReservation(Reservation reservation);
 }

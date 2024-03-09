@@ -11,7 +11,7 @@ public final class NarrationUtils {
     public static String compileMessage(String rawMsg, Map<String, String> props) {
         String formattedMsg = rawMsg;
         if (!isEmpty(rawMsg)) {
-            formattedMsg = (String) props.keySet().stream().reduce(rawMsg, (message, key) -> {
+            formattedMsg = props.keySet().stream().reduce(rawMsg, (message, key) -> {
                 return message.replaceAll("\\{" + key + "\\}", Matcher.quoteReplacement((String) props.get(key)));
             });
         }

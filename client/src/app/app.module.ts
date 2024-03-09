@@ -57,6 +57,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSelectModule} from "@angular/material/select";
 import {userReducer} from "./service/user/user.reducer";
 import {StoreModule} from "@ngrx/store";
+import { NotificationDialogComponent } from './notification-dialog/notification-dialog.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import {StoreModule} from "@ngrx/store";
     KycDashboardComponent,
     UserKycComponent,
     ViewUserKyComponent,
+    NotificationDialogComponent,
   ],
   imports: [
     BrowserModule,
