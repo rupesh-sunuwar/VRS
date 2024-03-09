@@ -19,10 +19,10 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public GenericResponse postMessage(ContactForm contactForm) {
-        if (!contactForm.getReplies().isEmpty() || contactForm.getReplies()!=null) {
-            ContactForm contactForm1 = messageRepo.findById(contactForm.getId()).orElseThrow();
-            contactForm1.setReplies(contactForm.getReplies());
-            messageRepo.save(contactForm);
+        if (contactForm.getReplies() != null && contactForm.getReplies().size() > 0) {
+            ContactForm existingContactForm = messageRepo.findById(contactForm.getId()).orElseThrow();
+            existingContactForm.setReplies(contactForm.getReplies());
+            messageRepo.save(existingContactForm);
         } else {
             messageRepo.save(contactForm);
         }
