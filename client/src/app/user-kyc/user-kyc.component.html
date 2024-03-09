@@ -1,0 +1,322 @@
+<div class="grid p-5" style="color: black;text-align: justify;">
+  <div class="flex justify-center">
+    <mat-icon aria-label="KYC" style="color: black;">face_verification</mat-icon><h1>Kyc Verification</h1>
+  </div>
+  <div class="block p-6 bg-white border border-white-200 rounded-lg mt-4">
+    <form [formGroup]="myForm" (ngSubmit)="handleSubmit()">
+      <div class="grid grid-cols-3 gap-4 mb-7 ml-5 align-middle justify-center">
+        <div class="col-span-3">
+          <h2 style="color: #673ab7;">Personal Details</h2>
+        </div>
+
+        <div class="col-span-1">
+          <div class="">
+            <span class="block text-500 font-medium">Full Name *</span>
+            <input class="input__item" placeholder="Enter your name" type="text" formControlName="name"/>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="">
+            <span class="block text-500 font-medium">Gender *</span>
+            <p-selectButton [options]="genderOptions"
+                            [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '267px',
+              'border-style': 'solid'}"
+                            formControlName="gender" optionLabel="label"
+                            optionValue="value"></p-selectButton>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="">
+            <span class="block text-500 font-medium">Birth Date *</span>
+            <p-calendar
+              [showIcon]="true"
+              [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '20rem',
+              'border-style': 'solid'}"
+              formControlName="birthDate"
+            placeholder="Select a Birth Date"></p-calendar>
+
+          </div>
+        </div>
+
+        <div class="col-span-1 mt-2">
+          <div class="">
+            <span class="block text-500 font-medium">Father/Husband's Name *</span>
+            <input class="input__item" placeholder="Enter full name" type="text" formControlName="parentName"/>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="">
+            <span class="block text-500 font-medium">Grand Father's or Father-in-law's Name *</span>
+            <input class="input__item" placeholder="Enter full name" type="text" formControlName="grandParentName"/>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="">
+            <span class="block text-500 font-medium">Spouse Name: (Optional)</span>
+            <input class="input__item" placeholder="Enter full name" type="text" formControlName="spouseName"/>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="">
+            <span class="block text-500 font-medium">Occupation *</span>
+            <p-dropdown formControlName="occupation"
+                        [options]="occupations" optionLabel="title"
+                        [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '20rem',
+              'border-style': 'solid'}"
+                        placeholder="Select a Occupation"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="">
+            <span class="block text-500 font-medium">PAN Number: (Optional)</span>
+            <input class="input__item" placeholder="Enter pan number" type="text" formControlName="panNo"/>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="">
+            <span class="block text-500 font-medium">Landline Number: (Optional)</span>
+            <input class="input__item" placeholder="Enter landline number" type="text"
+                   formControlName="landLineNumber"/>
+          </div>
+        </div>
+
+      </div>
+      <hr>
+      <div class="grid grid-cols-2 gap-5 mt-5 ml-5 mb-7 justify-center">
+        <h2 class="col-span-2" style="color: #673ab7;">Address Information</h2>
+
+        <div class="col-span-1 flex flex-col ml-20">
+          <span style="color: #673ab7;">Permanent Address *</span>
+
+          <div class="flex flex-row gap-5 align-middle mt-4">
+            <span class="block text-500 font-medium mt-3">Zone
+              &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <p-dropdown formControlName="zoneP"
+                        [options]="zone" optionLabel="title"
+                        [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '20rem',
+              'border-style': 'solid'}"
+                        placeholder="Select a Zone"></p-dropdown>
+          </div>
+
+          <div class="flex flex-row gap-5 align-middle mt-4">
+            <span class="block text-500 font-medium mt-3">District&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <p-dropdown formControlName="districtP"
+                        [options]="district" optionLabel="title"
+                        [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '20rem',
+              'border-style': 'solid'}"
+                        placeholder="Select a District"></p-dropdown>
+          </div>
+
+          <div class="flex flex-row gap-5 align-middle mt-4">
+            <span class="block text-500 font-medium mt-3">Municipality</span>
+            <p-dropdown formControlName="municipalityP"
+                        [options]="municipality" optionLabel="title"
+                        [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '20rem',
+              'border-style': 'solid'}"
+                        placeholder="Select a Municipality"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-span-1 flex flex-col">
+          <span style="color: #673ab7;">Current Address *</span>
+
+          <div class="flex flex-row gap-5 align-middle mt-4">
+            <span class="block text-500 font-medium mt-3">Zone
+            &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <p-dropdown formControlName="zoneC"
+                        [options]="zone" optionLabel="title"
+                        [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '20rem',
+              'border-style': 'solid'}"
+                        placeholder="Select a Zone"></p-dropdown>
+          </div>
+
+          <div class="flex flex-row gap-5 align-middle mt-4">
+            <span class="block text-500 font-medium mt-3">District
+            &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <p-dropdown formControlName="districtC"
+                        [options]="district" optionLabel="title"
+                        [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '20rem',
+              'border-style': 'solid'}"
+                        placeholder="Select a District"></p-dropdown>
+          </div>
+
+          <div class="flex flex-row gap-5 align-middle mt-4">
+            <span class="block text-500 font-medium mt-3">Municipality</span>
+            <p-dropdown formControlName="municipalityC"
+                        [options]="municipality" optionLabel="title"
+                        [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '20rem',
+              'border-style': 'solid'}"
+                        placeholder="Select a Municipality"></p-dropdown>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="grid grid-cols-4 gap-3 ml-5">
+        <div class="col-span-4">
+          <h2 style="color: #673ab7;">Document Details</h2>
+          <span>*Please fill the details below as per your official documents</span>
+        </div>
+
+        <div class="col-span-1 mt-2">
+          <div class="">
+            <span class="block text-500 font-medium">Document Type *</span>
+            <p-dropdown formControlName="documentType"
+                        [options]="documentType" optionLabel="title"
+                        [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '15rem',
+              'border-style': 'solid'}"
+                        placeholder="Select a document type"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-span-1 mt-2">
+          <div class="">
+            <span class="block text-500 font-medium">Citizenship Number *</span>
+            <input [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '15rem',
+              'border-style': 'solid'}"
+                   placeholder="Citizenship Number" type="text" formControlName="citizenNumber"/>
+          </div>
+        </div>
+
+        <div class="col-span-1 mt-2">
+          <div class="">
+            <span class="block text-500 font-medium">Issued Address *</span>
+            <p-dropdown formControlName="issuedAddress"
+                        [options]="issuedAddress" optionLabel="title"
+                        [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '15rem',
+              'border-style': 'solid'}"
+                        placeholder="Select an Address"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-span-1 mt-2">
+          <div class="">
+            <span class="block text-500 font-medium">Date of Issue *</span>
+            <p-calendar
+              [showIcon]="true"
+              [style]="{'border-color': 'black',
+              'border-width': '1px',
+              'border-radius': '8px',
+              'height': '45px',
+              'width': '15rem',
+              'border-style': 'solid'}"
+              formControlName="dateOfIssue"
+             placeholder="Date of Issue"></p-calendar>
+          </div>
+        </div>
+
+        <div class="col-span-2 mt-2">
+          Citizenship Photo (Front) *
+          <div class="upload-area"
+               (drop)="onDrop($event)"
+               (dragover)="onDragOver($event)"
+               (dragleave)="onDragLeave($event)">
+            <label for="formFile" class="form-label pi pi-upload center-content"
+                   style="font-size: 1.5rem; cursor: pointer">
+              <br>
+              <ng-container *ngIf="!file_name; else fileNameDisplay">
+                Drag files or click here to upload
+              </ng-container>
+              <ng-template #fileNameDisplay>
+                <span> {{ file_name.length <= 15 ? file_name : file_name.slice(0, 15) + '...' }}</span>
+              </ng-template>
+            </label>
+
+            <input class="hidden" type="file" id="formFile"
+                   (change)="onFileChange($event)" [required]="!file_name"/>
+          </div>
+        </div>
+
+        <div class="col-span-2 mt-2">
+          Citizenship Photo (Back) *
+          <div class="upload-area"
+               (drop)="onDropB($event)"
+               (dragover)="onDragOverB($event)"
+               (dragleave)="onDragLeaveB($event)">
+            <label for="formFileB" class="form-label pi pi-upload center-content"
+                   style="font-size: 1.5rem; cursor: pointer">
+              <br>
+              <ng-container *ngIf="!file_nameB; else fileNameDisplayB">
+                Drag files or click here to upload
+              </ng-container>
+              <ng-template #fileNameDisplayB>
+                <span> {{ file_nameB.length <= 15 ? file_nameB : file_nameB.slice(0, 15) + '...' }}</span>
+              </ng-template>
+            </label>
+
+            <input class="hidden" type="file" id="formFileB"
+                   (change)="onFileChangeB($event)" [required]="!file_nameB"/>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flex flex-row-reverse">
+        <button mat-raised-button
+                style="padding: 1.5rem;"
+                class="text-lg mt-8 p-28 px-10"
+                type="submit"
+                [ngStyle]="{'background-color': '#60bb46'}"> Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

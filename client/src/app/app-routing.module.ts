@@ -14,10 +14,19 @@ import {ReservationListComponent} from "./reservation-list/reservation-list.comp
 import {ReservationRequestComponent} from "./driver/reservation-request/reservation-request.component";
 import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard/admin-dashboard.component";
 import {MyQueriesComponent} from "./my-queries/my-queries.component";
+import {UserKycComponent} from "./user-kyc/user-kyc.component";
+import {ViewUserKyComponent} from "./view-user-ky/view-user-ky.component";
 
 const routes: Routes = [
   {
     path: 'home', component: HomeComponent
+  },
+
+  {
+    path: 'my-kyc', component: UserKycComponent
+  },
+  {
+    path: 'view-kyc', component: ViewUserKyComponent
   },
   {
     path: 'about', component: AboutComponent

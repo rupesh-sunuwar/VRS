@@ -5,6 +5,8 @@ import com.project.vrs.enums.Role;
 import com.project.vrs.enums.UserStatus;
 import com.project.vrs.enums.UserType;
 import com.project.vrs.exception.UserException;
+import com.project.vrs.postgres.model.UserKYC;
+import com.project.vrs.postgres.repository.UserKYCRepository;
 import com.project.vrs.postgres.security.config.JwtProvider;
 import com.project.vrs.postgres.security.entity.Users;
 import com.project.vrs.postgres.security.repository.UserRepository;
@@ -36,6 +38,7 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final CustomUserServiceImpl customUserService;
     private final UserServiceImpl userService;
+    private final UserKYCRepository userKYCRepository;
 
     @PostMapping(Routes.LOGIN)
     public ResponseEntity<AuthResponse> loginUserHandler(@RequestBody LoginRequest loginRequest) {
@@ -83,7 +86,13 @@ public class AuthController {
             createdUser.setRole(Role.CUSTOMER);
         }
 
+
         Users savedUser = userRepository.save(createdUser);
+
+
+        UserKYC kycUser = new UserKYC();
+        kycUser.setUser(savedUser);
+        userKYCRepository.save(kycUser);
 
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(), savedUser.getPassword());

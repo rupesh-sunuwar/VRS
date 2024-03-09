@@ -62,6 +62,13 @@ export class LoginService {
     return userDetail.email;
   }
 
+  getUserId(){
+    const userDetailString = localStorage.getItem("ngStorage-profile");
+    const userDetail = JSON.parse(userDetailString!);
+    console.log(userDetail);
+    return userDetail.id;
+  }
+
   getSessionRole() {
     const userDetailString = localStorage.getItem("ngStorage-profile");
     const userDetail = JSON.parse(userDetailString!);

@@ -1,6 +1,7 @@
 package com.project.vrs.postgres.model;
 
 import com.project.vrs.postgres.security.entity.Users;
+import com.project.vrs.shared.domain.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,11 +13,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserKYC {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class UserKYC extends AbstractEntity {
 
     private String name;
     private String gender;
@@ -39,14 +36,12 @@ public class UserKYC {
     private String dateOfIssue;
 
     @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
     private String citizenFront;
 
     @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
     private String citizenBack;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 }

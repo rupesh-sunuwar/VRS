@@ -1,0 +1,123 @@
+<div class="grid p-5" style="color: black;text-align: justify;">
+  <div class="flex justify-center">
+    <mat-icon aria-label="KYC" style="color: black;">face_verification</mat-icon><h1>Kyc Details</h1>
+  </div>
+  <div class="block p-6 bg-white border border-white-200 rounded-lg mt-4">
+    <div class="grid ml-20">
+
+
+      <h2 class="text-lg font-bold mb-4" style="color: #673ab7;">Personal Details</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label class="font-semibold">Customer’s Name:</label>
+          <p>{{data.name}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Gender:</label>
+          <p>{{data.gender}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Birth Date:</label>
+          <p>{{data.birthDate}}</p>
+        </div>
+
+        <div>
+          <label class="font-semibold">Parent’s Name:</label>
+          <p>{{data.parentName}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Grand parent’s Name:</label>
+          <p>{{data.grandParentName}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Spouse Name:</label>
+          <p>{{data.spouseName}}</p>
+        </div>
+
+        <div>
+          <label class="font-semibold">Occupation:</label>
+          <p>{{data.occupation}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Pan No:</label>
+          <p>{{data.panNo}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Land Line Number:</label>
+          <p>{{data.landLineNumber}}</p>
+        </div>
+      </div>
+
+      <hr class="my-8">
+
+      <h2 class="text-lg font-bold mb-4" style="color: #673ab7;">Permanent Address Details</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label class="font-semibold">Zone:</label>
+          <p>{{data.zoneP}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">District:</label>
+          <p>{{data.districtP}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Municipality:</label>
+          <p>{{data.municipalityP}}</p>
+        </div>
+      </div>
+
+
+      <hr class="my-8">
+
+      <h2 class="text-lg font-bold mb-4" style="color: #673ab7;">Current Address Details</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label class="font-semibold">Zone:</label>
+          <p>{{data.zoneC}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">District:</label>
+          <p>{{data.districtC}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Municipality:</label>
+          <p>{{data.municipalityC}}</p>
+        </div>
+      </div>
+
+      <hr class="my-8">
+      <h2 class="text-lg font-bold mb-4" style="color: #673ab7;">Citizenship Image</h2>
+      <div class="grid grid-cols-2 gap-1">
+        <div class="custom-image-container">
+          <img [src]="frontImage" alt="Front Image" class="custom-image">
+        </div>
+
+        <div class="custom-image-container">
+          <img [src]="backImage" alt="Back Image" class="custom-image">
+        </div>
+      </div>
+
+
+      <h4 class="text-lg font-bold mb-4" style="color: #673ab7;">Document Details</h4>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div>
+          <label class="font-semibold">Document Type:</label>
+          <p>{{data.documentType}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Citizen Number:</label>
+          <p>{{data.citizenNumber}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Issued Address:</label>
+          <p>{{data.issuedAddress}}</p>
+        </div>
+        <div>
+          <label class="font-semibold">Date of Issue:</label>
+          <p>{{data.dateOfIssue}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

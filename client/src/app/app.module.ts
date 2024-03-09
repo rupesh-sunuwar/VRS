@@ -47,6 +47,16 @@ import  * as echarts from "echarts";
 import {MatIconModule} from "@angular/material/icon";
 import { MyQueriesComponent } from './my-queries/my-queries.component';
 import { ReplyDialogContentComponent } from './reply-dialog-content/reply-dialog-content.component';
+import { KycDashboardComponent } from './kyc-dashboard/kyc-dashboard.component';
+import { UserKycComponent } from './user-kyc/user-kyc.component';
+import { ViewUserKyComponent } from './view-user-ky/view-user-ky.component';
+import {DropdownModule} from "primeng/dropdown";
+import {SelectButtonModule} from "primeng/selectbutton";
+import {CalendarModule} from "primeng/calendar";
+import {MatTableModule} from "@angular/material/table";
+import {MatSelectModule} from "@angular/material/select";
+import {userReducer} from "./service/user/user.reducer";
+import {StoreModule} from "@ngrx/store";
 
 @NgModule({
   declarations: [
@@ -67,6 +77,9 @@ import { ReplyDialogContentComponent } from './reply-dialog-content/reply-dialog
     ContactFormComponent,
     MyQueriesComponent,
     ReplyDialogContentComponent,
+    KycDashboardComponent,
+    UserKycComponent,
+    ViewUserKyComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +93,9 @@ import { ReplyDialogContentComponent } from './reply-dialog-content/reply-dialog
     MatDialogModule, MessageModule, RadioButtonModule,
     AccordionModule, PanelModule, TabViewModule,
     MatOptionModule, NgApexchartsModule,
-    NgxEchartsModule.forRoot({echarts}), MatIconModule,
+    NgxEchartsModule.forRoot({echarts}), MatIconModule, DropdownModule, SelectButtonModule, CalendarModule, MatTableModule,
+    MatSelectModule,
+    StoreModule.forRoot({ user: userReducer}),
   ],
   providers: [LoginService, JwtService, PasswordService, MessageService,
     BookingServiceService, PaymentService, VehicleService],

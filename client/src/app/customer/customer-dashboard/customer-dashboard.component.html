@@ -33,13 +33,19 @@
     <mat-drawer #drawer opened="true" mode="side" position="start">
       <mat-nav-list>
         <mat-list-item>
-          <button routerLink="card" mat-icon-button aria-label="Dashboard">
-            <mat-icon>dashboard</mat-icon>
+          <button routerLink="" mat-icon-button aria-label="Home">
+            <mat-icon>home</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="" mat-icon-button aria-label="Home">
-            <mat-icon>home</mat-icon>
+          <button routerLink="my-kyc" mat-icon-button aria-label="Dashboard">
+            <mat-icon aria-label="KYC">face_verification</mat-icon>
+          </button>
+        </mat-list-item>
+
+        <mat-list-item>
+          <button routerLink="view-kyc" mat-icon-button aria-label="Dashboard">
+            <mat-icon aria-label="View KYC">description</mat-icon>
           </button>
         </mat-list-item>
         <mat-list-item>

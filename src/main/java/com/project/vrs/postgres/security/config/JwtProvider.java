@@ -31,6 +31,7 @@ public class JwtProvider {
                 .claim("fullName", user.fullName())
                 .claim("role", user.getRole())
                 .claim("status", user.getUserStatus())
+                .claim("id",user.getId())
                 .signWith(key).compact();
     }
 

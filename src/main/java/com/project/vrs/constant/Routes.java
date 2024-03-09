@@ -28,7 +28,9 @@ public class Routes {
     public static final String All_RESERVATION_LIST = AUTH_VRS + "/reservation_list";
     public static final String GET_USERS_MESSAGE = AUTH_VRS + "/users_message";
     public static final String USER_MESSAGE = AUTH_VRS + "/user_message/{email}";
-    public static final String UNVERIFIED_USER = AUTH_VRS + "/getAllUnverifiedUsers";
-    public static final String SUBMIT_KYC = AUTH_VRS + "/kyc";
-    public static final String KYC_HANDLER = AUTH_VRS + "/kyc/{userId}";
+    public static final String UNVERIFIED_USER = AUTH_VRS + "/users/kyc/getAllUnverifiedUsers";
+    public static final String SUBMIT_KYC = AUTH_VRS + "/users/kyc";
+    public static final String KYC_HANDLER = AUTH_VRS + "/users/kyc/{userId}";
+    public static final String PROFILE = AUTH_VRS + "/users/kyc/profile";
+    public static final String KYC_STATUS = AUTH_VRS + "/users/kyc/{userId}/{kycStatus}";
 }

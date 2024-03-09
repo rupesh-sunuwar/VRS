@@ -10,6 +10,7 @@ import com.project.vrs.postgres.security.repository.UserRepository;
 import com.project.vrs.postgres.security.services.UserService;
 import com.project.vrs.resources.request.UserKycRequest;
 import com.project.vrs.resources.response.UserKycResponse;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -110,14 +111,13 @@ public class  UserServiceImpl implements UserService {
 }
 
     @Override
+    @Transactional
     public UserKYC getUserKYC(Long userId) throws UserException {
-        return userKycRepository.findById(userId)
-                .orElseThrow(() -> new UserException("User KYC not found"));
+        return userKycRepository.findByUser_Id(userId);
     }
 
     private UserKYC converter(UserKycRequest userKycRequest, Long userId) throws UserException {
-        UserKYC userKYC = userKycRepository.findById(userId)
-                .orElseThrow(() -> new UserException("User KYC not found"));
+        UserKYC userKYC = userKycRepository.findByUser_Id(userId);
 
         userKYC.setName(userKycRequest.getName());
         userKYC.setGender(userKycRequest.getGender());

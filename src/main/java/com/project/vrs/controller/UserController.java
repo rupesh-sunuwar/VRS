@@ -23,6 +23,20 @@ public class UserController {
     private final UserService userService;
 
 
+    @GetMapping(Routes.PROFILE)
+    public ResponseEntity<Users> getUserProfileHandler(@RequestHeader("Authorization") String jwt) throws UserException {
+
+        Users user = userService.findUserProfileByJwt(jwt);
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping(Routes.KYC_STATUS)
+    public Users updateKycStatus(@PathVariable("userId") Long userId,
+                                    @PathVariable("kycStatus") String kycStatus) throws UserException {
+
+        return userService.updateKycStatus(userId, kycStatus);
+    }
+
     @GetMapping(Routes.UNVERIFIED_USER)
     public ResponseEntity<List<UserKycResponse>> getAllUnverifiedUsersHandler() {
 
