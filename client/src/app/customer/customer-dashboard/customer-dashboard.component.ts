@@ -7,6 +7,7 @@ import {LogoutConfirmationDailogComponent} from "../../logout-confirmation-dailo
 import {MatDialog} from "@angular/material/dialog";
 import {ContactFormComponent} from "../../contact-form/contact-form.component";
 import {NotificationDialogComponent} from "../../notification-dialog/notification-dialog.component";
+import {UserService} from "../../service/user/user.service";
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -15,11 +16,30 @@ import {NotificationDialogComponent} from "../../notification-dialog/notificatio
 })
 export class CustomerDashboardComponent {
 
+  unreadCount!:number;
+  notifications!:any;
   constructor(private loginService: LoginService,
               private router: Router, private messageService: CustomMessageService,
-              private dialog:MatDialog
+              private dialog:MatDialog,
+              private userService:UserService
   ) {
 
+  }
+   ngOnInit(){
+    this.getNotification();
+   }
+
+  getNotification() {
+    this.userService.getUserNotification().subscribe(
+      (notifications) => {
+        this.notifications=notifications
+        this.unreadCount= this.notifications.length;
+      },
+      (error) => {
+        // Handle error
+        console.error('Error fetching notifications:', error);
+      }
+    );
   }
 
   badgevisible = false;

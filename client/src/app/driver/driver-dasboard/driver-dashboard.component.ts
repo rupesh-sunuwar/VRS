@@ -7,6 +7,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddVehicleDialogComponent} from "../add-vehicle-dialog/add-vehicle-dialog.component";
 import {LogoutConfirmationDailogComponent} from "../../logout-confirmation-dailog/logout-confirmation-dailog.component";
 import {ContactFormComponent} from "../../contact-form/contact-form.component";
+import {NotificationDialogComponent} from "../../notification-dialog/notification-dialog.component";
+import {UserService} from "../../service/user/user.service";
 
 @Component({
   selector: 'app-driver-dashboard',
@@ -14,12 +16,36 @@ import {ContactFormComponent} from "../../contact-form/contact-form.component";
   styleUrls: ['./driver-dashboard.component.scss']
 })
 export class DriverDashboardComponent {
+
+  unreadCount!:number;
+  notifications!:any;
+
   constructor(private loginService: LoginService,
               private router: Router,
               private messageService: CustomMessageService,
-              private dialog: MatDialog
+              private dialog: MatDialog,
+              private userService:UserService
   ) {
 
+  }
+
+  ngOnInit(){
+    this.getNotification();
+
+  }
+
+  getNotification() {
+    this.userService.getUserNotification().subscribe(
+      (notifications) => {
+        this.notifications=notifications
+        this.unreadCount= this.notifications.length;
+
+      },
+      (error) => {
+        // Handle error
+        console.error('Error fetching notifications:', error);
+      }
+    );
   }
 
   badgevisible = false;
@@ -83,6 +109,14 @@ export class DriverDashboardComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       // Handle any actions after the dialog is closed if needed
+    });
+  }
+
+  openNotificationDialog() {
+    const dialogRef = this.dialog.open(NotificationDialogComponent, {
+      width: '400px', // Adjust the width as needed
+      maxHeight: '80vh', // Maximum height to make it scrollable
+      data: { /* Pass any data needed by the dialog */ }
     });
   }
 }

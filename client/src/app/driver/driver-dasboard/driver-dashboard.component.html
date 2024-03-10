@@ -29,8 +29,8 @@
       Join Us
     </a>
 
-    <button (click)="badgevisibility()" mat-icon-button aria-label="Notifications" matTooltip="Notifications">
-      <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible" matBadgeSize="small">
+    <button (click)="openNotificationDialog()" mat-icon-button aria-label="Notifications" matTooltip="Notifications">
+      <mat-icon matBadgeColor="accent" matBadge="{{unreadCount}}" [matBadgeHidden]="badgevisible" matBadgeSize="small">
         notifications
       </mat-icon>
     </button>
@@ -47,7 +47,7 @@
         </mat-list-item>
 
         <mat-list-item>
-          <button routerLink="my-kyc" mat-icon-button aria-label="Dashboard">
+          <button routerLink="my-kyc" mat-icon-button >
             <mat-icon aria-label="KYC">face_verification</mat-icon>
           </button>
         </mat-list-item>

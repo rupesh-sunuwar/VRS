@@ -101,7 +101,7 @@ public class BookingServiceImpl implements BookingService {
         Reservation reservation = reservationRepo.findByBookingNo(bookingNo);
         if (reservation != null) {
             reservation.setReservationStatus(ReservationStatus.COMPLETED);
-            return reservationRepo.save(reservation);
+            return userService.saveReservation(reservation);
         }
         return null;
     }

@@ -28,12 +28,22 @@ export class ViewUserKyComponent {
     this.router.params.subscribe(params => {
       const userId = params['id'];
       console.log(this.loginService.getUserId())
-      this.userService.getUserKyc(this.loginService.getUserId())
-        .subscribe((data: any) => {
-          this.data = data;
-          this.frontImage = 'data:image/jpg;base64,' + data.citizenFront;
-          this.backImage = 'data:image/jpg;base64,' + data.citizenBack;
-        });
+      if(userId){
+        this.userService.getUserKyc(userId)
+          .subscribe((data: any) => {
+            this.data = data;
+            this.frontImage = 'data:image/jpg;base64,' + data.citizenFront;
+            this.backImage = 'data:image/jpg;base64,' + data.citizenBack;
+          });
+      }
+      else{
+        this.userService.getUserKyc(this.loginService.getUserId())
+          .subscribe((data: any) => {
+            this.data = data;
+            this.frontImage = 'data:image/jpg;base64,' + data.citizenFront;
+            this.backImage = 'data:image/jpg;base64,' + data.citizenBack;
+          });
+      }
     });
   }
 

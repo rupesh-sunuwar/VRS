@@ -44,6 +44,7 @@ public class VehicleServiceImpl implements VehicleService {
     private VehicleResponse convertToVehicleResponse(Vehicle vehicle) {
         VehicleResponse vehicleResponse = new VehicleResponse();
         vehicleResponse.setVehicleId(vehicle.getId());
+        vehicleResponse.setUserStatus(String.valueOf(vehicle.getUsers().getKycStatus()));
         vehicleResponse.setManufacturedBy(vehicle.getManufacturedBy());
         vehicleResponse.setVehicleNo(vehicle.getVehicleNo());
         vehicleResponse.setVehicleType(vehicle.getVehicleType());

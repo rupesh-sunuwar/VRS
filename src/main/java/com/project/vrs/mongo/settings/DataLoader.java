@@ -55,6 +55,9 @@ public class DataLoader implements CommandLineRunner {
             boolean uniqueIdFound = false;
             Long generatedId = null;
 
+            boolean keyExists = existingKeys.stream()
+                    .anyMatch(config -> config.getKey() == key);
+
             while (!uniqueIdFound) {
                 generatedId = generateUniqueId();
                 Long finalGeneratedId = generatedId;
@@ -63,14 +66,15 @@ public class DataLoader implements CommandLineRunner {
                     uniqueIdFound = true;
                 }
             }
-
-            VrsConfiguration cmsConfig = new VrsConfiguration();
-            cmsConfig.setId(generatedId);
-            cmsConfig.setKey(key);
-            cmsConfig.setConfigurationStatus(ConfigurationStatus.ACTIVE);
-            cmsConfig.setConfiguration(key.getValue());
-            cmsConfig.setPredefinedMessage(key.getValue());
-            configurationRepo.save(cmsConfig);
+            if (!keyExists) {
+                VrsConfiguration cmsConfig = new VrsConfiguration();
+                cmsConfig.setId(generatedId);
+                cmsConfig.setKey(key);
+                cmsConfig.setConfigurationStatus(ConfigurationStatus.ACTIVE);
+                cmsConfig.setConfiguration(key.getValue());
+                cmsConfig.setPredefinedMessage(key.getValue());
+                configurationRepo.save(cmsConfig);
+            }
         }
 
         log.info("configuration added successfully");

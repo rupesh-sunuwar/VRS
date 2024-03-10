@@ -55,6 +55,6 @@ export class KycDashboardComponent implements OnInit {
   }
 
   redirectToAnotherComponent(id: any) {
-    this.router.navigate(['/verify-kyc', id]);
+    this.router.navigate(['/view-kyc', id]);
   }
 }

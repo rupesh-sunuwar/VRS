@@ -8,7 +8,6 @@
   <div class="notifications-body">
     <!-- Your scrollable notifications content here -->
     <div class="notification" *ngFor="let notification of notifications">
-      {{notification.message}}
       <div class="notify-icon">
         <span class="notify-letter" [style.color]="notification.notification_read_status ? 'grey' : 'initial'">{{ notification.properties.username[0] }}</span>
       </div>

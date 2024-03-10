@@ -24,7 +24,7 @@
       Join Us
     </a>
     <button (click)="openNotificationDialog()" mat-icon-button aria-label="Notifications" matTooltip="Notifications">
-      <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible" matBadgeSize="small">
+      <mat-icon matBadgeColor="accent" matBadge="{{unreadCount}}" [matBadgeHidden]="badgevisible" matBadgeSize="small">
         notifications
       </mat-icon>
     </button>

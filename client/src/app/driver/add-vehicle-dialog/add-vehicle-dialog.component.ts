@@ -13,7 +13,7 @@ import {LoginService} from "../../auth/login.service";
 })
 export class AddVehicleDialogComponent implements OnInit {
   newVehicle: Vehicle = new Vehicle(0, '', '', '', false,
-    0, '');
+    0, '','');
   selectedFile!: File ;
 
   constructor(public dialogRef: MatDialogRef<AddVehicleDialogComponent>

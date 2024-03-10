@@ -29,6 +29,11 @@ const routes: Routes = [
     path: 'view-kyc', component: ViewUserKyComponent
   },
   {
+    path: 'view-kyc/:id',
+    component: ViewUserKyComponent
+  }
+  ,
+  {
     path: 'about', component: AboutComponent
   },
 

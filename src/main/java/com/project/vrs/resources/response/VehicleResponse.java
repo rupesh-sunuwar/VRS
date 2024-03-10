@@ -33,4 +33,7 @@ public class VehicleResponse implements Serializable {
 
     @JsonProperty("vehicle_info_id")
     private Long vehicleInfoId;
+
+    @JsonProperty("user_status")
+    private String userStatus;
 }

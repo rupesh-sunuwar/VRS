@@ -50,12 +50,18 @@ export class UserService {
   }
 
   getAllUnverifiedUser() {
+
     return this.http.get(`${this.auth_url}users/kyc/getAllUnverifiedUsers` ,{headers: this.getHeaders()})
   }
 
   changeKycStatus(userId: number, kycStatus: string) {
+    const url = `${this.auth_url}users/kyc/${userId}/${kycStatus}`;
+    const headers = this.getHeaders(); // Assuming this returns the required headers
 
-    return this.http.post(`${this.auth_url}users/kyc/${userId}/${kycStatus}`, {headers: this.getHeaders()})
+    console.log("URL:", url);
+    console.log("Request Body:", { headers });
+
+    return this.http.post(`${this.auth_url}users/kyc/${userId}/${kycStatus}`,{}, {headers: this.getHeaders()})
   }
 
   uploadKyc(value: any, fileToUpload: File, fileToUploadB: File) {

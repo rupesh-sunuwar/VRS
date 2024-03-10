@@ -6,10 +6,18 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.notifications-card::-webkit-scrollbar {
+  display: none;
+}
+
 .notifications-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.notifications-header::-webkit-scrollbar {
+  display: none;
 }
 
 .notifications-body {
@@ -17,7 +25,39 @@
   overflow-y: auto;
 }
 
+.notifications-body::-webkit-scrollbar {
+  display: none;
+}
+
 .notification {
+  display: flex;
+  align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+}
+
+.notifications::-webkit-scrollbar {
+  display: none;
+}
+
+.notify-icon {
+  margin-right: 10px;
+}
+
+.notify-letter {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #ccc; /* Default circle user icon color */
+}
+
+.notify-content {
+  flex: 1;
+}
+
+.notification h4, .notification p, .notification small {
+  margin: 0;
 }

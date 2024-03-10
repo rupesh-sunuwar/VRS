@@ -2,9 +2,7 @@ package com.project.vrs.controller;
 
 import com.project.vrs.constant.Routes;
 import com.project.vrs.exception.UserException;
-import com.project.vrs.postgres.model.Reservation;
 import com.project.vrs.postgres.model.UserKYC;
-import com.project.vrs.postgres.repository.ReservationRepo;
 import com.project.vrs.postgres.security.entity.Users;
 import com.project.vrs.postgres.security.services.UserService;
 import com.project.vrs.resources.request.UserKycRequest;
@@ -23,8 +21,6 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final ReservationRepo reservationRepo;
-
 
     @GetMapping(Routes.PROFILE)
     public ResponseEntity<Users> getUserProfileHandler(@RequestHeader("Authorization") String jwt) throws UserException {
@@ -35,7 +31,7 @@ public class UserController {
 
     @PostMapping(Routes.KYC_STATUS)
     public Users updateKycStatus(@PathVariable("userId") Long userId,
-                                    @PathVariable("kycStatus") String kycStatus) throws UserException {
+                                 @PathVariable("kycStatus") String kycStatus) throws UserException {
 
         return userService.updateKycStatus(userId, kycStatus);
     }
@@ -58,7 +54,6 @@ public class UserController {
         Users user = userService.findUserProfileByJwt(jwt);
         return userService.submitKycForm(user, userKycRequest, citizenFront, citizenBack);
     }
-
 
 
     @GetMapping(Routes.KYC_HANDLER)

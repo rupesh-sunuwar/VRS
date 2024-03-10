@@ -82,7 +82,6 @@ export class UserKycComponent {
     this.route.paramMap.subscribe(params => {
       this.userId = params.get('id');
     });
-    this.userService.changeKycStatus(2,"Pending");
     this.occupations = [
       {title: 'Software Engineer', code: 'SE'},
       {title: 'Doctor', code: 'DOC'},

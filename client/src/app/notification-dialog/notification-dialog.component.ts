@@ -13,12 +13,15 @@ import {capitalize} from "lodash";
 export class NotificationDialogComponent {
 
   notifications!:any;
+  unreadCount!:number;
+
   constructor(private userService: UserService,
               private dialogRef: MatDialogRef<NotificationDialogComponent>
   ) {}
 
   ngOnInit(){
      this.getNotification();
+     this.unreadCount=this.notifications.length;
   }
   closeDialog() {
     this.dialogRef.close();

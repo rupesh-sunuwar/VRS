@@ -14,7 +14,7 @@
         <p>Vehicle Type: {{ vehicle.vehicle_type }}</p>
         <p>{{ vehicle.is_available ? 'Available' : 'Not Available' }}</p>
         <div class="button-container">
-          <button mat-raised-button color="primary" [disabled]="!vehicle.is_available"
+          <button mat-raised-button color="primary" [disabled]="!vehicle.is_available || vehicle.user_status !== 'APPROVED'"
                   (click)="reserveVehicle(vehicle)">
             Reserve
           </button>
@@ -28,7 +28,7 @@
 
   <ng-template #noVehicles>
     <div class="no-vehicles-message">
-      <h2><strong><i class="material-icons">directions_car</i> Vehicle List</strong></h2>
+      <br>
       No vehicles available for reservation.
     </div>
   </ng-template>
